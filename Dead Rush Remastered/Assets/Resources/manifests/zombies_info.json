@@ -1,0 +1,125 @@
+{
+  "zombies": {
+    "zoimbie1": {
+      "name_en-EN": "Ordinary Zombie",
+      "name_ru-RU": "Обычный зомби",
+      "damage": 3,
+      "armor": 0,
+      "health": 5,
+      "type_attack": 0,
+      "description (en-EN)": "Normal melee zombie. No ability.",
+      "description (ru-RU)": "Обычный зомби ближнего боя. Нет способностей.",
+      "prefab": "zoimbie1"
+    },
+    "zoimbie10": {
+      "name_en-EN": "Zombie apu",
+      "name_ru-RU": "ВСУ зомби",
+      "damage": 13,
+      "armor": 5,
+      "health": 6,
+      "type_attack": 0,
+      "description (en-EN)": "Has armor, but has little health.",
+      "description (ru-RU)": "Имеет броню, но имеет мало здоровья.",
+      "prefab": "zoimbie10"
+    },
+    "zoimbie11": {
+      "name_en-EN": "Hunter",
+      "name_ru-RU": "Охотник",
+      "damage": 10,
+      "armor": 0,
+      "health": 13,
+      "type_attack": 0,
+      "description (en-EN)": "Teleports to the player after a while. Deals great damage.",
+      "description (ru-RU)": "Телепортируется к игроку через некоторое время. Наносит большой урон.",
+      "prefab": "zoimbie11"
+    },
+    "zoimbie2": {
+      "name_en-EN": "Acid Zombie",
+      "name_ru-RU": "Кислотный зомби",
+      "damage": 0,
+      "armor": 0,
+      "health": 5,
+      "type_attack": 1,
+      "description (en-EN)": "Shoots acid from a long distance, can poison the player.",
+      "description (ru-RU)": "Стреляет кислотой с дальнего расстояния, может отравить игрока.",
+      "prefab": "zoimbie2"
+    },
+    "zoimbie3": {
+      "name_en-EN": "Big Zombie",
+      "name_ru-RU": "Большой зомби",
+      "damage": 16,
+      "armor": 0,
+      "health": 12,
+      "type_attack": 0,
+      "description (en-EN)": "It explodes upon death, after which 5 normal zombies appear in its place.",
+      "description (ru-RU)": "Взрывается после смерти, после чего на его месте появляются 5 обычных зомби.",
+      "prefab": "zoimbie3"
+    },
+    "zoimbie4": {
+      "name_en-EN": "Zombie Woman",
+      "name_ru-RU": "Женщина-зомби",
+      "damage": 2,
+      "armor": 0,
+      "health": 3,
+      "type_attack": 0,
+      "description (en-EN)": "Has high movement speed, but low health.",
+      "description (ru-RU)": "Имеет большую скорость передвижения, но у нее мало здоровья.",
+      "prefab": "zoimbie4"
+    },
+    "zoimbie5": {
+      "name_en-EN": "SWAT Zombie",
+      "name_ru-RU": "Зомби-военный",
+      "damage": 12,
+      "armor": 2,
+      "health": 10,
+      "type_attack": 0,
+      "description (en-EN)": "Has strong armor and health.",
+      "description (ru-RU)": "Имеет прочную броню и здоровье",
+      "prefab": "zoimbie5"
+    },
+    "zoimbie6": {
+      "name_en-EN": "Regeneration Zombie",
+      "name_ru-RU": "Регенератор",
+      "damage": 5,
+      "armor": 0,
+      "health": 5,
+      "type_attack": 0,
+      "description (en-EN)": "Restores its health over time.",
+      "description (ru-RU)": "Восстанавливает свое здоровье в течении некоторого времени.",
+      "prefab": "zoimbie6"
+    },
+    "zoimbie7": {
+      "name_en-EN": "Firefighter Zombie",
+      "name_ru-RU": "Зомби-пожарник",
+      "damage": 0,
+      "armor": 3,
+      "health": 7,
+      "type_attack": 1,
+      "description (en-EN)": "Covered in fire, shoots three shells of fire, after which fire will appear on the barricade, which will damage it. Has durable armor.",
+      "description (ru-RU)": "Покрыт огнем, стреляет тремя снарядами огня, после чего на баррикаде появится огонь, который будет наносить урон ей. Имеет прочную броню.",
+      "prefab": "zoimbie7"
+    },
+    "zoimbie8": {
+      "name_en-EN": "Witch",
+      "name_ru-RU": "Ведьма",
+      "damage": 2,
+      "armor": 0,
+      "health": 6,
+      "type_attack": 0,
+      "description (en-EN)": "Calmly walks to the barricade, then stops and waits. When receiving damage, its speed is increased by 5 round. She is furious.",
+      "description (ru-RU)": "Спокойно идет к баррикаде, после чего останавливается и ждет. При получении урона скорость ее увеличивается в 5 раз. Она приходит в ярость.",
+      "prefab": "zoimbie8"
+    },
+    "zoimbie9": {
+      "name_en-EN": "Russian Military Zombie",
+      "name_ru-RU": "ОМОН зомби",
+      "damage": 20,
+      "armor": 4,
+      "health": 14,
+      "type_attack": 0,
+      "description (en-EN)": "Has strong armor, large health reserves, but slow movement speed.",
+      "description (ru-RU)": "Имеет прочную броню, большой запас здоровья, но медленная скорость передвижения.",
+      "prefab": "zoimbie9"
+    }
+  }
+}

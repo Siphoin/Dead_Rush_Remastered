@@ -1,0 +1,22 @@
+{
+  "levels": {},
+  "skin": "hitman1",
+  "level_num_end": 1,
+  "$": 0,
+  "name_profile": "324",
+  "baricades": {
+    "name": "baricades1"
+  },
+  "weapon_selected": {
+    "max_ammunition": 40,
+    "name": "gun",
+    "reload": 2.0
+  },
+  "weapon_list_player": {
+    "gun": {
+      "max_ammunition": 40,
+      "name": "gun",
+      "reload": 2.0
+    }
+  }
+}
