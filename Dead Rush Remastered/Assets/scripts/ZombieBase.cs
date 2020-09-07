@@ -29,8 +29,10 @@ public abstract class ZombieBase : MonoBehaviour
     public float Speed { get => speed; set => speed = value; }
     public bool Move { get => move; set => move = value; }
     public int RewardЬurder { get => rewardmurder; set => rewardmurder = value; }
+    
 
-    public event Action<int, bool> deadEvent;
+    public event Action<int, bool, ZombieBase> deadEvent;
+
 
     protected void  CheckParams()
     {
@@ -54,7 +56,7 @@ public abstract class ZombieBase : MonoBehaviour
                 blood.transform.localScale *= 2;
                 bigZombie.Dispose();
             }
-            deadEvent(rewardmurder, true);
+            deadEvent(rewardmurder, true, this);
             RewardDisplay rewardDisplay = Instantiate(Resources.Load<RewardDisplay>("Prefabs/reward_display"));
             rewardDisplay.OnDisplayReward(rewardmurder);
             rewardDisplay.transform.position = transform.position;
@@ -66,7 +68,7 @@ if (transform.position.x < Camera.main.transform.position.x)
 
            if (Vector2.Distance(transform.position, Camera.main.transform.position) >= CHECK_DISTANCE_DESTROY)
             {
-                deadEvent(rewardmurder, false);
+                deadEvent(rewardmurder, false, this);
                 Destroy(gameObject);
             }
         }

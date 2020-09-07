@@ -37,5 +37,21 @@ public class FireBall : Ball
 
            
         }
+
+
+        if (collision.tag == "Player")
+        {
+            LevelManager.manager.player.Damage(damage);
+            LevelManager.manager.player.ShowAcidEffect();
+            Destroy(gameObject);
+        }
+
+        if (collision.tag == "Partner")
+        {
+            Partner partner = collision.GetComponent<Partner>();
+            partner.Damage(damage);
+            partner.ShowAcidEffect();
+            Destroy(gameObject);
+        }
     }
 }

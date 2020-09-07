@@ -7,6 +7,9 @@ TagManager:
   - Zombie
   - Baricades
   - Bullet
+  - LevelManager
+  - PartnerVisibleComponent
+  - Partner
   layers:
   - Default
   - TransparentFX

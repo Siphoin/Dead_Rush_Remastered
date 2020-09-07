@@ -64,7 +64,16 @@ public class ResultLevelWindow : AnimatedWindow
         }
 
         GameCache.cacheContainer.money += moneyCost;
-        text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+        if (LanguageManager.Language == Language.EN)
+        {
+ text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+        }
+
+        else
+        {
+            text_result_level.text = $"Зомби убито: {levelStats.zombiesKilled}\nДенег заработано: {levelStats.moneyCost}\nВремя: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+        }
+       
        
     }
 

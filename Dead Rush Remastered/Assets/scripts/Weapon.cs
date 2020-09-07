@@ -14,7 +14,7 @@ public  class Weapon
         get => Ammunition; set
         {
             Ammunition = value;
-            weaponEvent(WeaponState.NewValue);
+            weaponEvent?.Invoke(WeaponState.NewValue);
         }
     }
         public int MaxAmmunition { get => maxAmmunition; }
@@ -32,6 +32,6 @@ public  class Weapon
     {
         Reloading = false;
         Ammunition = maxAmmunition;
-        weaponEvent(WeaponState.NewValue);
+        weaponEvent?.Invoke(WeaponState.NewValue);
     }
     }

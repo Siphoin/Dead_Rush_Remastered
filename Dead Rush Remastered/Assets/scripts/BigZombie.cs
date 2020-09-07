@@ -9,10 +9,10 @@ public class BigZombie : MonoBehaviour, IDisposable
     const string NAME_PREFAB_ZOMBIE = "Prefabs/Zombies/zombie1";
     private ZombieBase zombieBase;
  private   Vector3 pos_zombie;
+    [SerializeField] string name_prefab_summoned_zombie = "zoimbie1";
     // Use this for initialization
     void Start()
     {
-        
         zombieBase = GetComponent<ZombieBase>();
     }
 
@@ -26,18 +26,14 @@ public class BigZombie : MonoBehaviour, IDisposable
             {
                 float rad = 1f;
                 Vector3 vecUnity = new Vector3(pos_zombie.x + rad * Mathf.Cos(Random.Range(-180, 180)), pos_zombie.y + rad * Mathf.Sin(Random.Range(-250, 250)), -2);
-                GameObject zombie = Instantiate(Resources.Load<GameObject>("Prefabs/Zombies/zoimbie1"));
+                ZombieBase zombie = Instantiate(Resources.Load<ZombieBase>($"Prefabs/Zombies/{name_prefab_summoned_zombie}"));
                 zombie.transform.position = vecUnity;
+                LevelManager.manager.OnRequstZombie(zombie);
             }
 
             zombieBase.DamageZombie(int.MaxValue);
         }
         
-    }
-
-    private void OnDestroy()
-    {
-    
     }
 
     public void Dispose()

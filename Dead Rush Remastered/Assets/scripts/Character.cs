@@ -64,7 +64,6 @@ public class Character : ScreenComponent
     void Update()
     {
         MoveKeys();
-     //   OnFire();
 
         if (health <= 0)
         {

@@ -5,6 +5,7 @@ public class Baricade : MonoBehaviour
 {
     [SerializeField] int Health;
     [SerializeField] int armor;
+    [SerializeField] int Sale;
     public int health { get => Health; set => Health = value; }
 
     // Use this for initialization
@@ -36,5 +37,10 @@ if (value < 0)
        
         
 
+    }
+
+    public BaricadeData GetData ()
+    {
+        return new BaricadeData() { armor = armor, health = Health, name_prefab = gameObject.name, sale = Sale };
     }
 }

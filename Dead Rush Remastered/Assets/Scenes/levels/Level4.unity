@@ -10190,6 +10190,11 @@ PrefabInstance:
       propertyPath: bonus_count
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9173640066551869489, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9173640066551869488}
   m_Layer: 0
   m_Name: level_object
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,3 +48,4 @@ MonoBehaviour:
   - {fileID: 3102584285326041486, guid: fe7b5aa87acedcd41adfb9400ba9607d, type: 3}
   countZombiesInLevel: 5
   bonus_count: 2
+  name_zombie: 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Menu : MonoBehaviour
    private static bool onPageLevels = false;
     private static bool onLoadSave = false;
     private bool windowCreationExited;
+    [SerializeField] Button button_shop;
 
     public static bool OnPageLevels { get => onPageLevels; set => onPageLevels = value; }
 
@@ -33,7 +35,7 @@ public class Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        button_shop.interactable = GameCache.FileSaveExits();
     }
 
     public void OnPlay ()
@@ -45,6 +47,11 @@ public class Menu : MonoBehaviour
     public void OnBack ()
     {
         animator_menu.Play(onBackAnimationName);
+    }
+
+    public void OnShop ()
+    {
+          Instantiate(Resources.Load<ShopWindow>("Prefabs/ShopWindow"));
     }
 
     private IEnumerator CheckPlay ()

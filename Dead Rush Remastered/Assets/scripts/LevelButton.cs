@@ -17,6 +17,7 @@ public  class LevelButton : MonoBehaviour
     [SerializeField] Image[] stars;
     private Sprite star_yes_result_sprite;
     private Sprite block_button_sprite;
+    private Sprite boss_button_sprite;
     Button button;
     Image image;
     private void Start()
@@ -44,6 +45,14 @@ public  class LevelButton : MonoBehaviour
         {
             stars[i].sprite = star_yes_result_sprite;
         }
+
+    }
+
+    public void SetBossLevel ()
+    {
+        image = GetComponent<Image>();
+        boss_button_sprite = Resources.Load<Sprite>("UI/button_level_boss");
+        image.sprite = boss_button_sprite;
     }
 
     public void BlockButton ()

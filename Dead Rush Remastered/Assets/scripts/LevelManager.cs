@@ -6,17 +6,18 @@ using Debug = UnityEngine.Debug;
 using System.IO;
 using Newtonsoft.Json;
 
-public class LevelManager : ScreenComponent
+public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int currentLevel = 1;
    [SerializeField] ZombieBase [] zombiesList;
 
     [SerializeField] int countZombiesInLevel = 1;
     [SerializeField] int bonus_count = 0;
+    [SerializeField] ZombieBase boss;
 
     private int loopCountZombies = 1;
 
-    private int currentZombiesSpawned = 1;
+    private int currentZombiesSpawned = 0;
 
     private int variantsCountZombies = 0;
 
@@ -24,8 +25,10 @@ public class LevelManager : ScreenComponent
 
     private DateTime timeEspliaded = new DateTime();
 
+    private const float HEIGHT_SCREEN = 2.2f;
 
-    
+
+
 
     private static LevelManager this_manager;
 
@@ -47,10 +50,13 @@ public class LevelManager : ScreenComponent
     public int zombiieCount { get; set; } = 0;
 
     public event Action hordeEvent;
+    public event Action<ZombieBase> bossEvent;
 
     private Character Player;
 
     private bool windowNewZombieExited = false;
+
+    private bool levelIsFinished = false;
 
     // Use this for initialization
     
@@ -94,8 +100,11 @@ public class LevelManager : ScreenComponent
         {
 
         }
-
-        StartCoroutine(StartLevel());
+        if (boss != null)
+        {
+            countZombiesInLevel++;
+        }
+            StartCoroutine(StartLevel());
     }
 
     IEnumerator StartLevel()
@@ -144,15 +153,25 @@ public class LevelManager : ScreenComponent
         baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.cacheContainer.baricades.name_prefab));
         Player.deadEvent += OnPlayerDead;
         Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
+        if (GameCache.cacheContainer.partnerBuyed)
+        {
+            Instantiate(Resources.Load<GameObject>("Prefabs/PartnerVisibleComponent"));
+            Instantiate(Resources.Load<Partner>("Prefabs/partner"));
+        }
 
     }
 
     private void OnPlayerDead()
     {
+        if (!levelIsFinished)
+        {
         ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
         LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
         LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
         result.SetState(ResultLevel.Defeat, 0, moneyCost, data, levelStats);
+            levelIsFinished = true;
+        }
+
     }
 
     // Update is called once per frame
@@ -178,12 +197,17 @@ public class LevelManager : ScreenComponent
                         yield return new WaitForSeconds(1 / 60);
                     }
                     yield return new WaitForSeconds(2);
-                    hordeEvent();
+                    hordeEvent?.Invoke();
                     yield return new WaitForSeconds(3);
                     for (int j = 0; j < countZombiesInLevel / 2; j++)
                     {
                         yield return new WaitForSeconds(0.5f);
                         NewZombie();
+                    }
+                    if (boss != null)
+                    {
+                        yield return new WaitForSeconds(2);
+                        SpawnBoss();
                     }
                     yield break;
                 }
@@ -191,6 +215,7 @@ public class LevelManager : ScreenComponent
                 {
                     yield return new WaitForSeconds(UnityEngine.Random.Range(1, 3));
                 }
+
                 {
 
                 }
@@ -232,7 +257,17 @@ public class LevelManager : ScreenComponent
         zombie.deadEvent += OnDeadZombie;
     }
 
-    private void OnDeadZombie(int obj, bool obj2)
+    private void SpawnBoss()
+    {
+        Vector3 position = new Vector3(15, UnityEngine.Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN), -2);
+        ZombieBase zombie = Instantiate(boss);
+        zombie.transform.position = position;
+        currentZombiesSpawned++;
+        zombie.deadEvent += OnDeadZombie;
+        bossEvent?.Invoke(zombie);
+    }
+
+    private void OnDeadZombie(int obj, bool obj2, ZombieBase obj3)
     {
         zombiieCount--;
         if (obj2)
@@ -244,7 +279,7 @@ public class LevelManager : ScreenComponent
        
         if (zombiieCount == 0)
         {
-            if (currentZombiesSpawned == countZombiesInLevel)
+            if (currentZombiesSpawned >= countZombiesInLevel)
             {
                 int stars = 3;
                 if (baricade != null)
@@ -274,11 +309,14 @@ public class LevelManager : ScreenComponent
                     stars = 0;
                 }
 
-               
-                ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
-                LevelIProgressData data = new LevelIProgressData(currentLevel, stars);
-                LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
-                result.SetState(ResultLevel.Victory, stars, moneyCost, data, levelStats);
+                if (!levelIsFinished)
+                {
+                    ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
+                    LevelIProgressData data = new LevelIProgressData(currentLevel, stars);
+                    LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
+                    result.SetState(ResultLevel.Victory, stars, moneyCost, data, levelStats);
+                    levelIsFinished = true;
+                }
             }
 
         }
@@ -302,5 +340,10 @@ public class LevelManager : ScreenComponent
         }
 
 
+    }
+
+    public void OnRequstZombie (ZombieBase target)
+    {
+        target.deadEvent += OnDeadZombie;
     }
 }

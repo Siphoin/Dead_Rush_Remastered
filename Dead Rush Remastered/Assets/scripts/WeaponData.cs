@@ -4,7 +4,7 @@ using System;
    public class WeaponData
     {
     [JsonProperty("max_ammunition")]
-  public  int maxAmmunition = 40;
+  public  int maxAmmunition = 25;
 
     [JsonProperty("name")]
 
@@ -12,4 +12,8 @@ using System;
 
     [JsonProperty("reload")]
     public float reloadTime = 2;
+
+    public int sale = 100;
+    [UnityEngine.HideInInspector]
+    public int level_upgrate = 1;
 }

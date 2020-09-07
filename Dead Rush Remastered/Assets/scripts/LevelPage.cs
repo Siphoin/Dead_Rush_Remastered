@@ -29,12 +29,22 @@ public class LevelPage : MonoBehaviour
         if (GameCache.cacheContainer.levelCompleted > 0)
         {
         int levelOpened = GameCache.cacheContainer.levelCompleted;
+            int indexBossLevel = 10;
         for (int i = 1; i < buttons.Count; i++)
         {
             if (levelOpened < buttons[i].levelIndex)
             {
                 buttons[i].BlockButton();
             }
+
+            else
+                {
+                    if (i + 1 == indexBossLevel)
+                    {
+                        indexBossLevel += 10;
+                        buttons[i].SetBossLevel();
+                    }
+                }
         }
         }
 

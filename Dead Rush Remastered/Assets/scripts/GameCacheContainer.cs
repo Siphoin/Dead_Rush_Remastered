@@ -32,4 +32,12 @@ public class GameCacheContainer
     {
         {"gun", new WeaponData() }
     };
-    }
+    [JsonProperty("baricades_list")]
+    public Dictionary<string, BaricadeData> baricadesPlayer = new Dictionary<string, BaricadeData>()
+    {
+        {"baricades1", new BaricadeData() }
+    };
+
+    [JsonProperty("partner")]
+    public bool partnerBuyed = false;
+}

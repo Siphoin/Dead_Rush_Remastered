@@ -14,6 +14,39 @@ public  class TransliteText : MonoBehaviour
 
     protected Text text_original;
     protected TextMeshProUGUI text_tmp;
+    public string text {
+        
+        get
+        {
+            if (text_original != null)
+            {
+                return text_original.text;
+            }
+
+            if (text_tmp != null)
+            {
+                return text_tmp.text;
+            }
+
+            return null;
+        }
+
+       set
+        {
+            if (text_original != null)
+            {
+                text_original.text = value;
+            }
+
+            if (text_tmp != null)
+            {
+                text_tmp.text = value;
+            }
+
+           
+        }
+
+    }
     private void Awake()
     {
         SetupText();
@@ -48,4 +81,7 @@ public  class TransliteText : MonoBehaviour
 
         }
     }
+
+
+    
 }

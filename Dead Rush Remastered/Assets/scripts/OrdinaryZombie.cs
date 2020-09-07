@@ -5,8 +5,11 @@ public class OrdinaryZombie : ZombieBase
 {
     bool enteredBaricades;
     bool onDamagePlayer;
+    bool onDamagePartner;
     [Header("damage cooldown")]
     [SerializeField] float cooldownDamage;
+
+    private Partner partner;
 
     public bool EnteredBaricades { get => enteredBaricades; }
 
@@ -60,6 +63,12 @@ public class OrdinaryZombie : ZombieBase
                 onDamagePlayer = true;
                 StartCoroutine(DamageTickPlayer());
                 break;
+
+            case "Partner":
+                onDamagePartner = true;
+                partner = collision.GetComponent<Partner>();
+                StartCoroutine(DamageTickPartner());
+                break;
         }
 
 
@@ -75,6 +84,10 @@ public class OrdinaryZombie : ZombieBase
                 break;
 
             case "Player":
+                move = false;
+                break;
+
+            case "Partner":
                 move = false;
                 break;
 
@@ -102,6 +115,13 @@ switch (collision.tag)
                     onDamagePlayer = false;
                     StopCoroutine(DamageTickPlayer());
                 }
+
+                if (collision.tag == "Partner")
+                {
+                    onDamagePartner = false;
+                    partner = null;
+                    StopCoroutine(DamageTickPartner());
+                }
                 break;
         }
     }
@@ -126,6 +146,19 @@ switch (collision.tag)
                 yield break;
             }
             LevelManager.manager.player.Damage(damage);
+        }
+    }
+
+    IEnumerator DamageTickPartner()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2.5f);
+            if (!onDamagePartner || partner == null)
+            {
+                yield break;
+            }
+           partner.Damage(damage);
         }
     }
 }
