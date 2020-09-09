@@ -104,6 +104,7 @@ public class LevelManager : MonoBehaviour
         {
             countZombiesInLevel++;
         }
+        BlackTransitionCaller.Create();
             StartCoroutine(StartLevel());
     }
 
@@ -111,7 +112,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(name_zombie))
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             NewZombieWindow newZombieWindow = Instantiate(Resources.Load<NewZombieWindow>("Prefabs/NewZombieType"));
             ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(PATH_INFO_ZOMBIES);
             newZombieWindow.SetInfo(infoList.zombieList[name_zombie]);

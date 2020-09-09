@@ -7,6 +7,7 @@ public class LevelPage : MonoBehaviour
     [SerializeField] int countLevels;
     LevelButton example_prefab_levelButton;
     List<LevelButton> buttons = new List<LevelButton>();
+    [SerializeField] string[] dialogsScenesNames;
     // Use this for initialization
     void Start()
     {
@@ -32,10 +33,12 @@ public class LevelPage : MonoBehaviour
             int indexBossLevel = 10;
         for (int i = 1; i < buttons.Count; i++)
         {
+           
             if (levelOpened < buttons[i].levelIndex)
             {
                 buttons[i].BlockButton();
             }
+
 
             else
                 {
@@ -45,7 +48,12 @@ public class LevelPage : MonoBehaviour
                         buttons[i].SetBossLevel();
                     }
                 }
-        }
+
+                if (!string.IsNullOrEmpty(dialogsScenesNames[i]))
+                {
+                    buttons[i].SetSceneDialog(dialogsScenesNames[i]);
+                }
+            }
         }
 
     }

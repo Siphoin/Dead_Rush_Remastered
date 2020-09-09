@@ -20,7 +20,7 @@ public class PartnerVisibleComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ZombiesEntered && LevelManager.manager.player != null)
+        if (ZombiesEntered && LevelManager.manager.player != null && zombies.Count > 1)
         {
             zombies.OrderBy(a => Vector2.Distance(a.transform.position, LevelManager.manager.player.transform.position)).First();
         }

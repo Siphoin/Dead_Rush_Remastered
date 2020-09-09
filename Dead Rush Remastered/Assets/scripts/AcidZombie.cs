@@ -36,7 +36,7 @@ public class AcidZombie : ZombieBase
     {
         while (true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(Random.Range(0.5f, 4));
             if (baricade != null || LevelManager.manager.player != null)
             {
                 if (!move)

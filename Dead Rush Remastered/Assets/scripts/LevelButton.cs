@@ -20,6 +20,8 @@ public  class LevelButton : MonoBehaviour
     private Sprite boss_button_sprite;
     Button button;
     Image image;
+
+   private string sceneDialogName = string.Empty;
     private void Start()
     {
 
@@ -34,7 +36,17 @@ public  class LevelButton : MonoBehaviour
 
     private void OnLoadLevel ()
     {
+        if (string.IsNullOrEmpty(sceneDialogName))
+        {
         Loading.OnLoad(SceneName);
+        }
+
+        else
+        {
+            DialogComponent.LevelName = SceneName;
+            Loading.OnLoad(sceneDialogName);
+        }
+
     }
 
     public void SetDataLevel (LevelIProgressData data)
@@ -53,6 +65,11 @@ public  class LevelButton : MonoBehaviour
         image = GetComponent<Image>();
         boss_button_sprite = Resources.Load<Sprite>("UI/button_level_boss");
         image.sprite = boss_button_sprite;
+    }
+
+    public void SetSceneDialog (string name)
+    {
+        sceneDialogName = name;
     }
 
     public void BlockButton ()

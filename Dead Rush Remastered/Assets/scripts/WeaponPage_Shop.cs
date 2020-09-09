@@ -153,6 +153,7 @@ public class WeaponPage_Shop : ShopWindowPage
         weaponsList[selected_index] = selected_item;
         GameCache.cacheContainer.weaponsPlayer[selected_item.name_weapon] = weaponsList[selected_index];
         NewAction();
+        CallBuyEvent();
 
         if (GameCache.cacheContainer.selectedWeapon.name_weapon == selected_item.name_weapon)
         {

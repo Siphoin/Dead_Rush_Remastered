@@ -13,7 +13,7 @@ public class GameCacheContainer
     public int levelCompleted = 1;
 
     [JsonProperty("$")]
-    public int money = 0;
+    public long money = 0;
 
     [JsonProperty("name_profile")]
 
@@ -40,4 +40,8 @@ public class GameCacheContainer
 
     [JsonProperty("partner")]
     public bool partnerBuyed = false;
+
+    [JsonProperty("background")]
+
+    public bool backgroundCompleted = false;
 }
