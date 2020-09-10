@@ -32,13 +32,22 @@ public class DialogPublisher : MonoBehaviour
 
     public void SetStatusTalk(bool status)
     {
+        if (triagle == null)
+        {
+            return;
+        }
         triagle.SetActive(status);
     }
 
-    public void OnFire()
+    public void OnFire(CinematicDirection direction, DialogPublisher target = null)
     {
-        GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/Cinematicbullet"));
+      BulletCinematic bullet = Instantiate(Resources.Load<BulletCinematic>("cinematic/bulletCinematic"));
         bullet.transform.position = bulletSpawner.position;
+        bullet.SetTypeDirection(direction);
+        if (target != null)
+        {
+            bullet.SetTarget(target);
+        }
         StartCoroutine(FireEffect());
     }
 

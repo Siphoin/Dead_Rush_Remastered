@@ -4,7 +4,7 @@ public class BulletCinematic : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] float speed;
-    BulletCinematicDirection cinematicDirection = BulletCinematicDirection.Left;
+    CinematicDirection cinematicDirection = CinematicDirection.Left;
 
     private DialogPublisher dialogPublisherTarget = null;
     // Use this for initialization
@@ -12,7 +12,7 @@ public class BulletCinematic : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (cinematicDirection == BulletCinematicDirection.Right)
+        if (cinematicDirection == CinematicDirection.Right)
         {
             spriteRenderer.flipX = true;
         }
@@ -24,12 +24,12 @@ public class BulletCinematic : MonoBehaviour
         Vector2 dir = Vector3.zero;
         switch (cinematicDirection)
         {
-            case BulletCinematicDirection.Left:
-                dir = transform.right * -1;
+            case CinematicDirection.Left:
+                dir = transform.right;
                 break;
 
-            case BulletCinematicDirection.Right:
-                dir = transform.right;
+            case CinematicDirection.Right:
+                dir = transform.right * -1 ;
                 break;
         }
         transform.Translate(dir * speed * Time.deltaTime);
@@ -40,7 +40,7 @@ public class BulletCinematic : MonoBehaviour
         }
     }
 
-    public void SetTypeDirection(BulletCinematicDirection type_dir)
+    public void SetTypeDirection(CinematicDirection type_dir)
     {
         cinematicDirection = type_dir;
     }

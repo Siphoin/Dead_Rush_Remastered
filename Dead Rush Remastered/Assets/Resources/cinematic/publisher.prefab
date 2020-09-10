@@ -187,6 +187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triagle: {fileID: 981173774}
+  isPlayer: 0
+  bulletSpawner: {fileID: 4893774210650504511}
+  skinName: 
+  fire_effect: {fileID: 4893774209619360125}
 --- !u!1001 &2675156841700260485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -288,6 +292,12 @@ GameObject:
 --- !u!4 &4893774210650504511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7406799942636111802, guid: f527edc1ea8eab144bbec4d27b495bed,
+    type: 3}
+  m_PrefabInstance: {fileID: 2675156841700260485}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4893774209619360125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7406799943667254264, guid: f527edc1ea8eab144bbec4d27b495bed,
     type: 3}
   m_PrefabInstance: {fileID: 2675156841700260485}
   m_PrefabAsset: {fileID: 0}
