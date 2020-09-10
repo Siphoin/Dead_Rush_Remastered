@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class PartnerVisibleComponent : MonoBehaviour
 {
@@ -33,7 +31,7 @@ public class PartnerVisibleComponent : MonoBehaviour
             ZombieBase zombie = collision.GetComponent<ZombieBase>();
             zombie.deadEvent += OnDeadZombie;
             zombies.Add(zombie);
-           
+
         }
     }
 
@@ -50,4 +48,4 @@ public class PartnerVisibleComponent : MonoBehaviour
         }
     }
 
-    }
+}

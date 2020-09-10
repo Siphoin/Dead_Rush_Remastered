@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AcidZombie : ZombieBase
 {
@@ -17,12 +17,12 @@ public class AcidZombie : ZombieBase
     {
         if (baricade != null)
         {
-        float dist = Vector2.Distance(transform.position, baricade.transform.position);
-        move = dist > ATTACK_RANGE;
+            float dist = Vector2.Distance(transform.position, baricade.transform.position);
+            move = dist > ATTACK_RANGE;
         }
 
 
-       
+
         if (move)
         {
             transform.Translate(transform.right * -1 * speed * Time.deltaTime);
@@ -32,7 +32,7 @@ public class AcidZombie : ZombieBase
 
     }
 
-    IEnumerator SplitAcidTick ()
+    IEnumerator SplitAcidTick()
     {
         while (true)
         {
@@ -41,9 +41,9 @@ public class AcidZombie : ZombieBase
             {
                 if (!move)
                 {
-CreateBall();
+                    CreateBall();
                 }
-                
+
             }
 
             if (baricade == null && LevelManager.manager.player == null)
@@ -54,8 +54,8 @@ CreateBall();
 
 
         }
-        }
-    
+    }
+
 
     private void CreateBall()
     {

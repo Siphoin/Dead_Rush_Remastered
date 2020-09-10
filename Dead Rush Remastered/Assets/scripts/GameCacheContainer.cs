@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class GameCacheContainer
-    {
-  [JsonProperty("levels")]
+{
+    [JsonProperty("levels")]
     public Dictionary<int, LevelIProgressData> levelsData = new Dictionary<int, LevelIProgressData>();
 
     public string skin = "soldier1";

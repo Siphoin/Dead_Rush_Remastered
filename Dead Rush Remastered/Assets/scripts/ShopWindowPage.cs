@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 public class ShopWindowPage : MonoBehaviour
 {
 
     public event Action buyEvent;
 
-    protected void CallBuyEvent ()
+    protected void CallBuyEvent()
     {
         if (GameCache.cacheContainer.money < 0)
         {
@@ -15,6 +15,6 @@ public class ShopWindowPage : MonoBehaviour
         }
         buyEvent();
 
-        
+
     }
 }

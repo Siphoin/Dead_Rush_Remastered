@@ -1,13 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class ResultLevelWindow : AnimatedWindow
 {
     [SerializeField] Text text_state_level;
     private Color color_text_victory = new Color32(100, 202, 120, 255);
- private Color color_text_defeat = new Color32(202, 100, 102, 255);
+    private Color color_text_defeat = new Color32(202, 100, 102, 255);
     [SerializeField] Image[] starsImages;
     private Sprite star_yes_result_sprite;
     private string levelNextName;
@@ -31,12 +30,12 @@ public class ResultLevelWindow : AnimatedWindow
 
     }
 
-    private  void SetTimeScale(int value)
+    private void SetTimeScale(int value)
     {
         Time.timeScale = value;
     }
 
-    public void SetState (ResultLevel result, int starsCount, int moneyCost, LevelIProgressData data, LevelStats levelStats)
+    public void SetState(ResultLevel result, int starsCount, int moneyCost, LevelIProgressData data, LevelStats levelStats)
     {
         star_yes_result_sprite = Resources.Load<Sprite>("UI/star_level_on_result");
         if (starsCount > 3 || starsCount < 0)
@@ -60,21 +59,21 @@ public class ResultLevelWindow : AnimatedWindow
 
         for (int i = 0; i < starsCount; i++)
         {
-           starsImages[i].sprite = star_yes_result_sprite;
+            starsImages[i].sprite = star_yes_result_sprite;
         }
 
         GameCache.cacheContainer.money += moneyCost;
         if (LanguageManager.Language == Language.EN)
         {
- text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+            text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
         }
 
         else
         {
             text_result_level.text = $"Зомби убито: {levelStats.zombiesKilled}\nДенег заработано: {levelStats.moneyCost}\nВремя: {levelStats.timeLevelCompleting.ToLongTimeString()}";
         }
-       
-       
+
+
     }
 
     public void ExitToMenu()
@@ -84,13 +83,13 @@ public class ResultLevelWindow : AnimatedWindow
         Loading.OnLoad("Menu");
     }
 
-   public void NextLevel ()
+    public void NextLevel()
     {
         SetTimeScale(1);
         Loading.OnLoad(levelNextName);
     }
 
-    
+
 
 
 }

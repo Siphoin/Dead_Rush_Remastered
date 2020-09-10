@@ -1,5 +1,5 @@
-﻿public   enum WeaponState
-    {
-        WeaponChanged,
-        NewValue,
-    }
+﻿public enum WeaponState
+{
+    WeaponChanged,
+    NewValue,
+}

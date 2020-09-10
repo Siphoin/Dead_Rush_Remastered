@@ -1,6 +1,6 @@
 ﻿
-  public  enum PageActionType
-    {
-        Select,
-        Buy
-    }
+public enum PageActionType
+{
+    Select,
+    Buy
+}

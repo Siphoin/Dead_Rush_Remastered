@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.IO;
-using System;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
@@ -9,7 +7,7 @@ public class Menu : MonoBehaviour
     [SerializeField] Animation animator_menu;
     const string onPlayAnimationName = "menuPlay";
     const string onBackAnimationName = "menuBack";
-   private static bool onPageLevels = false;
+    private static bool onPageLevels = false;
     private static bool onLoadSave = false;
     private bool windowCreationExited;
     [SerializeField] Button button_shop;
@@ -38,23 +36,23 @@ public class Menu : MonoBehaviour
         button_shop.interactable = GameCache.FileSaveExits();
     }
 
-    public void OnPlay ()
+    public void OnPlay()
     {
 
         StartCoroutine(CheckPlay());
     }
 
-    public void OnBack ()
+    public void OnBack()
     {
         animator_menu.Play(onBackAnimationName);
     }
 
-    public void OnShop ()
+    public void OnShop()
     {
-          Instantiate(Resources.Load<ShopWindow>("Prefabs/ShopWindow"));
+        Instantiate(Resources.Load<ShopWindow>("Prefabs/ShopWindow"));
     }
 
-    private IEnumerator CheckPlay ()
+    private IEnumerator CheckPlay()
     {
         if (!GameCache.FileSaveExits())
         {

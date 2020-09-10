@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public  class LevelButton : MonoBehaviour
-    {
+public class LevelButton : MonoBehaviour
+{
     [SerializeField] TextMeshProUGUI text_level;
-  public   int levelIndex { get; set; } = 1;
+    public int levelIndex { get; set; } = 1;
 
     private string SceneName;
     [SerializeField] Image[] stars;
@@ -21,7 +15,7 @@ public  class LevelButton : MonoBehaviour
     Button button;
     Image image;
 
-   private string sceneDialogName = string.Empty;
+    private string sceneDialogName = string.Empty;
     private void Start()
     {
 
@@ -34,11 +28,11 @@ public  class LevelButton : MonoBehaviour
 
     }
 
-    private void OnLoadLevel ()
+    private void OnLoadLevel()
     {
         if (string.IsNullOrEmpty(sceneDialogName))
         {
-        Loading.OnLoad(SceneName);
+            Loading.OnLoad(SceneName);
         }
 
         else
@@ -49,7 +43,7 @@ public  class LevelButton : MonoBehaviour
 
     }
 
-    public void SetDataLevel (LevelIProgressData data)
+    public void SetDataLevel(LevelIProgressData data)
     {
         star_yes_result_sprite = Resources.Load<Sprite>("UI/star_level_on_result");
         block_button_sprite = Resources.Load<Sprite>("UI/button_level_off");
@@ -60,19 +54,19 @@ public  class LevelButton : MonoBehaviour
 
     }
 
-    public void SetBossLevel ()
+    public void SetBossLevel()
     {
         image = GetComponent<Image>();
         boss_button_sprite = Resources.Load<Sprite>("UI/button_level_boss");
         image.sprite = boss_button_sprite;
     }
 
-    public void SetSceneDialog (string name)
+    public void SetSceneDialog(string name)
     {
         sceneDialogName = name;
     }
 
-    public void BlockButton ()
+    public void BlockButton()
     {
         for (int i = 0; i < stars.Length; i++)
         {

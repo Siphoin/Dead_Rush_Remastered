@@ -1,17 +1,15 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
-using TMPro;
 public class WindowCreationProfilePlayer : Window
 {
- private   ItemSkinSelector[] items_skins;
+    private ItemSkinSelector[] items_skins;
     [SerializeField] Image image_skin_display;
     [SerializeField] Text text_name_skin;
     [SerializeField] TMP_InputField inputField;
 
     int index_skin = 0;
- [SerializeField]   private GameObject window_anim;
+    [SerializeField] private GameObject window_anim;
 
     // Use this for initialization
     void Start()
@@ -34,7 +32,7 @@ public class WindowCreationProfilePlayer : Window
         AnimationProcess();
     }
 
-public void NextIndex ()
+    public void NextIndex()
     {
         if (index_skin < items_skins.Length - 1)
         {
@@ -56,7 +54,7 @@ public void NextIndex ()
 
     }
 
-    public void Select ()
+    public void Select()
     {
         if (string.IsNullOrEmpty(inputField.text))
         {
@@ -70,7 +68,7 @@ public void NextIndex ()
         Exit();
     }
 
-    private void ChangeSkin ()
+    private void ChangeSkin()
     {
         text_name_skin.text = DecoderNameSkins.GetString(items_skins[index_skin].NameSkin);
         image_skin_display.sprite = items_skins[index_skin].SkinSprite;

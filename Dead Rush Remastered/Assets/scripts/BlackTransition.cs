@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class BlackTransition : MonoBehaviour
 {
-private    BlackTransitionType transitionType = BlackTransitionType.Reverse;
+    private BlackTransitionType transitionType = BlackTransitionType.Reverse;
     private Color a_color = new Color32(0, 0, 0, 0);
     private float t = 0;
     const float TIME_ALPHA = 0.008f;
@@ -14,7 +14,7 @@ private    BlackTransitionType transitionType = BlackTransitionType.Reverse;
     // Use this for initialization
     void Start()
     {
-       if (transitionType == BlackTransitionType.Next)
+        if (transitionType == BlackTransitionType.Next)
         {
             fon.color = a_color;
         }
@@ -26,7 +26,7 @@ private    BlackTransitionType transitionType = BlackTransitionType.Reverse;
         if (t >= 1f)
         {
             action?.Invoke();
-if (action == null)
+            if (action == null)
             {
                 Destroy(gameObject);
             }
@@ -44,8 +44,8 @@ if (action == null)
 
     }
 
-        public void SetType (BlackTransitionType TransitionType)
+    public void SetType(BlackTransitionType TransitionType)
     {
         transitionType = TransitionType;
     }
-    }
+}

@@ -1,10 +1,10 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 using UnityEngine;
 
 [Serializable]
-  public  class TransliteString
-    {
+public class TransliteString
+{
     [TextArea]
     [JsonProperty("en")]
     public string string_en_EN = "";

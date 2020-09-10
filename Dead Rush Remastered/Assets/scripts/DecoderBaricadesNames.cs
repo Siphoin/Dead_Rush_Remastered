@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-public static   class DecoderBaricadesNames
-    {
-        private static Dictionary<string, string> RUCollection = new Dictionary<string, string>
+public static class DecoderBaricadesNames
+{
+    private static Dictionary<string, string> RUCollection = new Dictionary<string, string>
         {
             {"baricades1", "Коробки" },
             {"baricades2", "Коробки | Уровень 2" },
@@ -12,7 +12,7 @@ public static   class DecoderBaricadesNames
             {"baricades6", "Загрождение | Уровень 3" },
         };
 
-        private static Dictionary<string, string> ENCollection = new Dictionary<string, string>
+    private static Dictionary<string, string> ENCollection = new Dictionary<string, string>
         {
             {"baricades1", "Boxes" },
             {"baricades2", "Boxes | Level 2" },
@@ -22,19 +22,19 @@ public static   class DecoderBaricadesNames
             {"baricades6", "Obstruction | Level 3" },
         };
 
-        public static string GetString(string key)
+    public static string GetString(string key)
+    {
+        Language language = LanguageManager.Language;
+        if (language == Language.EN)
         {
-            Language language = LanguageManager.Language;
-            if (language == Language.EN)
-            {
-                return ENCollection[key];
-            }
-
-            if (language == Language.RU)
-            {
-                return RUCollection[key];
-            }
-
-            return null;
+            return ENCollection[key];
         }
+
+        if (language == Language.RU)
+        {
+            return RUCollection[key];
+        }
+
+        return null;
     }
+}

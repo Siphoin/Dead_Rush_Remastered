@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using System;
 
 public class UIController : MonoBehaviour
 {
@@ -45,13 +43,13 @@ public class UIController : MonoBehaviour
 
     private void HordeOn()
     {
-          Instantiate(Resources.Load<GameObject>("Prefabs/Text_wave"), transform);
+        Instantiate(Resources.Load<GameObject>("Prefabs/Text_wave"), transform);
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (baricade != null)
+        if (baricade != null)
         {
             HPBaricades.value = baricade.health;
         }

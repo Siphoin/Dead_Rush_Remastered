@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 [Serializable]
-   public class WeaponData
-    {
+public class WeaponData
+{
     [JsonProperty("max_ammunition")]
-  public  int maxAmmunition = 25;
+    public int maxAmmunition = 25;
 
     [JsonProperty("name")]
 

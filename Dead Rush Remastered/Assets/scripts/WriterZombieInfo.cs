@@ -1,18 +1,18 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
-using Newtonsoft.Json;
 using Debug = UnityEngine.Debug;
-using System.IO;
 
-public   class WriterZombieInfo
-    {
+public class WriterZombieInfo
+{
     const string path = "Assets/Resources/manifests/zombies_info.json";
 #if UNITY_EDITOR
     [MenuItem("Window/Dead Rush Tools/Write zombies info")]
-    static void WriteInfoZombies ()
+    static void WriteInfoZombies()
     {
-        
+
         Debug.Log("WriterZombieInfo message: Write...");
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
@@ -20,7 +20,7 @@ public   class WriterZombieInfo
         Debug.Log($"Found {zombiesList.Length} zombies in folber. Staring writing...");
         ZombieInfoList infoList = new ZombieInfoList();
         foreach (ZombieBase zombie in zombiesList)
-        {           
+        {
             infoList.zombieList.Add(zombie.gameObject.name, zombie.GetInfo());
         }
 

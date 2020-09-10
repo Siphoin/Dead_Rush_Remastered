@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.scripts;
+﻿using Assets.scripts;
 using System;
+using System.Collections;
+using UnityEngine;
 
 public class DialogPublisher : MonoBehaviour
 {
@@ -10,6 +10,12 @@ public class DialogPublisher : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SkinCharacter skin;
     private StateCharacterType Startedstate;
+
+    [SerializeField] Transform bulletSpawner;
+    [Header("skin name")]
+    [SerializeField] string skinName;
+    [Header("fire effect object")]
+    [SerializeField] GameObject fire_effect;
 
     private void Start()
     {
@@ -24,8 +30,29 @@ public class DialogPublisher : MonoBehaviour
         SetStatusTalk(false);
     }
 
-    public void SetStatusTalk (bool status)
+    public void SetStatusTalk(bool status)
     {
         triagle.SetActive(status);
+    }
+
+    public void OnFire()
+    {
+        GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/Cinematicbullet"));
+        bullet.transform.position = bulletSpawner.position;
+        StartCoroutine(FireEffect());
+    }
+
+    IEnumerator FireEffect()
+    {
+        fire_effect.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        fire_effect.SetActive(false);
+    }
+
+    public void OnDead()
+    {
+        GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
+        blood.transform.position = transform.position;
+        Destroy(gameObject);
     }
 }

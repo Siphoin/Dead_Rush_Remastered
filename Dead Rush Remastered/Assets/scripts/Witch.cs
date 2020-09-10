@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Witch : MonoBehaviour
 {
@@ -24,8 +24,8 @@ public class Witch : MonoBehaviour
     {
         if (!extraMoved)
         {
-        if (zombieBase.Health != startedHealth)
-        {
+            if (zombieBase.Health != startedHealth)
+            {
                 zombieBase.Move = true;
                 extraMoved = true;
                 StopAllCoroutines();
@@ -37,7 +37,7 @@ public class Witch : MonoBehaviour
 
     }
 
-    IEnumerator OnStand ()
+    IEnumerator OnStand()
     {
         yield return new WaitForSeconds(6);
 

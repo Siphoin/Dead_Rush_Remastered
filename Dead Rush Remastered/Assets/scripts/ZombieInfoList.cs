@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 [Serializable]
-  public  class ZombieInfoList
-    {
+public class ZombieInfoList
+{
     [JsonProperty("zombies")]
     public Dictionary<string, ZombieInfo> zombieList = new Dictionary<string, ZombieInfo>();
-    }
+}

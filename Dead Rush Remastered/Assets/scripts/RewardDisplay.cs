@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class RewardDisplay : MonoBehaviour
@@ -28,7 +27,7 @@ public class RewardDisplay : MonoBehaviour
         }
     }
 
-    public void OnDisplayReward (int reward_value)
+    public void OnDisplayReward(int reward_value)
     {
         text_reward.text = $"+ {reward_value}$";
     }

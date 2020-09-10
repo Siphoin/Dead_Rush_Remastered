@@ -1,11 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 using Application = UnityEngine.Application;
 
 public static class GameCache
@@ -63,9 +57,9 @@ public static class GameCache
         {
             if (data.starsCount > cacheContainer.levelsData[data.index].starsCount)
             {
- cacheContainer.levelsData[data.index] = data;
+                cacheContainer.levelsData[data.index] = data;
             }
-           
+
 
         }
 
@@ -79,7 +73,7 @@ public static class GameCache
 
     }
 
-    public static bool FileSaveExits ()
+    public static bool FileSaveExits()
     {
         return File.Exists(pathSaveData + fileName);
     }

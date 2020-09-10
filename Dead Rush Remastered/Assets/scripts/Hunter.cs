@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Hunter : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class Hunter : MonoBehaviour
     }
 
 
- private   IEnumerator Teleport ()
+    private IEnumerator Teleport()
     {
         yield return new WaitForSeconds(12.5f);
         Vector3 vecPlayer = LevelManager.manager.player.transform.position;

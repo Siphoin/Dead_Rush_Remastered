@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class NewZombieWindow : Window
 {
@@ -11,7 +10,7 @@ public class NewZombieWindow : Window
     [SerializeField] Text text_health;
     [SerializeField] Text text_damage;
     [SerializeField] Text text_name_zombie;
-  [SerializeField]  private GameObject window_anim;
+    [SerializeField] private GameObject window_anim;
     [SerializeField] Image zombie_skin_display;
 
     // Use this for initialization
@@ -31,15 +30,15 @@ public class NewZombieWindow : Window
         AnimationProcess();
     }
 
-    public void SetInfo (ZombieInfo info)
+    public void SetInfo(ZombieInfo info)
     {
         zombieInfo = info;
         text_damage.text = zombieInfo.damage.ToString();
         text_armor.text = zombieInfo.armor.ToString();
         text_health.text = zombieInfo.health.ToString();
         text_name_zombie.text = LanguageManager.Language == Language.EN ? zombieInfo.nameZombie_en_EN : zombieInfo.nameZombie_ru_RU;
-        text_description.text = LanguageManager.Language == Language.EN ?  zombieInfo.abilities_description_en_EN: zombieInfo.abilities_description_ru_RU;
-       Sprite zombie_graphic_obj = Resources.Load<SpriteRenderer>($"Prefabs/Zombies/{ info.prefab_name}").sprite;
+        text_description.text = LanguageManager.Language == Language.EN ? zombieInfo.abilities_description_en_EN : zombieInfo.abilities_description_ru_RU;
+        Sprite zombie_graphic_obj = Resources.Load<SpriteRenderer>($"Prefabs/Zombies/{ info.prefab_name}").sprite;
         zombie_skin_display.sprite = zombie_graphic_obj;
     }
 }

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
+using UnityEngine;
 
 public class WaveText : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class WaveText : MonoBehaviour
     {
         textMesh = GetComponent<TextMeshProUGUI>();
         transform.localScale *= 10;
-        var c = textMesh.color;      
+        var c = textMesh.color;
         c.a = 0;
         alpha_color = c;
         original_color = textMesh.color;
@@ -26,9 +26,9 @@ public class WaveText : MonoBehaviour
 
     }
 
-    IEnumerator Animation ()
+    IEnumerator Animation()
     {
-        
+
         while (true)
         {
             yield return new WaitForSeconds(0.01f);

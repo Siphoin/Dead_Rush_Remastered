@@ -1,5 +1,5 @@
-﻿public  enum TypeAttackZombie
-    {
+﻿public enum TypeAttackZombie
+{
     Near,
     Further
 }

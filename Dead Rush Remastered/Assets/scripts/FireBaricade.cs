@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FireBaricade : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class FireBaricade : MonoBehaviour
         }
     }
 
-    IEnumerator DamageBaricade  ()
+    IEnumerator DamageBaricade()
     {
         while (true)
         {

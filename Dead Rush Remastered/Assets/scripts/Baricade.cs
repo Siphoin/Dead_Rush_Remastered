@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Baricade : MonoBehaviour
 {
@@ -23,23 +22,23 @@ public class Baricade : MonoBehaviour
         }
     }
 
-    public void DamageBaricade (int value)
+    public void DamageBaricade(int value)
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;
-if (value < 0)
+        if (value < 0)
         {
             value = 1;
         }
 
         health -= value;
 
-       
-        
+
+
 
     }
 
-    public BaricadeData GetData ()
+    public BaricadeData GetData()
     {
         return new BaricadeData() { armor = armor, health = Health, name_prefab = gameObject.name, sale = Sale };
     }

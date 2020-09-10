@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public  class TransliteText : MonoBehaviour
+public class TransliteText : MonoBehaviour
 {
     [Header("data")]
     [SerializeField] TransliteString data = new TransliteString();
 
     protected Text text_original;
     protected TextMeshProUGUI text_tmp;
-    public string text {
-        
+    public string text
+    {
+
         get
         {
             if (text_original != null)
@@ -31,7 +27,7 @@ public  class TransliteText : MonoBehaviour
             return null;
         }
 
-       set
+        set
         {
             if (text_original != null)
             {
@@ -43,7 +39,7 @@ public  class TransliteText : MonoBehaviour
                 text_tmp.text = value;
             }
 
-           
+
         }
 
     }
@@ -56,7 +52,7 @@ public  class TransliteText : MonoBehaviour
     {
         if (TryGetComponent(out text_tmp))
         {
-            text_tmp.text =  LanguageManager.Language == Language.EN ? data.string_en_EN +argEN :  data.string_ru_RU + argRU ;
+            text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN + argEN : data.string_ru_RU + argRU;
 
         }
 
@@ -71,17 +67,17 @@ public  class TransliteText : MonoBehaviour
     {
         if (TryGetComponent(out text_tmp))
         {
-            text_tmp.text = LanguageManager.Language == Language.EN ?  data.string_en_EN :  data.string_ru_RU;
+            text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
 
         }
 
         if (TryGetComponent(out text_original))
         {
-            text_original.text = LanguageManager.Language == Language.EN ?  data.string_en_EN : data.string_ru_RU;
+            text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
 
         }
     }
 
 
-    
+
 }

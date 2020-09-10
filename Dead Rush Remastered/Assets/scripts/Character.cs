@@ -1,9 +1,7 @@
 ﻿using Assets.scripts;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 /// <summary>
 /// script of character
 /// </summary>
@@ -43,11 +41,11 @@ public class Character : ScreenComponent
     {
         WeaponData data_selected_weapon = GameCache.cacheContainer.selectedWeapon;
         weapon = new Weapon(data_selected_weapon.maxAmmunition, data_selected_weapon.reloadTime);
-       Startedstate = (StateCharacterType) Enum.Parse(typeof(StateCharacterType), data_selected_weapon.name_weapon);
-    spriteRenderer = GetComponent<SpriteRenderer>();
+        Startedstate = (StateCharacterType)Enum.Parse(typeof(StateCharacterType), data_selected_weapon.name_weapon);
+        spriteRenderer = GetComponent<SpriteRenderer>();
         skin = new SkinCharacter(skinName);
         SetNewState(Startedstate);
-    
+
     }
 
     private void SetNewState(StateCharacterType s)
@@ -125,7 +123,7 @@ public class Character : ScreenComponent
         {
             return;
         }
-        
+
         if (weapon.ammunition > 0)
         {
             GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"));
@@ -134,31 +132,31 @@ public class Character : ScreenComponent
             StartCoroutine(FireEffect());
         }
 
-        
+
 
 
 
 
         if (weapon.ammunition <= 0)
         {
-        RefreshWeapon();
+            RefreshWeapon();
         }
 
     }
 
     public void RefreshWeapon()
     {
-       if (weapon.reloading)
+        if (weapon.reloading)
         {
             return;
         }
-            weapon.reloading = true;
-            SetNewState(StateCharacterType.reload);
-            StartCoroutine(TickReloadWeapon());
-        
+        weapon.reloading = true;
+        SetNewState(StateCharacterType.reload);
+        StartCoroutine(TickReloadWeapon());
+
     }
 
-    private void Moving (Vector2 dir)
+    private void Moving(Vector2 dir)
     {
         transform.Translate(dir * speed * Time.deltaTime);
         var posClamped = transform.position;
@@ -167,21 +165,21 @@ public class Character : ScreenComponent
     }
 
 
-    IEnumerator TickReloadWeapon ()
+    IEnumerator TickReloadWeapon()
     {
         yield return new WaitForSeconds(weapon.reload_time);
         weapon.ReloadWeapon();
         ReturnState();
     }
 
-    IEnumerator FireEffect ()
+    IEnumerator FireEffect()
     {
         fire_effect.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         fire_effect.SetActive(false);
     }
 
-    public void Damage (int value)
+    public void Damage(int value)
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;
@@ -193,13 +191,13 @@ public class Character : ScreenComponent
         health -= value;
     }
 
-    public void ShowAcidEffect ()
+    public void ShowAcidEffect()
     {
         StopCoroutine(AcidEffectTick());
         StartCoroutine(AcidEffectTick());
     }
 
-    IEnumerator AcidEffectTick ()
+    IEnumerator AcidEffectTick()
     {
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);

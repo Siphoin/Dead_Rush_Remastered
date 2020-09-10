@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 [Serializable]
- public   class ZombieInfo
-    {
+public class ZombieInfo
+{
     [JsonProperty("name_en-EN")]
     public string nameZombie_en_EN = "";
     [JsonProperty("name_ru-RU")]

@@ -1,6 +1,6 @@
 ﻿
-  public  enum ResultLevel
-    {
-        Victory,
-        Defeat
-    }
+public enum ResultLevel
+{
+    Victory,
+    Defeat
+}

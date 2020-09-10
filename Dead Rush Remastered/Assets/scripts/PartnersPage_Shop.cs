@@ -25,13 +25,13 @@ public class PartnersPage_Shop : ShopWindowPage
         }
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
 
     }
 
-    public void BuyPartner ()
+    public void BuyPartner()
     {
         GameCache.cacheContainer.money -= sale;
         GameCache.cacheContainer.partnerBuyed = true;
@@ -39,4 +39,4 @@ public class PartnersPage_Shop : ShopWindowPage
         CallBuyEvent();
         GameCache.WritePlayerCache();
     }
-    }
+}

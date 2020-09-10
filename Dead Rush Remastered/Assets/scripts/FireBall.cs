@@ -35,7 +35,7 @@ public class FireBall : Ball
             bullet.transform.position = pos_fire_baricade;
             Destroy(gameObject);
 
-           
+
         }
 
 

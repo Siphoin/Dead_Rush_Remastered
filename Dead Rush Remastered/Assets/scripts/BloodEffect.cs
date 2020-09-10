@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class BloodEffect : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class BloodEffect : MonoBehaviour
     float t = 0;
 
     Color alpha_color;
-    
+
     // Use this for initialization
     void Start()
     {
@@ -31,15 +31,15 @@ public class BloodEffect : MonoBehaviour
 
     }
 
-    IEnumerator EffectAlpha ()
+    IEnumerator EffectAlpha()
     {
         yield return new WaitForSeconds(6);
         while (true)
         {
-        yield return new WaitForSeconds(0.01f);
-        t += 0.01f;
-        spriteRenderer.color = Color.Lerp(Color.white, alpha_color, t);
-        if (spriteRenderer.color.a == 0)
+            yield return new WaitForSeconds(0.01f);
+            t += 0.01f;
+            spriteRenderer.color = Color.Lerp(Color.white, alpha_color, t);
+            if (spriteRenderer.color.a == 0)
             {
                 Destroy(gameObject);
             }

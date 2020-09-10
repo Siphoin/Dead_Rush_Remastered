@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BigZombie : MonoBehaviour, IDisposable
@@ -8,7 +7,7 @@ public class BigZombie : MonoBehaviour, IDisposable
     const int COUNT_ZOMBIES = 5;
     const string NAME_PREFAB_ZOMBIE = "Prefabs/Zombies/zombie1";
     private ZombieBase zombieBase;
- private   Vector3 pos_zombie;
+    private Vector3 pos_zombie;
     [SerializeField] string name_prefab_summoned_zombie = "zoimbie1";
     // Use this for initialization
     void Start()
@@ -33,7 +32,7 @@ public class BigZombie : MonoBehaviour, IDisposable
 
             zombieBase.DamageZombie(int.MaxValue);
         }
-        
+
     }
 
     public void Dispose()

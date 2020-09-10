@@ -1,7 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.scripts;
 using System.Collections;
-using Assets.scripts;
-using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Partner : ScreenComponent
@@ -10,7 +9,7 @@ public class Partner : ScreenComponent
     [SerializeField] float speed;
     [Header("entry object spawner bullets")]
     [SerializeField] Transform bulletSpawner;
-   private string skinName;
+    private string skinName;
     [Header("fire effect object")]
     [SerializeField] GameObject fire_effect;
 
@@ -45,13 +44,13 @@ public class Partner : ScreenComponent
     public int Health { get => health; set => health = value; }
     public Weapon Weapon { get => weapon; }
 
-    
+
 
     private PartnerVisibleComponent visibleComponent;
     // Use this for initialization
     void Start()
     {
-        
+
         skinName = skinsArray[Random.Range(0, skinsArray.Length)];
         visibleComponent = GameObject.FindGameObjectWithTag("PartnerVisibleComponent").GetComponent<PartnerVisibleComponent>();
         StartCoroutine(OnFire());
@@ -113,30 +112,30 @@ public class Partner : ScreenComponent
         while (true)
         {
             yield return new WaitForSeconds(1 / 60);
-if (weapon.reloading)
-        {
-            yield return null;
+            if (weapon.reloading)
+            {
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.4f);
+            if (weapon.ammunition > 0 && visibleComponent.ZombiesEntered)
+            {
+                GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"));
+                bullet.transform.position = bulletSpawner.position;
+                weapon.ammunition--;
+                StartCoroutine(FireEffect());
+            }
+
+
+
+
+
+
+            if (weapon.ammunition <= 0)
+            {
+                RefreshWeapon();
+            }
         }
-        yield return new WaitForSeconds(0.4f);
-        if (weapon.ammunition > 0 && visibleComponent.ZombiesEntered)
-        {
-            GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"));
-            bullet.transform.position = bulletSpawner.position;
-            weapon.ammunition--;
-            StartCoroutine(FireEffect());
-        }
 
-
-
-
-
-
-        if (weapon.ammunition <= 0)
-        {
-            RefreshWeapon();
-        }
-        }
-        
 
     }
 

@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class DialogComponent : MonoBehaviour
 {
     [SerializeField] private DialogElement[] dialogElements = new DialogElement[0];
 
-  private  Dictionary<string, DialogPublisher> targets = new Dictionary<string, DialogPublisher>();
+    private Dictionary<string, DialogPublisher> targets = new Dictionary<string, DialogPublisher>();
 
-  private Text text_dialog;
+    private Text text_dialog;
 
     private int indexDialog = -1;
 
     private char[] currentChars;
 
     public static string LevelName { get; set; }
+
+    private static DialogComponent activedComponent;
     // Use this for initialization
     void Start()
     {
@@ -38,7 +40,12 @@ public class DialogComponent : MonoBehaviour
         DialogUI dialogUI = Instantiate(Resources.Load<DialogUI>("Prefabs/DialogUI"));
         text_dialog = dialogUI.TextDialog;
         StartCoroutine(DialogMechanim());
-        
+
+    }
+
+    private void Awake()
+    {
+        activedComponent = this;
     }
 
     // Update is called once per frame
@@ -47,11 +54,12 @@ public class DialogComponent : MonoBehaviour
 
     }
 
-    private IEnumerator DialogMechanim ()
+    private IEnumerator DialogMechanim()
     {
         while (indexDialog < dialogElements.Length - 1)
         {
             NextDialogElement();
+            dialogElements[indexDialog].CallEvent();
             for (int i = 0; i < currentChars.Length; i++)
             {
                 yield return new WaitForSeconds(0.03f);
@@ -69,14 +77,33 @@ public class DialogComponent : MonoBehaviour
         blackTransition.action += GoToLevel;
 
     }
-        
-        
 
-    
+
+
+
 
     private void GoToLevel()
     {
         Loading.OnLoad(LevelName);
+    }
+
+    public static void SetDialogKey(Action method, int index)
+    {
+        if (activedComponent.dialogElements[index] == null)
+        {
+            throw new NullReferenceException($"element dialog {index} not found!");
+        }
+
+        if (index > activedComponent.dialogElements.Length - 1)
+        {
+            throw new ArgumentOutOfRangeException("index selected dialog > Length dialog elements!");
+        }
+
+        if (index < 0)
+        {
+            throw new ArgumentException("index not must < 0!");
+        }
+        activedComponent.dialogElements[index].eventEndDialog += method;
     }
 
     private void NextDialogElement()
@@ -93,7 +120,7 @@ public class DialogComponent : MonoBehaviour
         }
         text_dialog.text = "";
         string targetTalk = dialogElements[indexDialog].targetName;
-      foreach (var t in targets)
+        foreach (var t in targets)
         {
             t.Value.SetStatusTalk(false);
         }

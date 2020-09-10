@@ -2,12 +2,12 @@
 using System;
 
 [Serializable]
-    public  class LevelIProgressData
-    {
-        [JsonProperty("progress")]
-        public int starsCount;
-        [JsonProperty("number")]
-        public int index;
+public class LevelIProgressData
+{
+    [JsonProperty("progress")]
+    public int starsCount;
+    [JsonProperty("number")]
+    public int index;
 
     public LevelIProgressData(int Index, int starsValue)
     {
@@ -24,4 +24,4 @@ using System;
         starsCount = starsValue;
         index = Index;
     }
-    }
+}

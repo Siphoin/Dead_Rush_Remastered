@@ -1,15 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
-using Debug = UnityEngine.Debug;
-using System.IO;
-using Newtonsoft.Json;
+using System.Collections;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private int currentLevel = 1;
-   [SerializeField] ZombieBase [] zombiesList;
+    [SerializeField] ZombieBase[] zombiesList;
 
     [SerializeField] int countZombiesInLevel = 1;
     [SerializeField] int bonus_count = 0;
@@ -41,7 +38,7 @@ public class LevelManager : MonoBehaviour
     [Header("new zombie info")]
     [SerializeField] private string name_zombie;
 
-   private string PATH_INFO_ZOMBIES = "Assets/Resources/manifests/zombies_info.json";
+    private string PATH_INFO_ZOMBIES = "Assets/Resources/manifests/zombies_info.json";
 
     public static LevelManager manager { get => this_manager; }
     public Character player { get => Player; }
@@ -59,7 +56,7 @@ public class LevelManager : MonoBehaviour
     private bool levelIsFinished = false;
 
     // Use this for initialization
-    
+
     void Start()
     {
         PATH_INFO_ZOMBIES = Resources.Load<TextAsset>("manifests/zombies_info").text;
@@ -105,7 +102,7 @@ public class LevelManager : MonoBehaviour
             countZombiesInLevel++;
         }
         BlackTransitionCaller.Create();
-            StartCoroutine(StartLevel());
+        StartCoroutine(StartLevel());
     }
 
     IEnumerator StartLevel()
@@ -166,10 +163,10 @@ public class LevelManager : MonoBehaviour
     {
         if (!levelIsFinished)
         {
-        ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
-        LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
-        LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
-        result.SetState(ResultLevel.Defeat, 0, moneyCost, data, levelStats);
+            ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
+            LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
+            LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
+            result.SetState(ResultLevel.Defeat, 0, moneyCost, data, levelStats);
             levelIsFinished = true;
         }
 
@@ -187,13 +184,13 @@ public class LevelManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(2, 7));
-                int loop_count_zombies = UnityEngine.Random.Range(1, loopCountZombies + 1);
-                for (int i = 0; i < loop_count_zombies; i++)
+            int loop_count_zombies = UnityEngine.Random.Range(1, loopCountZombies + 1);
+            for (int i = 0; i < loop_count_zombies; i++)
             {
                 NewZombie();
                 if (currentZombiesSpawned == countZombiesInLevel - (countZombiesInLevel / 2))
                 {
-                   while (zombiieCount > 0)
+                    while (zombiieCount > 0)
                     {
                         yield return new WaitForSeconds(1 / 60);
                     }
@@ -230,7 +227,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    IEnumerator TimeTickLevel ()
+    IEnumerator TimeTickLevel()
     {
         while (true)
         {
@@ -273,11 +270,11 @@ public class LevelManager : MonoBehaviour
         zombiieCount--;
         if (obj2)
         {
-        zombieKilled++;
+            zombieKilled++;
             moneyCost += obj;
         }
 
-       
+
         if (zombiieCount == 0)
         {
             if (currentZombiesSpawned >= countZombiesInLevel)
@@ -285,17 +282,17 @@ public class LevelManager : MonoBehaviour
                 int stars = 3;
                 if (baricade != null)
                 {
- if (baricade.health < (startHealthBaricade / 2))
-                {
-                    stars--;
-                }
+                    if (baricade.health < (startHealthBaricade / 2))
+                    {
+                        stars--;
+                    }
                 }
 
                 else
                 {
                     stars--;
                 }
-               
+
 
                 if (Player.Health < 100)
                 {
@@ -343,7 +340,7 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    public void OnRequstZombie (ZombieBase target)
+    public void OnRequstZombie(ZombieBase target)
     {
         target.deadEvent += OnDeadZombie;
     }

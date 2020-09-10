@@ -1,5 +1,5 @@
-﻿public enum   Language
-    {
-        EN,
-        RU,
-    }
+﻿public enum Language
+{
+    EN,
+    RU,
+}

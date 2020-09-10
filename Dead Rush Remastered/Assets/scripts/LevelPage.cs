@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class LevelPage : MonoBehaviour
 {
@@ -21,26 +20,27 @@ public class LevelPage : MonoBehaviour
 
         for (int i = 0; i < GameCache.cacheContainer.levelCompleted; i++)
         {
-            if (GameCache.cacheContainer.levelsData.ContainsKey(i + 1)) { 
-            buttons[i].SetDataLevel(GameCache.cacheContainer.levelsData[i + 1]);
+            if (GameCache.cacheContainer.levelsData.ContainsKey(i + 1))
+            {
+                buttons[i].SetDataLevel(GameCache.cacheContainer.levelsData[i + 1]);
             }
 
-            
+
         }
         if (GameCache.cacheContainer.levelCompleted > 0)
         {
-        int levelOpened = GameCache.cacheContainer.levelCompleted;
+            int levelOpened = GameCache.cacheContainer.levelCompleted;
             int indexBossLevel = 10;
-        for (int i = 1; i < buttons.Count; i++)
-        {
-           
-            if (levelOpened < buttons[i].levelIndex)
+            for (int i = 1; i < buttons.Count; i++)
             {
-                buttons[i].BlockButton();
-            }
+
+                if (levelOpened < buttons[i].levelIndex)
+                {
+                    buttons[i].BlockButton();
+                }
 
 
-            else
+                else
                 {
                     if (i + 1 == indexBossLevel)
                     {

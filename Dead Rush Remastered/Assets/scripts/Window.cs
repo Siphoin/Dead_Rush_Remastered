@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System;
 
 public class Window : AnimatedWindow
 {
@@ -17,7 +15,7 @@ public class Window : AnimatedWindow
 
     }
 
-    public void Exit ()
+    public void Exit()
     {
         exitEvent?.Invoke();
         Destroy(gameObject);

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MenuZombie : MonoBehaviour
 {
-   new Rigidbody2D rigidbody2D;
+    new Rigidbody2D rigidbody2D;
     const float speed = 1;
     Vector3 point;
     const float WIDTH_SCREEN = 8.57F;
@@ -18,7 +18,7 @@ public class MenuZombie : MonoBehaviour
         StartCoroutine(Walking());
         float x = Random.Range(WIDTH_SCREEN * -1, WIDTH_SCREEN);
         float y = Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
-       transform.position = new Vector3(x, y, -4);
+        transform.position = new Vector3(x, y, -4);
     }
 
     // Update is called once per frame
@@ -27,21 +27,21 @@ public class MenuZombie : MonoBehaviour
 
         if (Vector2.Distance(transform.position, point) > 0.1f)
         {
-float  angle = Mathf.Atan2(transform.position.y - point.y, transform.position.x - point.x) * Mathf.Rad2Deg;
-        t_angle += 0.01F;
-        float angleLerp = Mathf.Lerp(angleEnd, angle, t_angle);
+            float angle = Mathf.Atan2(transform.position.y - point.y, transform.position.x - point.x) * Mathf.Rad2Deg;
+            t_angle += 0.01F;
+            float angleLerp = Mathf.Lerp(angleEnd, angle, t_angle);
             transform.rotation = Quaternion.Euler(0, 0, angleLerp);
-       if (angleLerp == angle)
-        {
-rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, point, speed * Time.deltaTime));
+            if (angleLerp == angle)
+            {
+                rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, point, speed * Time.deltaTime));
+            }
         }
-        }
-          
-            
-        
+
+
+
     }
 
-    IEnumerator Walking ()
+    IEnumerator Walking()
     {
         while (true)
         {

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System;
 using Random = UnityEngine.Random;
 
 public class Loading : MonoBehaviour
@@ -31,10 +31,10 @@ public class Loading : MonoBehaviour
         var alpha_color = Color.white;
         alpha_color.a = 0;
         alpha_colorTextHints = alpha_color;
-     string path_TXT =   LanguageManager.Language == Language.EN ? "manifests/hints_en-EN" : "manifests/hints_ru-RU";
+        string path_TXT = LanguageManager.Language == Language.EN ? "manifests/hints_en-EN" : "manifests/hints_ru-RU";
         TextAsset mytxtData = (TextAsset)Resources.Load(path_TXT);
         hintsList = mytxtData.text.Split(new string[] { "\n" }, StringSplitOptions.None);
-      StartCoroutine(LoadProcessing());
+        StartCoroutine(LoadProcessing());
         NewRandomHint();
         StartCoroutine(NewHintDisplay());
     }
@@ -50,7 +50,7 @@ public class Loading : MonoBehaviour
 
     }
 
-    IEnumerator LoadProcessing ()
+    IEnumerator LoadProcessing()
     {
         progress.value = 0;
         yield return new WaitForSeconds(3);
@@ -70,7 +70,7 @@ public class Loading : MonoBehaviour
             NewRandomHint();
             t_text_hints = 0;
             hintsText.color = alpha_colorTextHints;
-           while (hintsText.color.a != 1)
+            while (hintsText.color.a != 1)
             {
                 yield return new WaitForSeconds(0.01f);
                 t_text_hints += 0.01f;
@@ -79,7 +79,7 @@ public class Loading : MonoBehaviour
         }
     }
 
-    IEnumerator FillAnimation ()
+    IEnumerator FillAnimation()
     {
         while (true)
         {
@@ -104,7 +104,7 @@ public class Loading : MonoBehaviour
         }
     }
 
-    public static void OnLoad (string SceneName)
+    public static void OnLoad(string SceneName)
     {
         sceneName = SceneName;
         SceneManager.LoadScene("Loading");

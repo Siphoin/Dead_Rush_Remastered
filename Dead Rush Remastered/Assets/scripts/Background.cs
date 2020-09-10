@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class Background : MonoBehaviour
 {
     [SerializeField] Text Text_background;
-         private   string[] textList;
+    private string[] textList;
     private float t_text_hints = 0;
     Color alpha_colorText;
     private int index_text = 0;
@@ -28,7 +28,7 @@ public class Background : MonoBehaviour
                 data = Resources.Load<TextAsset>("manifests/TextBackground_ru-RU").text;
                 break;
         }
-    textList =    data.Split(new string[] { "\n" }, StringSplitOptions.None);
+        textList = data.Split(new string[] { "\n" }, StringSplitOptions.None);
         Text_background.text = textList[index_text];
     }
 
@@ -118,5 +118,5 @@ public class Background : MonoBehaviour
         }
     }
 
-    
+
 }

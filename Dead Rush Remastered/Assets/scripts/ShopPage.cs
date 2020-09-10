@@ -1,6 +1,6 @@
-﻿public  enum ShopPage
-    {
-        Weapons,
-        Partners,
-        Baricades,
-    }
+﻿public enum ShopPage
+{
+    Weapons,
+    Partners,
+    Baricades,
+}

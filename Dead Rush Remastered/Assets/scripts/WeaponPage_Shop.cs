@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class WeaponPage_Shop : ShopWindowPage
@@ -39,7 +38,7 @@ public class WeaponPage_Shop : ShopWindowPage
 
     }
 
-    public void NextWeapon ()
+    public void NextWeapon()
     {
         if (selected_index < weaponsList.Length - 1)
         {
@@ -57,14 +56,14 @@ public class WeaponPage_Shop : ShopWindowPage
         }
     }
 
-    private void ShowWeapon ()
+    private void ShowWeapon()
     {
         WeaponData target_weapon = weaponsList[selected_index];
         string weaponName = target_weapon.name_weapon;
         Sprite weapon_sprite = Resources.Load<Sprite>($"{PATH_FOLBER_WEAPONS_ICONS}{weaponName}");
         image_pictogram_weapon.sprite = weapon_sprite;
         weapon_name.text = DecoderNameWeapons.GetString(target_weapon.name_weapon);
-       if (LanguageManager.Language == Language.EN)
+        if (LanguageManager.Language == Language.EN)
         {
             weapon_info.text = $"Level: {target_weapon.level_upgrate}\nSale: {target_weapon.sale}\nReload time: {target_weapon.reloadTime}  s\nAmmunition: {target_weapon.maxAmmunition}";
         }
@@ -74,21 +73,21 @@ public class WeaponPage_Shop : ShopWindowPage
             weapon_info.text = $"Уровень: {target_weapon.level_upgrate}\nЦена: {target_weapon.sale}\nСкорость перезарядки: {target_weapon.reloadTime}  сек\nБоеприпасы: {target_weapon.maxAmmunition}";
         }
         btn_text_action_weapon.SetupText();
-            if (GameCache.cacheContainer.weaponsPlayer.ContainsKey(target_weapon.name_weapon))
-            {
+        if (GameCache.cacheContainer.weaponsPlayer.ContainsKey(target_weapon.name_weapon))
+        {
             actionType = PageActionType.Select;
-                if (LanguageManager.Language == Language.EN)
-                {
-                    btn_text_action_weapon.text = "SELECT";
-                }
-
-                if (LanguageManager.Language == Language.RU)
-                {
-                    btn_text_action_weapon.text = "ВЫБРАТЬ";
-                }
+            if (LanguageManager.Language == Language.EN)
+            {
+                btn_text_action_weapon.text = "SELECT";
             }
 
-            else
+            if (LanguageManager.Language == Language.RU)
+            {
+                btn_text_action_weapon.text = "ВЫБРАТЬ";
+            }
+        }
+
+        else
         {
             actionType = PageActionType.Buy;
         }
@@ -117,10 +116,10 @@ public class WeaponPage_Shop : ShopWindowPage
                 weapon_info.text = "Максимальный уровень";
             }
         }
-        
+
     }
 
-    public void OnActionWeapon ()
+    public void OnActionWeapon()
     {
         switch (actionType)
         {
@@ -143,7 +142,7 @@ public class WeaponPage_Shop : ShopWindowPage
         ShowWeapon();
     }
 
-    public void OnUpgrateWeapon ()
+    public void OnUpgrateWeapon()
     {
         GameCache.cacheContainer.money -= weaponsList[selected_index].sale;
         var selected_item = weaponsList[selected_index];

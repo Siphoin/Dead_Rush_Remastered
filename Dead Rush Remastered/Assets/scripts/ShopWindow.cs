@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class ShopWindow : Window
@@ -12,7 +11,7 @@ public class ShopWindow : Window
     private Vector3 point_target_border = Vector3.zero;
 
 
-    [SerializeField]  private Image image;
+    [SerializeField] private Image image;
     [SerializeField] RectTransform border;
     [SerializeField] RectTransform border_partners_point;
     [SerializeField] RectTransform border_baricades_point;
@@ -51,14 +50,14 @@ public class ShopWindow : Window
         {
             if (point_target_border != Vector3.zero)
             {
-            t_border += 0.03f;
-            border.position = Vector3.Lerp(border.position, point_target_border, t_border);
+                t_border += 0.03f;
+                border.position = Vector3.Lerp(border.position, point_target_border, t_border);
             }
 
         }
     }
 
-    public void SelectWeapons ()
+    public void SelectWeapons()
     {
         if (selected_page == ShopPage.Weapons)
         {
@@ -76,7 +75,7 @@ public class ShopWindow : Window
         t_border = 0;
     }
 
-    public void SelectPartners ()
+    public void SelectPartners()
     {
         if (selected_page == ShopPage.Partners)
         {
@@ -98,7 +97,7 @@ public class ShopWindow : Window
         ShowPage();
     }
 
-    private void ShowPage ()
+    private void ShowPage()
     {
         switch (selected_page)
         {
@@ -128,7 +127,7 @@ public class ShopWindow : Window
 
     private void SetStateBaricadesPage(bool state)
     {
-       barricadesPage.gameObject.SetActive(state);
+        barricadesPage.gameObject.SetActive(state);
     }
 
     private void SetStatePartnersPage(bool state)

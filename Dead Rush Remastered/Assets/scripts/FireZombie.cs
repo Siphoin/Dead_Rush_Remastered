@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class FireZombie : AcidZombie
 {
@@ -31,7 +31,7 @@ public class FireZombie : AcidZombie
         {
             transform.Translate(transform.right * -1 * speed * Time.deltaTime);
         }
-      
+
 
     }
 

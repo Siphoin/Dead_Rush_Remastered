@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class AcidBall : Ball
 {
@@ -62,7 +61,7 @@ public class AcidBall : Ball
         {
             Partner partner = collision.GetComponent<Partner>();
             partner.Damage(damage);
-           partner.ShowAcidEffect();
+            partner.ShowAcidEffect();
             Destroy(gameObject);
         }
     }

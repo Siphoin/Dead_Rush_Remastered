@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-  public static  class DecoderNameSkins
-    {
-        private static Dictionary<string, string> RUCollection = new Dictionary<string, string>
+public static class DecoderNameSkins
+{
+    private static Dictionary<string, string> RUCollection = new Dictionary<string, string>
         {
             {"hitman1", "Хитман" },
              {"womanGreen", "Девушка" },
@@ -18,7 +14,7 @@ using System.Threading.Tasks;
                 {"soldier1", "Солдат" },
         };
 
-        private static Dictionary<string, string> ENCollection = new Dictionary<string, string>
+    private static Dictionary<string, string> ENCollection = new Dictionary<string, string>
         {
             {"hitman1", "Hitman" },
              {"womanGreen", "Woman" },
@@ -30,19 +26,19 @@ using System.Threading.Tasks;
                 {"soldier1", "Soldier" },
         };
 
-        public static string GetString (string key)
-        {
+    public static string GetString(string key)
+    {
         Language language = LanguageManager.Language;
-            if (language == Language.EN)
-            {
-                return ENCollection[key];
-            }
-
-            if (language == Language.RU)
-            {
-                return RUCollection[key];
-            }
-
-            return null;
+        if (language == Language.EN)
+        {
+            return ENCollection[key];
         }
+
+        if (language == Language.RU)
+        {
+            return RUCollection[key];
+        }
+
+        return null;
     }
+}

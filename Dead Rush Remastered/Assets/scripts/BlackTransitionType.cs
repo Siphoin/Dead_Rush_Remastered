@@ -1,6 +1,6 @@
 ﻿
-   public enum BlackTransitionType
-    {
+public enum BlackTransitionType
+{
     Next,
     Reverse
 }

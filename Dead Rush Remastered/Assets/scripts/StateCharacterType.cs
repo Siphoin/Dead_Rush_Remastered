@@ -1,5 +1,5 @@
-﻿public   enum StateCharacterType
-    {
+﻿public enum StateCharacterType
+{
     gun,
     machine,
     reload,

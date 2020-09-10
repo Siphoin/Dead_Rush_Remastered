@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class OrdinaryZombie : ZombieBase
 {
@@ -30,10 +30,10 @@ public class OrdinaryZombie : ZombieBase
         CheckParams();
         if (move)
         {
-        transform.Translate(transform.right * -1 * speed * Time.deltaTime);
+            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
         }
 
-        
+
 
     }
 
@@ -98,7 +98,7 @@ public class OrdinaryZombie : ZombieBase
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-switch (collision.tag)
+        switch (collision.tag)
         {
             case "Baricades":
                 StopCoroutine(DamageTick());
@@ -108,7 +108,7 @@ switch (collision.tag)
 
             default:
                 if (collision.tag != "Bullet")
-                move = true;
+                    move = true;
 
                 if (collision.tag == "Player")
                 {
@@ -126,13 +126,13 @@ switch (collision.tag)
         }
     }
 
-   IEnumerator DamageTick ()
+    IEnumerator DamageTick()
     {
         while (true)
         {
             yield return new WaitForSeconds(cooldownDamage);
             baricade.DamageBaricade(damage);
-        //    Debug.Log(baricade.health);
+            //    Debug.Log(baricade.health);
         }
     }
 
@@ -158,7 +158,7 @@ switch (collision.tag)
             {
                 yield break;
             }
-           partner.Damage(damage);
+            partner.Damage(damage);
         }
     }
 }

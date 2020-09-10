@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class BaricadesPage_Shop : ShopWindowPage
@@ -21,7 +20,7 @@ public class BaricadesPage_Shop : ShopWindowPage
     void Start()
     {
         Baricade[] baricadesObjects = Resources.LoadAll<Baricade>("Prefabs/Baricades");
-        baricadesList = new BaricadeData[baricadesObjects.Length];      
+        baricadesList = new BaricadeData[baricadesObjects.Length];
         for (int i = 0; i < baricadesList.Length; i++)
         {
             baricadesList[i] = baricadesObjects[i].GetData();
@@ -35,7 +34,7 @@ public class BaricadesPage_Shop : ShopWindowPage
 
     }
 
-    public void ShowBaricades ()
+    public void ShowBaricades()
     {
         BaricadeData target_baricades = baricadesList[selected_index];
         string baricadesName = target_baricades.name_prefab;

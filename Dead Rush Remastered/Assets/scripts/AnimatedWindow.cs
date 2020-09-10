@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class AnimatedWindow : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class AnimatedWindow : MonoBehaviour
         target_window.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t);
     }
 
-    protected void StartAnimation ()
+    protected void StartAnimation()
     {
         LerpingWindow();
     }

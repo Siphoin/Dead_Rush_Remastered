@@ -29,14 +29,14 @@ public abstract class ZombieBase : MonoBehaviour
     public float Speed { get => speed; set => speed = value; }
     public bool Move { get => move; set => move = value; }
     public int RewardЬurder { get => rewardmurder; set => rewardmurder = value; }
-    
+
 
     public event Action<int, bool, ZombieBase> deadEvent;
 
 
-    protected void  CheckParams()
+    protected void CheckParams()
     {
-       HP_slider.value = health;
+        HP_slider.value = health;
         if (ARMOR_slider != null)
         {
             ARMOR_slider.value = armor;
@@ -45,7 +45,7 @@ public abstract class ZombieBase : MonoBehaviour
                 Destroy(ARMOR_slider.gameObject);
             }
         }
-      
+
         if (health <= 0)
         {
             GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
@@ -63,20 +63,20 @@ public abstract class ZombieBase : MonoBehaviour
             Destroy(gameObject);
         }
 
-if (transform.position.x < Camera.main.transform.position.x)
+        if (transform.position.x < Camera.main.transform.position.x)
         {
 
-           if (Vector2.Distance(transform.position, Camera.main.transform.position) >= CHECK_DISTANCE_DESTROY)
+            if (Vector2.Distance(transform.position, Camera.main.transform.position) >= CHECK_DISTANCE_DESTROY)
             {
                 deadEvent(rewardmurder, false, this);
                 Destroy(gameObject);
             }
         }
-        
-        
+
+
     }
 
-    public void DamageZombie (int Damage)
+    public void DamageZombie(int Damage)
     {
         if (armor > 0)
         {
@@ -85,7 +85,7 @@ if (transform.position.x < Camera.main.transform.position.x)
 
         else
         {
-        health -= Damage;
+            health -= Damage;
         }
 
     }
@@ -96,7 +96,7 @@ if (transform.position.x < Camera.main.transform.position.x)
 
     }
 
-    protected void FindBaricade ()
+    protected void FindBaricade()
     {
 
         try
@@ -127,7 +127,7 @@ if (transform.position.x < Camera.main.transform.position.x)
         }
     }
 
-    public ZombieInfo GetInfo ()
+    public ZombieInfo GetInfo()
     {
         TypeAttackZombie typeAttackZombie = TypeAttackZombie.Near;
         if (damage == 0)

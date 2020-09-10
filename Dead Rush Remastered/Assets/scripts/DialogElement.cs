@@ -2,8 +2,8 @@
 using UnityEngine;
 
 [Serializable]
- public   class DialogElement
-    {
+public class DialogElement
+{
     public string targetName = "";
     [TextArea]
     public string text_ru_RU = "";
@@ -12,7 +12,7 @@ using UnityEngine;
 
     public event Action eventEndDialog;
 
-    public void CallEvent ()
+    public void CallEvent()
     {
         eventEndDialog?.Invoke();
     }
