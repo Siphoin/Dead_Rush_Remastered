@@ -30,7 +30,7 @@ public class BigZombie : MonoBehaviour, IDisposable
                 LevelManager.manager.OnRequstZombie(zombie);
             }
 
-            zombieBase.DamageZombie(int.MaxValue);
+            zombieBase.Damage(int.MaxValue);
         }
 
     }

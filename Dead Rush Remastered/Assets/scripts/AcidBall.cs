@@ -46,7 +46,7 @@ public class AcidBall : Ball
     {
         if (collision.tag == "Baricades")
         {
-            baricade.DamageBaricade(damage);
+            baricade.Damage(damage);
             Destroy(gameObject);
         }
 

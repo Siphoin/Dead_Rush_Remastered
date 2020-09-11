@@ -7513,6 +7513,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: car
       objectReference: {fileID: 0}
+    - target: {fileID: 7092405438127121814, guid: 1cabaff457881be4dabf634658227d66,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ce01010c8e5d2e344a2b6ae8171d2935,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cabaff457881be4dabf634658227d66, type: 3}
 --- !u!1001 &1820849136

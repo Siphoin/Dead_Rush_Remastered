@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21a292d99b50014e9980f2b505a98db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triagle: {fileID: 981173774}
+  triagle: {fileID: 981173775}
   isPlayer: 0
   bulletSpawner: {fileID: 4893774210650504511}
   skinName: 

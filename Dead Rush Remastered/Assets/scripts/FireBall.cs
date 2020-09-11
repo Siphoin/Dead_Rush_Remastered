@@ -26,7 +26,7 @@ public class FireBall : Ball
     {
         if (collision.tag == "Baricades")
         {
-            baricade.DamageBaricade(damage);
+            baricade.Damage(damage);
             GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/fire_baricade"));
             bullet.transform.position = transform.position;
             Vector3 pos_fire_baricade = transform.position;

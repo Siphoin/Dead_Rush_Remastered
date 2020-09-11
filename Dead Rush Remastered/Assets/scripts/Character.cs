@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// script of character
 /// </summary>
-public class Character : ScreenComponent
+public class Character : ScreenComponent, ICharacter, IHPObject
 {
     [Header("Speed movement value")]
     [SerializeField] float speed;
@@ -129,7 +129,7 @@ public class Character : ScreenComponent
             GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"));
             bullet.transform.position = bulletSpawner.position;
             weapon.ammunition--;
-            StartCoroutine(FireEffect());
+            StartCoroutine(((ICharacter)this).FireEffect());
         }
 
 
@@ -172,12 +172,6 @@ public class Character : ScreenComponent
         ReturnState();
     }
 
-    IEnumerator FireEffect()
-    {
-        fire_effect.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        fire_effect.SetActive(false);
-    }
 
     public void Damage(int value)
     {
@@ -193,11 +187,19 @@ public class Character : ScreenComponent
 
     public void ShowAcidEffect()
     {
-        StopCoroutine(AcidEffectTick());
-        StartCoroutine(AcidEffectTick());
+        StopCoroutine(((ICharacter)this).AcidEffectTick());
+        StartCoroutine(((ICharacter)this).AcidEffectTick());
     }
 
-    IEnumerator AcidEffectTick()
+
+    IEnumerator ICharacter.FireEffect()
+    {
+        fire_effect.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        fire_effect.SetActive(false);
+    }
+
+    IEnumerator ICharacter.AcidEffectTick()
     {
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);

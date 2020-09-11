@@ -35,7 +35,7 @@ public class DialogLevelEightMechanim : DialogMechanimScript
         zombie.moving = true;
         yield return new WaitForSeconds(2);
         player_movedObject.moving = false;
-        player.OnFire(CinematicDirection.Left, zombie.GetComponent<DialogPublisher>());
+        player.OnFire(zombie.GetComponent<DialogPublisher>());
         while (zombie != null)
         {
             yield return new WaitForSeconds(1 / 60);

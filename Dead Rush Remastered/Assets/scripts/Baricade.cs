@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Baricade : MonoBehaviour
+public class Baricade : MonoBehaviour, IHPObject
 {
     [SerializeField] int Health;
     [SerializeField] int armor;
@@ -22,7 +22,7 @@ public class Baricade : MonoBehaviour
         }
     }
 
-    public void DamageBaricade(int value)
+    public void Damage(int value)
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;

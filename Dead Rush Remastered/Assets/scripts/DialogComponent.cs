@@ -19,6 +19,8 @@ public class DialogComponent : MonoBehaviour
     public static string LevelName { get; set; }
 
     private static DialogComponent activedComponent;
+
+    public static bool Active { get; set; } = true;
     // Use this for initialization
     void Start()
     {
@@ -45,6 +47,7 @@ public class DialogComponent : MonoBehaviour
 
     private void Awake()
     {
+        Active = true;
         activedComponent = this;
     }
 
@@ -58,12 +61,17 @@ public class DialogComponent : MonoBehaviour
     {
         while (indexDialog < dialogElements.Length - 1)
         {
+
             NextDialogElement();
             dialogElements[indexDialog].CallEvent();
             for (int i = 0; i < currentChars.Length; i++)
             {
                 yield return new WaitForSeconds(0.03f);
                 text_dialog.text += currentChars[i].ToString();
+            }
+            while (Active == false)
+            {
+                yield return new WaitForSeconds(1 / 60);
             }
             yield return new WaitForSeconds(4);
         }

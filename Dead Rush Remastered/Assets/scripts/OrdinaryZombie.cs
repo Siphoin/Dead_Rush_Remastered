@@ -131,7 +131,7 @@ public class OrdinaryZombie : ZombieBase
         while (true)
         {
             yield return new WaitForSeconds(cooldownDamage);
-            baricade.DamageBaricade(damage);
+            baricade.Damage(damage);
             //    Debug.Log(baricade.health);
         }
     }

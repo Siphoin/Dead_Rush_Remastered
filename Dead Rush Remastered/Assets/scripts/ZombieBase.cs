@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ZombieBase : MonoBehaviour
+public abstract class ZombieBase : MonoBehaviour, IHPObject
 {
 
     [Header("damage zombie")]
@@ -76,7 +76,7 @@ public abstract class ZombieBase : MonoBehaviour
 
     }
 
-    public void DamageZombie(int Damage)
+    public void Damage(int Damage)
     {
         if (armor > 0)
         {

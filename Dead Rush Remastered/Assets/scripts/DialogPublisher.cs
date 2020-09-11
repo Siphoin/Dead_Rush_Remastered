@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DialogPublisher : MonoBehaviour
 {
-    [SerializeField] GameObject triagle;
+    [SerializeField] RectTransform triagle;
     [SerializeField] bool isPlayer = false;
     private SpriteRenderer spriteRenderer;
     private SkinCharacter skin;
@@ -36,19 +36,20 @@ public class DialogPublisher : MonoBehaviour
         {
             return;
         }
-        triagle.SetActive(status);
+        triagle.gameObject.SetActive(status);
     }
 
-    public void OnFire(CinematicDirection direction, DialogPublisher target = null)
+
+    public BulletCinematic OnFire(DialogPublisher target = null)
     {
       BulletCinematic bullet = Instantiate(Resources.Load<BulletCinematic>("cinematic/bulletCinematic"));
-        bullet.transform.position = bulletSpawner.position;
-        bullet.SetTypeDirection(direction);
+        bullet.transform.position = bulletSpawner.position;;
         if (target != null)
         {
             bullet.SetTarget(target);
         }
         StartCoroutine(FireEffect());
+        return bullet;
     }
 
     IEnumerator FireEffect()

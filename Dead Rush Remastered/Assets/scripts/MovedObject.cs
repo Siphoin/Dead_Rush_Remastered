@@ -31,10 +31,6 @@ Vector2 dir = Vector3.zero;
         }
         transform.Translate(dir * speed * Time.deltaTime);
 
-            if (Vector2.Distance(transform.position, Camera.main.transform.position) > 15)
-            {
-                Destroy(gameObject);
-            }
         }
 
 

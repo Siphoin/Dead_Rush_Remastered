@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/dialogs/Dialog2.unity
     guid: 7e1ad75838e7a264890a37a662baed16
   - enabled: 1
+    path: Assets/Scenes/dialogs/Dialog3.unity
+    guid: 9f3d543eebbde58478284cc24b95f68d
+  - enabled: 1
     path: Assets/Scenes/Background.unity
     guid: b3b0390dca05fc14eaccbe7ad3c438a3
   - enabled: 1

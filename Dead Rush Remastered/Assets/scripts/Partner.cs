@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Partner : ScreenComponent
+public class Partner : ScreenComponent, ICharacter, IHPObject
 {
     [Header("Speed movement value")]
     [SerializeField] float speed;
@@ -122,7 +122,7 @@ public class Partner : ScreenComponent
                 GameObject bullet = Instantiate(Resources.Load<GameObject>("Prefabs/bullet"));
                 bullet.transform.position = bulletSpawner.position;
                 weapon.ammunition--;
-                StartCoroutine(FireEffect());
+                StartCoroutine(((ICharacter)this).FireEffect());
             }
 
 
@@ -158,7 +158,7 @@ public class Partner : ScreenComponent
         ReturnState();
     }
 
-    IEnumerator FireEffect()
+    IEnumerator ICharacter.FireEffect()
     {
         fire_effect.SetActive(true);
         yield return new WaitForSeconds(0.1f);
@@ -189,11 +189,17 @@ public class Partner : ScreenComponent
 
     public void ShowAcidEffect()
     {
-        StopCoroutine(AcidEffectTick());
-        StartCoroutine(AcidEffectTick());
+        StopCoroutine(((ICharacter)this).AcidEffectTick());
+        StartCoroutine(((ICharacter)this).AcidEffectTick());
     }
 
-    IEnumerator AcidEffectTick()
+
+    void ICharacter.OnFire()
+    {
+    }
+
+
+    IEnumerator ICharacter.AcidEffectTick()
     {
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);

@@ -17,7 +17,7 @@ public class FireBaricade : MonoBehaviour
         endColor.a = 0;
         endLiveColor = endColor;
         baricade = GameObject.FindGameObjectWithTag("Baricades").GetComponent<Baricade>();
-        StartCoroutine(DamageBaricade());
+        StartCoroutine(Damage());
         StartCoroutine(EffectAlpha());
     }
 
@@ -30,12 +30,12 @@ public class FireBaricade : MonoBehaviour
         }
     }
 
-    IEnumerator DamageBaricade()
+    IEnumerator Damage()
     {
         while (true)
         {
             yield return new WaitForSeconds(2);
-            baricade.DamageBaricade(1);
+            baricade.Damage(1);
         }
     }
 
