@@ -8,19 +8,19 @@ using UnityEngine;
 public class Character : ScreenComponent, ICharacter, IHPObject
 {
     [Header("Speed movement value")]
-    [SerializeField] float speed;
+    [SerializeField] protected float speed;
     [Header("entry object spawner bullets")]
-    [SerializeField] Transform bulletSpawner;
+    [SerializeField] protected Transform bulletSpawner;
     [Header("skin name")]
-    [SerializeField] string skinName;
+    [SerializeField] protected string skinName;
     [Header("fire effect object")]
-    [SerializeField] GameObject fire_effect;
+    [SerializeField] protected GameObject fire_effect;
 
     [Header("armor value")]
-    [SerializeField] int armor;
+    [SerializeField] protected int armor;
 
     [Header("health value")]
-    [SerializeField] int health = 100;
+    [SerializeField] protected int health = 100;
 
     private SkinCharacter skin;
 
@@ -67,7 +67,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject
         {
             GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
             blood.transform.position = transform.position;
-            deadEvent();
+            CallDie();
             Destroy(gameObject);
         }
     }
@@ -156,13 +156,6 @@ public class Character : ScreenComponent, ICharacter, IHPObject
 
     }
 
-    private void Moving(Vector2 dir)
-    {
-        transform.Translate(dir * speed * Time.deltaTime);
-        var posClamped = transform.position;
-        posClamped.y = Mathf.Clamp(transform.position.y, HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
-        transform.position = posClamped;
-    }
 
 
     IEnumerator TickReloadWeapon()
@@ -204,5 +197,18 @@ public class Character : ScreenComponent, ICharacter, IHPObject
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);
         spriteRenderer.color = Color.white;
+    }
+
+    public void Moving(Vector2 dir)
+    {
+        transform.Translate(dir * speed * Time.deltaTime);
+        var posClamped = transform.position;
+        posClamped.y = Mathf.Clamp(transform.position.y, HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
+        transform.position = posClamped;
+    }
+
+    protected void CallDie ()
+    {
+        deadEvent?.Invoke();
     }
 }

@@ -109,15 +109,20 @@ public class LevelManager : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(name_zombie))
         {
-            yield return new WaitForSeconds(3);
+            if (!GameCache.ContainsZombieInBook(name_zombie))
+            {
+yield return new WaitForSeconds(3);
             NewZombieWindow newZombieWindow = Instantiate(Resources.Load<NewZombieWindow>("Prefabs/NewZombieType"));
             ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(PATH_INFO_ZOMBIES);
             newZombieWindow.SetInfo(infoList.zombieList[name_zombie]);
             newZombieWindow.exitEvent += OnWindowNewZombieExit;
+                infoList.Dispose();
             while (windowNewZombieExited == false)
             {
                 yield return new WaitForSeconds(1 / 60);
             }
+            }
+            
 
         }
         StartCoroutine(SpawnZombie());

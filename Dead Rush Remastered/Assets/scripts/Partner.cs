@@ -99,7 +99,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
 
     }
 
-    private void Moving(Vector2 dir)
+    public void Moving(Vector2 dir)
     {
         transform.Translate(dir * speed * Time.deltaTime);
         var posClamped = transform.position;
@@ -201,6 +201,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
 
     IEnumerator ICharacter.AcidEffectTick()
     {
+
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);
         spriteRenderer.color = Color.white;

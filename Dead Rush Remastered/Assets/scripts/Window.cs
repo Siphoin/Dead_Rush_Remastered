@@ -21,5 +21,10 @@ public class Window : AnimatedWindow
         Destroy(gameObject);
     }
 
+    protected void SetChildEvent (Action method)
+    {
+        exitEvent += method;
+    }
+
 
 }

@@ -43,4 +43,8 @@ public class GameCacheContainer
     [JsonProperty("background")]
 
     public bool backgroundCompleted = false;
+
+    [JsonProperty("zombies_book")]
+
+    public HashSet<string> ZombieBook = new HashSet<string>();
 }

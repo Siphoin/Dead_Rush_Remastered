@@ -13,6 +13,7 @@ public class NewZombieWindow : Window
     [SerializeField] private GameObject window_anim;
     [SerializeField] Image zombie_skin_display;
 
+
     // Use this for initialization
     void Start()
     {
@@ -22,6 +23,13 @@ public class NewZombieWindow : Window
         {
             throw new NullReferenceException("zombieinfo null");
         }
+        SetChildEvent(WriteZombieToBook);
+    }
+
+    private void WriteZombieToBook()
+    {
+        GameCache.cacheContainer.ZombieBook.Add(zombieInfo.prefab_name);
+        GameCache.WritePlayerCache();
     }
 
     // Update is called once per frame

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+using UnityEngine;
 using Application = UnityEngine.Application;
 
 public static class GameCache
@@ -7,7 +8,9 @@ public static class GameCache
     public static GameCacheContainer cacheContainer { get; set; } = new GameCacheContainer();
     private static string pathSaveData;
     private static string folberName = "/cache/";
-    private static string fileName = "profile.json";
+    private static string fileName = "profile.drs";
+
+    private static string PASSWORD_DECRYPT = "<gSrIm[[6mjWOnRMp{:&Wi,3*";
 
 
     private static void IniPathSystem()
@@ -31,7 +34,8 @@ public static class GameCache
             Directory.CreateDirectory(pathSaveData);
         }
         string json_str = JsonConvert.SerializeObject(cacheContainer, Formatting.Indented);
-        File.WriteAllText(pathSaveData + fileName, json_str);
+        string encypt_json = StringCipher.Encrypt(json_str, PASSWORD_DECRYPT);
+        File.WriteAllText(pathSaveData + fileName, encypt_json);
     }
 
 
@@ -41,7 +45,18 @@ public static class GameCache
         if (File.Exists(pathSaveData + fileName))
         {
             string out_data = File.ReadAllText(pathSaveData + fileName);
-            cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(out_data);
+            try
+            {
+cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(StringCipher.Decrypt(out_data, PASSWORD_DECRYPT));
+            }
+
+            catch (JsonException e)
+            {
+                Debug.LogError($"JsonExpection: {e.Message}");
+                Application.Quit();
+
+            }
+            
         }
     }
 
@@ -76,5 +91,10 @@ public static class GameCache
     public static bool FileSaveExits()
     {
         return File.Exists(pathSaveData + fileName);
+    }
+
+    public static bool ContainsZombieInBook (string zombieName)
+    {
+        return cacheContainer.ZombieBook.Contains(zombieName);
     }
 }
