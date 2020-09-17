@@ -9,8 +9,12 @@ public class Hunter : MonoBehaviour
     void Start()
     {
         zombieBase = GetComponent<ZombieBase>();
+        if (LevelManager.manager.player != null)
+        {
         StartCoroutine(Teleport());
         StartCoroutine(OnStand());
+        }
+
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class Hunter : MonoBehaviour
         yield return new WaitForSeconds(12.5f);
         Vector3 vecPlayer = LevelManager.manager.player.transform.position;
         transform.position = new Vector3(vecPlayer.x, vecPlayer.y, transform.position.z);
+        zombieBase.Speed = 0;
     }
 
     IEnumerator OnStand()

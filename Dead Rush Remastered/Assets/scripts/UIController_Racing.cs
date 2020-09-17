@@ -7,6 +7,7 @@ public class UIController_Racing : MonoBehaviour
 {
     [SerializeField] TransliteText text_kill_count_zombies;
     [SerializeField] TransliteText text_kills;
+    [SerializeField] Text text_timer;
     [SerializeField] Slider slider_hp;
     // Use this for initialization
     void Start()
@@ -31,6 +32,8 @@ public class UIController_Racing : MonoBehaviour
         {
             slider_hp.value = LevelManager_Racing.manager.Car.Health;
         }
+
+        text_timer.text = LevelManager_Racing.manager.timerString;
     }
 
 

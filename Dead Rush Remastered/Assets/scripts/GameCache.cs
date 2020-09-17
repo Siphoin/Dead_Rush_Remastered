@@ -5,12 +5,11 @@ using Application = UnityEngine.Application;
 
 public static class GameCache
 {
-    public static GameCacheContainer cacheContainer { get; set; } = new GameCacheContainer();
+    public static GameCacheContainer player_cacheContainer { get; set; } = new GameCacheContainer();
     private static string pathSaveData;
     private static string folberName = "/cache/";
-    private static string fileName = "profile.drs";
+    private static string fileName = "profile.json";
 
-    private static string PASSWORD_DECRYPT = "<gSrIm[[6mjWOnRMp{:&Wi,3*";
 
 
     private static void IniPathSystem()
@@ -26,20 +25,19 @@ public static class GameCache
         }
     }
 
-    public static void WritePlayerCache()
+    public static void SaveData()
     {
         IniPathSystem();
         if (!Directory.Exists(pathSaveData))
         {
             Directory.CreateDirectory(pathSaveData);
         }
-        string json_str = JsonConvert.SerializeObject(cacheContainer, Formatting.Indented);
-        string encypt_json = StringCipher.Encrypt(json_str, PASSWORD_DECRYPT);
-        File.WriteAllText(pathSaveData + fileName, encypt_json);
+        string json_str = JsonConvert.SerializeObject(player_cacheContainer, Formatting.Indented);
+        File.WriteAllText(pathSaveData + fileName, json_str);
     }
 
-
-    public static void ReadPlayerData()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+    public static void GetData()
     {
         IniPathSystem();
         if (File.Exists(pathSaveData + fileName))
@@ -47,7 +45,7 @@ public static class GameCache
             string out_data = File.ReadAllText(pathSaveData + fileName);
             try
             {
-cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(StringCipher.Decrypt(out_data, PASSWORD_DECRYPT));
+                player_cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(out_data);
             }
 
             catch (JsonException e)
@@ -63,27 +61,27 @@ cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(StringCipher.
     public static void SetProgressLevel(LevelIProgressData data)
     {
         IniPathSystem();
-        if (!cacheContainer.levelsData.ContainsKey(data.index))
+        if (!player_cacheContainer.levelsData.ContainsKey(data.index))
         {
-            cacheContainer.levelsData.Add(data.index, data);
+            player_cacheContainer.levelsData.Add(data.index, data);
         }
 
         else
         {
-            if (data.starsCount > cacheContainer.levelsData[data.index].starsCount)
+            if (data.starsCount > player_cacheContainer.levelsData[data.index].starsCount)
             {
-                cacheContainer.levelsData[data.index] = data;
+                player_cacheContainer.levelsData[data.index] = data;
             }
 
 
         }
 
-        if (cacheContainer.levelCompleted == data.index)
+        if (player_cacheContainer.levelCompleted == data.index)
         {
-            cacheContainer.levelCompleted++;
+            player_cacheContainer.levelCompleted++;
         }
 
-        WritePlayerCache();
+        SaveData();
 
 
     }
@@ -95,6 +93,7 @@ cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(StringCipher.
 
     public static bool ContainsZombieInBook (string zombieName)
     {
-        return cacheContainer.ZombieBook.Contains(zombieName);
+        return player_cacheContainer.ZombieBook.Contains(zombieName);
     }
+
 }

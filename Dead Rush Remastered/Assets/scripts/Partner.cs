@@ -1,9 +1,9 @@
-﻿using Assets.scripts;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Partner : ScreenComponent, ICharacter, IHPObject
+public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
 {
     [Header("Speed movement value")]
     [SerializeField] float speed;
@@ -26,6 +26,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
     private SpriteRenderer spriteRenderer;
 
     private StateCharacterType Startedstate = StateCharacterType.gun;
+    [SerializeField] AudioSource ShootClipWeapon;
 
     private string[] skinsArray = new string[]
     {
@@ -38,6 +39,8 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
         "manBrown",
         "survivor1",
     };
+
+    public event Action deadEvent;
 
 
     public int Armor { get => armor; set => armor = value; }
@@ -52,6 +55,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
     {
 
         skinName = skinsArray[Random.Range(0, skinsArray.Length)];
+        skinsArray = null;
         visibleComponent = GameObject.FindGameObjectWithTag("PartnerVisibleComponent").GetComponent<PartnerVisibleComponent>();
         StartCoroutine(OnFire());
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -61,6 +65,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
         posPartner.y = Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
         transform.position = posPartner;
         LevelManager.manager.hordeEvent += HordeOn;
+         ShootClipWeapon.clip = Resources.Load<AudioClip>("fx_shoots/gun_shoot");
     }
 
     private void HordeOn()
@@ -81,6 +86,8 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
         {
             GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
             blood.transform.position = transform.position;
+            PlayAudioDie();
+            deadEvent?.Invoke();
             Destroy(gameObject);
         }
     }
@@ -162,6 +169,8 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
     {
         fire_effect.SetActive(true);
         yield return new WaitForSeconds(0.1f);
+        ShootClipWeapon.pitch = Random.Range(0.6f, 2f);
+        ShootClipWeapon.PlayOneShot(ShootClipWeapon.clip);
         fire_effect.SetActive(false);
     }
 
@@ -169,7 +178,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;
-        if (value < 0)
+        if (value <= 0)
         {
             value = 1;
         }
@@ -196,14 +205,20 @@ public class Partner : ScreenComponent, ICharacter, IHPObject
 
     void ICharacter.OnFire()
     {
+        // nothing
     }
 
 
     IEnumerator ICharacter.AcidEffectTick()
     {
-
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/partner_damage_audio"));
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);
         spriteRenderer.color = Color.white;
+    }
+
+    public void PlayAudioDie()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/partner_die_audio"));
     }
 }

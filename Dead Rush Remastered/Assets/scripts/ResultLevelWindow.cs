@@ -43,12 +43,27 @@ public class ResultLevelWindow : AnimatedWindow
             throw new ArgumentException("Invalid value of the starsCount argument. Acceptable values are up to 0 and 3.");
         }
         string text_state = result.ToString().ToUpper();
+        if (text_state == "DEFEAT")
+        {
+           if (LanguageManager.Language == Language.RU)
+            {
+                text_state = "ПОРАЖЕНИЕ";
+            }
+        }
+
+        if (text_state == "VICTORY")
+        {
+            if (LanguageManager.Language == Language.RU)
+            {
+                text_state = "ПОБЕДА";
+            }
+        }
         text_state_level.text = text_state;
         if (result == ResultLevel.Defeat)
         {
             Destroy(button_next_level.gameObject);
             text_state_level.color = color_text_defeat;
-            GameCache.WritePlayerCache();
+            GameCache.SaveData();
         }
         if (result == ResultLevel.Victory)
         {
@@ -62,7 +77,7 @@ public class ResultLevelWindow : AnimatedWindow
             starsImages[i].sprite = star_yes_result_sprite;
         }
 
-        GameCache.cacheContainer.money += moneyCost;
+        GameCache.player_cacheContainer.money += moneyCost;
         if (LanguageManager.Language == Language.EN)
         {
             text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
@@ -74,9 +89,9 @@ public class ResultLevelWindow : AnimatedWindow
         }
 
 
-    }
+        }
 
-    public void ExitToMenu()
+        public void ExitToMenu()
     {
         SetTimeScale(1);
         Menu.OnPageLevels = true;
@@ -92,4 +107,4 @@ public class ResultLevelWindow : AnimatedWindow
 
 
 
-}
+    }

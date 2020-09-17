@@ -26,7 +26,7 @@ public class Baricade : MonoBehaviour, IHPObject
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;
-        if (value < 0)
+        if (value <= 0)
         {
             value = 1;
         }

@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        
         PATH_INFO_ZOMBIES = Resources.Load<TextAsset>("manifests/zombies_info").text;
         if (currentLevel <= 0)
         {
@@ -103,6 +104,7 @@ public class LevelManager : MonoBehaviour
         }
         BlackTransitionCaller.Create();
         StartCoroutine(StartLevel());
+        Instantiate(Resources.Load<MusicPlayer>("music_prefabs/norm_level_music"));
     }
 
     IEnumerator StartLevel()
@@ -152,11 +154,11 @@ yield return new WaitForSeconds(3);
         {
             throw new UnityException("bonus_count < 0!");
         }
-        Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.cacheContainer.skin));
-        baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.cacheContainer.baricades.name_prefab));
+        Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.player_cacheContainer.skin));
+        baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.player_cacheContainer.baricades.name_prefab));
         Player.deadEvent += OnPlayerDead;
         Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
-        if (GameCache.cacheContainer.partnerBuyed)
+        if (GameCache.player_cacheContainer.partnerBuyed)
         {
             Instantiate(Resources.Load<GameObject>("Prefabs/PartnerVisibleComponent"));
             Instantiate(Resources.Load<Partner>("Prefabs/partner"));
@@ -348,5 +350,10 @@ yield return new WaitForSeconds(3);
     public void OnRequstZombie(ZombieBase target)
     {
         target.deadEvent += OnDeadZombie;
+    }
+
+    public void SetCustomParams (int count_zombies)
+    {
+        countZombiesInLevel = count_zombies;
     }
 }

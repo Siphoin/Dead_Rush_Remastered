@@ -18,18 +18,18 @@ public class LevelPage : MonoBehaviour
             buttons.Add(button);
         }
 
-        for (int i = 0; i < GameCache.cacheContainer.levelCompleted; i++)
+        for (int i = 0; i < GameCache.player_cacheContainer.levelCompleted; i++)
         {
-            if (GameCache.cacheContainer.levelsData.ContainsKey(i + 1))
+            if (GameCache.player_cacheContainer.levelsData.ContainsKey(i + 1))
             {
-                buttons[i].SetDataLevel(GameCache.cacheContainer.levelsData[i + 1]);
+                buttons[i].SetDataLevel(GameCache.player_cacheContainer.levelsData[i + 1]);
             }
 
 
         }
-        if (GameCache.cacheContainer.levelCompleted > 0)
+        if (GameCache.player_cacheContainer.levelCompleted > 0)
         {
-            int levelOpened = GameCache.cacheContainer.levelCompleted;
+            int levelOpened = GameCache.player_cacheContainer.levelCompleted;
             int indexBossLevel = 10;
             for (int i = 1; i < buttons.Count; i++)
             {

@@ -17,6 +17,7 @@ MonoBehaviour:
   fire_effect: {fileID: 8430502886905397632}
   armor: 5
   health: 50
+  ShootClipWeapon: {fileID: 8846428596713944522}
 --- !u!1001 &1311977935645524600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +119,12 @@ Transform:
 --- !u!1 &8430502886905397632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7406799943667254264, guid: f527edc1ea8eab144bbec4d27b495bed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1311977935645524600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8846428596713944522 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7562044099435476914, guid: f527edc1ea8eab144bbec4d27b495bed,
     type: 3}
   m_PrefabInstance: {fileID: 1311977935645524600}
   m_PrefabAsset: {fileID: 0}

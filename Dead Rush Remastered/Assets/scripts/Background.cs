@@ -107,8 +107,8 @@ public class Background : MonoBehaviour
             }
             if (index_text == textList.Length - 1)
             {
-                GameCache.cacheContainer.backgroundCompleted = true;
-                GameCache.WritePlayerCache();
+                GameCache.player_cacheContainer.backgroundCompleted = true;
+                GameCache.SaveData();
                 yield return new WaitForSeconds(3);
                 string sceneTarget = Loading.SceneName;
                 Loading.OnLoad(sceneTarget);

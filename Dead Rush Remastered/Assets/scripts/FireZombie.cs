@@ -15,21 +15,27 @@ public class FireZombie : AcidZombie
     void Update()
     {
         CheckParams();
+        
         if (baricade != null)
         {
             float dist = Vector2.Distance(transform.position, baricade.transform.position);
             move = dist > ATTACK_RANGE;
+
+
         }
 
         else
         {
-            move = true;
-        }
+            if (LevelManager.manager.player != null)
+            {
+                float dist = Vector2.Distance(transform.position, LevelManager.manager.player.transform.position);
+                move = dist > ATTACK_RANGE;
+            }
 
-
-        if (move)
-        {
-            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
+            else
+            {
+                move = true;
+            }
         }
 
 

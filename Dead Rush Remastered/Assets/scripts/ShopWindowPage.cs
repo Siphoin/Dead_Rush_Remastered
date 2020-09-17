@@ -8,10 +8,10 @@ public class ShopWindowPage : MonoBehaviour
 
     protected void CallBuyEvent()
     {
-        if (GameCache.cacheContainer.money < 0)
+        if (GameCache.player_cacheContainer.money < 0)
         {
-            GameCache.cacheContainer.money = 0;
-            GameCache.WritePlayerCache();
+            GameCache.player_cacheContainer.money = 0;
+            GameCache.SaveData();
         }
         buyEvent();
 

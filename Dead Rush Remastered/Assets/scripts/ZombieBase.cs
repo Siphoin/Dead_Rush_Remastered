@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ZombieBase : MonoBehaviour, IHPObject
+public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
 {
 
     [Header("damage zombie")]
@@ -60,6 +60,7 @@ public abstract class ZombieBase : MonoBehaviour, IHPObject
             RewardDisplay rewardDisplay = Instantiate(Resources.Load<RewardDisplay>("Prefabs/reward_display"));
             rewardDisplay.OnDisplayReward(rewardmurder);
             rewardDisplay.transform.position = transform.position;
+            PlayAudioDie();
             Destroy(gameObject);
         }
 
@@ -138,7 +139,8 @@ public abstract class ZombieBase : MonoBehaviour, IHPObject
         return new ZombieInfo(armor, health, damage, typeAttackZombie, gameObject.name);
     }
 
-
-
-
+    public void PlayAudioDie()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/zombie_die_audio"));
+    }
 }

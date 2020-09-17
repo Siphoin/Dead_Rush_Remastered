@@ -20,7 +20,6 @@ public class Menu : MonoBehaviour
     {
         if (!onLoadSave)
         {
-            GameCache.ReadPlayerData();
             onLoadSave = true;
         }
         if (onPageLevels)
@@ -52,12 +51,21 @@ public class Menu : MonoBehaviour
         Instantiate(Resources.Load<ShopWindow>("Prefabs/ShopWindow"));
     }
 
+    public void OnSettings ()
+    {
+        Instantiate(Resources.Load<SettingsWindow>("Prefabs/SettingsWindow"));
+    }
+
+    public void OnSurvival ()
+    {
+    }
+
     private IEnumerator CheckPlay()
     {
         if (!GameCache.FileSaveExits())
         {
-            Window newZombieWindow = Instantiate(Resources.Load<Window>("Prefabs/WindowCreationProfilePlayer"));
-            newZombieWindow.exitEvent += OnWindowCreationExit;
+            Window windowCreateProfile = Instantiate(Resources.Load<Window>("Prefabs/WindowCreationProfilePlayer"));
+            windowCreateProfile.exitEvent += OnWindowCreationExit;
             while (windowCreationExited == false)
             {
                 yield return new WaitForSeconds(1 / 60);

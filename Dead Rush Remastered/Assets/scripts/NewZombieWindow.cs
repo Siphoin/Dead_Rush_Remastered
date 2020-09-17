@@ -28,8 +28,8 @@ public class NewZombieWindow : Window
 
     private void WriteZombieToBook()
     {
-        GameCache.cacheContainer.ZombieBook.Add(zombieInfo.prefab_name);
-        GameCache.WritePlayerCache();
+        GameCache.player_cacheContainer.ZombieBook.Add(zombieInfo.prefab_name);
+        GameCache.SaveData();
     }
 
     // Update is called once per frame

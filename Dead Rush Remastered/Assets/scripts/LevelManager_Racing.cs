@@ -18,13 +18,15 @@ public class LevelManager_Racing : MonoBehaviour
 
   static  LevelManager_Racing Manager;
 
-    private int startedXCar;
+    private float startedXCar;
 
 
     private int money = 0;
 
     private int zombie_count_kill = 0;
-   
+
+    private bool levelIsFinished = false;
+
 
     private GameObject[] titleMaps;
 
@@ -35,24 +37,40 @@ public class LevelManager_Racing : MonoBehaviour
     public int ZombieKillCount { get => zombie_count_kill; }
     public int ZombiesMax { get => zombiesMax; }
 
-    [SerializeField] int zombiesMax = 100;
+    [SerializeField] private int zombiesMax = 100;
     [SerializeField] private int currentLevel = 11;
+    [SerializeField] private int minuteTime = 5;
     private DateTime timeEspliaded;
+    private DateTime timer;
 
+    public string timerString
+    {
+        get
+        {
+            string min = string.Format("{00:00}", timer.Minute);
+            string sec = string.Format("{00:00}", timer.Second);
+            return $"{min}:{sec}";
+        }
+    }
     // Use this for initialization
     void Start()
     {
         titleMaps = Resources.LoadAll<GameObject>("Prefabs/racing_titlemaps");
         car = Instantiate(Resources.Load<CarCharacter>("Prefabs/car_player"));
+        startedXCar = car.transform.position.x;
         car.deadEvent += OnPlayerDead;
         car.killZombie += CarKillZombie;
-        for (int i = 0; i < 1; i++)
+        timer = timer.AddMinutes(minuteTime);
+
+        for (int i = 0; i < 4; i++)
         {
             NextGenerate();
 
         }
 
         StartCoroutine(TimeTickLevel());
+        BlackTransitionCaller.Create();
+        Instantiate(Resources.Load<MusicPlayer>("music_prefabs/level_music_racing"));
     }
 
     private void CarKillZombie(int obj)
@@ -77,11 +95,17 @@ public class LevelManager_Racing : MonoBehaviour
             {
                 stars--;
             }
-            car.enabled = false;
+            if (!levelIsFinished)
+            {
+car.enabled = false;
             ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
             LevelIProgressData data = new LevelIProgressData(currentLevel, stars);
             LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
             result.SetState(ResultLevel.Victory, stars, money, data, levelStats);
+            StopAllCoroutines();
+                levelIsFinished = true;
+            }
+            
         }
     }
 
@@ -122,10 +146,15 @@ public class LevelManager_Racing : MonoBehaviour
 
     private void OnPlayerDead()
     {
+        if (!levelIsFinished)
+        {
             ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
             LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
             LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
             result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
+            levelIsFinished = true;
+        }
+
         }
 
     IEnumerator TimeTickLevel()
@@ -135,9 +164,38 @@ public class LevelManager_Racing : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (car.Health <= 0)
             {
+                yield break;
             }
 
-            timeEspliaded = timeEspliaded.AddSeconds(1);
+            if (timer.Minute == 0)
+            {
+                if (timer.Second == 0)
+                {
+                    yield break;
+                }
+
+            }
+
+                    timeEspliaded = timeEspliaded.AddSeconds(1);
+            timer = timer.AddSeconds(-1);
+
+            if (timer.Minute == 0)
+            {
+                if(timer.Second == 0)
+                {
+                   if (!levelIsFinished)
+                    {
+                    car.enabled = false;
+                    ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
+                    LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
+                    LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
+                    result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
+                        levelIsFinished = true;
+                    }
+
+                    
+                }
+            }
 
         }
     }

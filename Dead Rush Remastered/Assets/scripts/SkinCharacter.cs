@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Assets.scripts
-{
     public class SkinCharacter
     {
         private string name_skin;
@@ -18,4 +16,3 @@ namespace Assets.scripts
             return Resources.Load<Sprite>(path);
         }
     }
-}

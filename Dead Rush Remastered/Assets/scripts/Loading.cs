@@ -23,7 +23,7 @@ public class Loading : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!GameCache.cacheContainer.backgroundCompleted)
+        if (!GameCache.player_cacheContainer.backgroundCompleted)
         {
             SceneManager.LoadScene("Background");
         }

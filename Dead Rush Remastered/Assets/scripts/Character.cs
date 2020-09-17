@@ -1,11 +1,10 @@
-﻿using Assets.scripts;
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 /// <summary>
 /// script of character
 /// </summary>
-public class Character : ScreenComponent, ICharacter, IHPObject
+public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
 {
     [Header("Speed movement value")]
     [SerializeField] protected float speed;
@@ -36,15 +35,18 @@ public class Character : ScreenComponent, ICharacter, IHPObject
 
     public event Action deadEvent;
 
+  [SerializeField]  AudioSource ShootClipWeapon;
+
     // Start is called before the first frame update
     void Start()
     {
-        WeaponData data_selected_weapon = GameCache.cacheContainer.selectedWeapon;
+        WeaponData data_selected_weapon = GameCache.player_cacheContainer.selectedWeapon;
         weapon = new Weapon(data_selected_weapon.maxAmmunition, data_selected_weapon.reloadTime);
         Startedstate = (StateCharacterType)Enum.Parse(typeof(StateCharacterType), data_selected_weapon.name_weapon);
         spriteRenderer = GetComponent<SpriteRenderer>();
         skin = new SkinCharacter(skinName);
         SetNewState(Startedstate);
+        ShootClipWeapon.clip = Resources.Load<AudioClip>($"fx_shoots/{data_selected_weapon.name_weapon}_shoot");
 
     }
 
@@ -68,6 +70,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject
             GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
             blood.transform.position = transform.position;
             CallDie();
+            PlayAudioDie();
             Destroy(gameObject);
         }
     }
@@ -170,7 +173,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject
     {
         int value_convert = (value * armor / 100);
         value -= value_convert;
-        if (value < 0)
+        if (value <= 0)
         {
             value = 1;
         }
@@ -189,11 +192,14 @@ public class Character : ScreenComponent, ICharacter, IHPObject
     {
         fire_effect.SetActive(true);
         yield return new WaitForSeconds(0.1f);
+       ShootClipWeapon.pitch = UnityEngine.Random.Range(0.6f, 2f);
+        ShootClipWeapon.PlayOneShot(ShootClipWeapon.clip);
         fire_effect.SetActive(false);
     }
 
     IEnumerator ICharacter.AcidEffectTick()
     {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_damage_audio"));
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(3.6f);
         spriteRenderer.color = Color.white;
@@ -210,5 +216,10 @@ public class Character : ScreenComponent, ICharacter, IHPObject
     protected void CallDie ()
     {
         deadEvent?.Invoke();
+    }
+
+    public void PlayAudioDie()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_die_audio"));
     }
 }

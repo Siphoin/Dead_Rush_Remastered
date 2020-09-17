@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,7 +13,12 @@ public class PartnerVisibleComponent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        transform.position = Vector3.zero;
+       GameObject.FindGameObjectWithTag("Partner").GetComponent<Partner>().deadEvent += OnPartnerDead;
+    }
+
+    private void OnPartnerDead()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
