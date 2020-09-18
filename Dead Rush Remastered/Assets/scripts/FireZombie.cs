@@ -15,7 +15,7 @@ public class FireZombie : AcidZombie
     void Update()
     {
         CheckParams();
-        
+       
         if (baricade != null)
         {
             float dist = Vector2.Distance(transform.position, baricade.transform.position);
@@ -36,6 +36,12 @@ public class FireZombie : AcidZombie
             {
                 move = true;
             }
+        }
+
+
+        if (move)
+        {
+            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
         }
 
 

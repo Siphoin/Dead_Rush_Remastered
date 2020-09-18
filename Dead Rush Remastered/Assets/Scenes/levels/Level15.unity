@@ -10495,7 +10495,7 @@ PrefabInstance:
         type: 3}
       propertyPath: zombiesList.Array.data[1]
       value: 
-      objectReference: {fileID: 4318555217560272687, guid: b58cfeebd194949439ea18c4a38fa314,
+      objectReference: {fileID: 7207963361373979856, guid: 4493756dbc5e7034ab036ebe9bdcd399,
         type: 3}
     - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}

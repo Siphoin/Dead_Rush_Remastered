@@ -22,12 +22,28 @@ public class UIController : MonoBehaviour
         HPBaricades.maxValue = baricade.health;
         string str_translite_num_level = $" {LevelManager.manager.level}";
         levelNumText.SetupText(str_translite_num_level, str_translite_num_level);
-        HPBoss.gameObject.SetActive(false);
+
+        if (LevelManager.manager.level > LevelManager.MAX_LEVEL_GAME)
+        {
+            switch (LanguageManager.Language)
+            {
+                case Language.EN:
+                    str_translite_num_level = "SURVIVAL";
+                    break;
+                case Language.RU:
+                    str_translite_num_level = "ВЫЖИВАНИЕ";
+                    break;
+            }
+            levelNumText.text = str_translite_num_level;
+        }
+
+        
+            HPBoss.gameObject.SetActive(false);
 
 
-    }
+        }
 
-    private void BossOn(ZombieBase obj)
+        private void BossOn(ZombieBase obj)
     {
         boss_target = obj;
         HPBoss.maxValue = boss_target.Health;
@@ -65,4 +81,4 @@ public class UIController : MonoBehaviour
         }
 
     }
-}
+    }

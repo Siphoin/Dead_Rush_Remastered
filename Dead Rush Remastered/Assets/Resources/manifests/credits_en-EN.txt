@@ -1,0 +1,84 @@
+﻿Dead Rush © 2020 All rights reserved. Lemming Games
+
+Programming:
+Maxim Kosolapov
+
+Sounds:
+Maxim Kosolapov
+
+Music:
+Stefan Nixdorf - Megalomania
+Everous & Canonblade - Gleam
+Foxhunt - Fruit
+MIDNIGHT CVLT & Titus1 - Better Days
+Mountkid - Jellyfish Party
+Sybranax - Macro 12
+Jonth - Collapse
+GALLIUM - All I Wanna
+
+Graphic arts:
+Maxim Kosolapov
+Kenney: top down shooter pack
+kenney.nl/assets/topdown-shooter
+
+Design:
+Maxim Kosolapov
+
+Produced by:
+Maxim Kosolapov
+Leonid Bazarov
+
+Testing:
+Maxim Kosolapov
+Daniil Demidov
+Ekaterina
+Artem Gavrilov
+
+Engine:
+Unity (2020.1.4f1)
+
+Level design:
+Maxim Kosolapov
+
+Design:
+Maxim Kosolapov
+
+User interface (UI):
+Maxim Kosolapov
+
+Game design:
+Maxim Kosolapov
+
+Levels:
+Maxim Kosolapov
+
+Scenario:
+Maxim Kosolapov
+
+Dialogues:
+Maxim Kosolapov
+
+Translation (English):
+Maxim Kosolapov
+
+Consultation:
+Daniil Demidov
+Artem Gavrilov
+
+Publisher:
+Lemming Games
+
+Publication:
+Leonid Bazarov
+
+Third-party libraries that were used during development:
+Json.NET Newtonsoft
+
+newtonsoft.com/json
+Github: github.com/JamesNK/Newtonsoft.Json
+
+Thank you for playing and completing this game.
+
+Thanks to all those who supported the development and helped.
+
+A lot of nerve cells and hours were spent ...

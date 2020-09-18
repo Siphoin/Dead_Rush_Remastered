@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Zombie_Racing : MonoBehaviour
+public class Zombie_Racing : MonoBehaviour, IDieAudio
 {
    [SerializeField] private float speed;
  [SerializeField]   private int rewardmurder;
@@ -39,6 +39,12 @@ public class Zombie_Racing : MonoBehaviour
         RewardDisplay rewardDisplay = Instantiate(Resources.Load<RewardDisplay>("Prefabs/reward_display"));
         rewardDisplay.OnDisplayReward(rewardmurder);
         rewardDisplay.transform.position = transform.position;
+        PlayAudioDie();
         Destroy(gameObject);
+    }
+
+    public void PlayAudioDie()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/zombie_die_audio"));
     }
 }

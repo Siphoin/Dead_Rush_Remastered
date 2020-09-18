@@ -10218,12 +10218,12 @@ PrefabInstance:
     - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}
       propertyPath: currentLevel
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}
       propertyPath: countZombiesInLevel
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}
@@ -10247,6 +10247,17 @@ PrefabInstance:
       propertyPath: name_zombie
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
+        type: 3}
+      propertyPath: zombiesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 364387523943856113, guid: e4270bcdcf5740a4f84678be2a55d8ad,
+        type: 3}
     - target: {fileID: 9173640066551869489, guid: bce88e108dfaf5d4292d74219eb30104,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10309,34 +10320,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bce88e108dfaf5d4292d74219eb30104, type: 3}
---- !u!1 &9173640065727478335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9173640066551869491, guid: bce88e108dfaf5d4292d74219eb30104,
-    type: 3}
-  m_PrefabInstance: {fileID: 9173640065727478334}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9173640065727478336 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9173640066551869488, guid: bce88e108dfaf5d4292d74219eb30104,
-    type: 3}
-  m_PrefabInstance: {fileID: 9173640065727478334}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9173640065727478335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7ab92ee2ecd254d80b1daeb4c9bf08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9173640065727478337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9173640065727478335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e6da7abfe37324ea78f17583e596b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 9173640065727478336}

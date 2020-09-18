@@ -46,6 +46,8 @@ public class LevelManager : MonoBehaviour
 
     public int zombiieCount { get; set; } = 0;
 
+    public static int MAX_LEVEL_GAME => mAX_LEVEL_GAME;
+
     public event Action hordeEvent;
     public event Action<ZombieBase> bossEvent;
 
@@ -54,6 +56,8 @@ public class LevelManager : MonoBehaviour
     private bool windowNewZombieExited = false;
 
     private bool levelIsFinished = false;
+
+    private const int mAX_LEVEL_GAME = 50;
 
     // Use this for initialization
 
@@ -221,9 +225,6 @@ yield return new WaitForSeconds(3);
                     yield return new WaitForSeconds(UnityEngine.Random.Range(1, 3));
                 }
 
-                {
-
-                }
 
             }
 
@@ -258,7 +259,13 @@ yield return new WaitForSeconds(3);
         Vector3 position = new Vector3(15, UnityEngine.Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN), -2);
         ZombieBase zombie = Instantiate(zombiesList[UnityEngine.Random.Range(0, variantsCountZombies)]);
         zombie.transform.position = position;
+        if (countZombiesInLevel != int.MaxValue)
+        {
         currentZombiesSpawned++;
+        }
+
+        Debug.Log(currentZombiesSpawned);
+
         zombie.deadEvent += OnDeadZombie;
     }
 

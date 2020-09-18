@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
     private static bool onLoadSave = false;
     private bool windowCreationExited;
     [SerializeField] Button button_shop;
+    [SerializeField] Button survival_shop;
 
     public static bool OnPageLevels { get => onPageLevels; set => onPageLevels = value; }
 
@@ -27,6 +28,8 @@ public class Menu : MonoBehaviour
             OnPlay();
             onPageLevels = false;
         }
+
+        survival_shop.interactable = GameCache.GameFinished();
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class Menu : MonoBehaviour
 
     public void OnSurvival ()
     {
+        Loading.OnLoad("Survival");
     }
 
     private IEnumerator CheckPlay()

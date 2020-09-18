@@ -96,4 +96,10 @@ public static class GameCache
         return player_cacheContainer.ZombieBook.Contains(zombieName);
     }
 
+
+    public static bool GameFinished ()
+    {
+        return player_cacheContainer.levelCompleted >= LevelManager.MAX_LEVEL_GAME;
+    }
+
 }

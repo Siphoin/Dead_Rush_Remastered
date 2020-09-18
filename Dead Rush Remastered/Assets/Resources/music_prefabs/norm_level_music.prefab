@@ -148,6 +148,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3483e620aa7aed34d9722ea6de15bf23, type: 3}
   - {fileID: 8300000, guid: 1bf61ae70c66b2548ad721254e9eaf89, type: 3}
   - {fileID: 8300000, guid: 7eb17b3d6b81e394eaf926c304d3758b, type: 3}
+  - {fileID: 8300000, guid: 37d9b97bd28d6dc49b9eb74e87a2cf90, type: 3}
 --- !u!114 &756895295168283095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  range_pitch: 0.4
+  PlayOnAwake: 1
+  random_pich: 1

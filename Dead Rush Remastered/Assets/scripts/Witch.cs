@@ -31,8 +31,10 @@ public class Witch : MonoBehaviour
                 StopAllCoroutines();
                 zombieBase.Speed = startedSpeed * 5;
                 emotzu.SetActive(true);
+                Instantiate(Resources.Load<AudioSource>("fx_prefabs/witch_damage_audio"));
                 Destroy(emotzu, 1.3f);
             }
+
         }
 
     }
@@ -40,8 +42,19 @@ public class Witch : MonoBehaviour
     IEnumerator OnStand()
     {
         yield return new WaitForSeconds(6);
-
         zombieBase.Move = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Zombie")
+        {
+            if (!extraMoved)
+            {
+                zombieBase.Move = false;
+            }
+        }
+    }
+
 
 }
