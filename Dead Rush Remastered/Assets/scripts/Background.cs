@@ -10,9 +10,26 @@ public class Background : MonoBehaviour
     private float t_text_hints = 0;
     Color alpha_colorText;
     private int index_text = 0;
+
+    private float[] timesKeys = new float[]
+    {
+        4,
+        7,
+        2,
+        0.6f,
+        0.6f,
+        0.6f,
+        0.6f,
+        1.6f,
+        3f,
+        13f,
+        10f,
+        1f,
+    };
     // Use this for initialization
     void Start()
     {
+        BlackTransitionCaller.Create();
         var alpha_color = Color.white;
         alpha_color.a = 0;
         alpha_colorText = alpha_color;
@@ -32,69 +49,11 @@ public class Background : MonoBehaviour
         Text_background.text = textList[index_text];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     IEnumerator NewTextDisplay()
     {
         while (true)
         {
-            float time = 0;
-            switch (index_text)
-            {
-
-                case 0:
-                    time = 4;
-
-                    break;
-                case 1:
-                    time = 7;
-                    break;
-
-                case 2:
-                    time = 2;
-                    break;
-
-                case 3:
-                    time = 0.6f;
-                    break;
-
-                case 4:
-                    time = 0.6f;
-                    break;
-
-                case 5:
-                    time = 0.6f;
-                    break;
-
-                case 6:
-                    time = 0.6f;
-                    break;
-
-                case 7:
-                    time = 1.6f;
-                    break;
-
-                case 8:
-                    time = 3f;
-                    break;
-
-                case 9:
-                    time = 13f;
-                    break;
-
-                case 10:
-                    time = 10f;
-                    break;
-
-                case 11:
-                    time = 1f;
-                    break;
-            }
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(timesKeys[index_text]);
             t_text_hints = 0;
             index_text++;
             Text_background.color = alpha_colorText;
@@ -107,7 +66,7 @@ public class Background : MonoBehaviour
             }
             if (index_text == textList.Length - 1)
             {
-                GameCache.player_cacheContainer.backgroundCompleted = true;
+                GameCache.Player_cacheContainer.backgroundCompleted = true;
                 GameCache.SaveData();
                 yield return new WaitForSeconds(3);
                 string sceneTarget = Loading.SceneName;

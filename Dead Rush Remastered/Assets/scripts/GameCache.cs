@@ -5,10 +5,10 @@ using Application = UnityEngine.Application;
 
 public static class GameCache
 {
-    public static GameCacheContainer player_cacheContainer { get; set; } = new GameCacheContainer();
+    public static GameCacheContainer Player_cacheContainer { get; set; } = new GameCacheContainer();
     private static string pathSaveData;
     private static string folberName = "/cache/";
-    private static string fileName = "profile.json";
+    private static readonly string fileName = "profile.json";
 
 
 
@@ -32,7 +32,7 @@ public static class GameCache
         {
             Directory.CreateDirectory(pathSaveData);
         }
-        string json_str = JsonConvert.SerializeObject(player_cacheContainer, Formatting.Indented);
+        string json_str = JsonConvert.SerializeObject(Player_cacheContainer, Formatting.Indented);
         File.WriteAllText(pathSaveData + fileName, json_str);
     }
 
@@ -40,12 +40,12 @@ public static class GameCache
     public static void GetData()
     {
         IniPathSystem();
-        if (File.Exists(pathSaveData + fileName))
+        if (FileSaveExits())
         {
             string out_data = File.ReadAllText(pathSaveData + fileName);
             try
             {
-                player_cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(out_data);
+                Player_cacheContainer = JsonConvert.DeserializeObject<GameCacheContainer>(out_data);
             }
 
             catch (JsonException e)
@@ -61,24 +61,24 @@ public static class GameCache
     public static void SetProgressLevel(LevelIProgressData data)
     {
         IniPathSystem();
-        if (!player_cacheContainer.levelsData.ContainsKey(data.index))
+        if (!Player_cacheContainer.levelsData.ContainsKey(data.index))
         {
-            player_cacheContainer.levelsData.Add(data.index, data);
+            Player_cacheContainer.levelsData.Add(data.index, data);
         }
 
         else
         {
-            if (data.starsCount > player_cacheContainer.levelsData[data.index].starsCount)
+            if (data.starsCount > Player_cacheContainer.levelsData[data.index].starsCount)
             {
-                player_cacheContainer.levelsData[data.index] = data;
+                Player_cacheContainer.levelsData[data.index] = data;
             }
 
 
         }
 
-        if (player_cacheContainer.levelCompleted == data.index)
+        if (Player_cacheContainer.levelCompleted == data.index)
         {
-            player_cacheContainer.levelCompleted++;
+            Player_cacheContainer.levelCompleted++;
         }
 
         SaveData();
@@ -93,13 +93,21 @@ public static class GameCache
 
     public static bool ContainsZombieInBook (string zombieName)
     {
-        return player_cacheContainer.ZombieBook.Contains(zombieName);
+        return Player_cacheContainer.ZombieBook.Contains(zombieName);
     }
 
 
     public static bool GameFinished ()
     {
-        return player_cacheContainer.levelCompleted >= LevelManager.MAX_LEVEL_GAME;
+        return Player_cacheContainer.levelCompleted >= LevelManager.MAX_LEVEL_GAME;
+    }
+
+    public static void DeleteSave ()
+    {
+        if (FileSaveExits())
+        {
+            File.Delete(pathSaveData + fileName);
+        }
     }
 
 }

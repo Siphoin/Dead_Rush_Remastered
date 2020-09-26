@@ -51,7 +51,7 @@ public class BaricadesPage_Shop : ShopWindowPage
             baricades_info.text = $"Прочность: {target_baricades.armor}\nЗдоровье: {target_baricades.health}\nЦена: {target_baricades.sale}";
         }
         btn_text_action_baricades.SetupText();
-        if (GameCache.player_cacheContainer.baricadesPlayer.ContainsKey(target_baricades.name_prefab))
+        if (GameCache.Player_cacheContainer.baricadesPlayer.ContainsKey(target_baricades.name_prefab))
         {
             actionType = PageActionType.Select;
             if (LanguageManager.Language == Language.EN)
@@ -71,7 +71,7 @@ public class BaricadesPage_Shop : ShopWindowPage
 
         else
         {
-            btn_buy.interactable = GameCache.player_cacheContainer.money >= baricadesList[selected_index].sale;
+            btn_buy.interactable = GameCache.Player_cacheContainer.money >= baricadesList[selected_index].sale;
             actionType = PageActionType.Buy;
         }
 
@@ -101,11 +101,11 @@ public class BaricadesPage_Shop : ShopWindowPage
         switch (actionType)
         {
             case PageActionType.Select:
-                GameCache.player_cacheContainer.baricades = baricadesList[selected_index];
+                GameCache.Player_cacheContainer.baricades = baricadesList[selected_index];
                 break;
             case PageActionType.Buy:
-                GameCache.player_cacheContainer.baricadesPlayer.Add(baricadesList[selected_index].name_prefab, baricadesList[selected_index]);
-                GameCache.player_cacheContainer.money -= baricadesList[selected_index].sale;
+                GameCache.Player_cacheContainer.baricadesPlayer.Add(baricadesList[selected_index].name_prefab, baricadesList[selected_index]);
+                GameCache.Player_cacheContainer.money -= baricadesList[selected_index].sale;
                 CallBuyEvent();
                 break;
         }

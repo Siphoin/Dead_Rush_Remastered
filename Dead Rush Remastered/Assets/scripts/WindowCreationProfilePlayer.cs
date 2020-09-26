@@ -61,9 +61,9 @@ public class WindowCreationProfilePlayer : Window
             return;
         }
         inputField.text = inputField.text.Trim();
-        GameCache.player_cacheContainer = new GameCacheContainer();
-        GameCache.player_cacheContainer.namePlayer = inputField.text;
-        GameCache.player_cacheContainer.skin = items_skins[index_skin].NameSkin;
+        GameCache.Player_cacheContainer = new GameCacheContainer();
+        GameCache.Player_cacheContainer.namePlayer = inputField.text;
+        GameCache.Player_cacheContainer.skin = items_skins[index_skin].NameSkin;
         GameCache.SaveData();
         Exit();
     }

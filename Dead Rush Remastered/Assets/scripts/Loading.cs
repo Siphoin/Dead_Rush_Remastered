@@ -15,6 +15,7 @@ public class Loading : MonoBehaviour
     string[] hintsList;
     private float t_text_hints = 0;
     private float t_fill_load = 0;
+    private static bool checkCredits = true;
     Color alpha_colorTextHints;
     private Color alpha_fill_load_color = new Color32(255, 255, 255, 125);
 
@@ -23,9 +24,13 @@ public class Loading : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!GameCache.player_cacheContainer.backgroundCompleted)
+        if (checkCredits)
         {
-            SceneManager.LoadScene("Background");
+            if (!GameCache.Player_cacheContainer.backgroundCompleted)
+            {
+
+                SceneManager.LoadScene("Background");
+            }
         }
         StartCoroutine(FillAnimation());
         var alpha_color = Color.white;
@@ -37,6 +42,7 @@ public class Loading : MonoBehaviour
         StartCoroutine(LoadProcessing());
         NewRandomHint();
         StartCoroutine(NewHintDisplay());
+        checkCredits = true;
     }
 
     private void NewRandomHint()
@@ -45,10 +51,6 @@ public class Loading : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     IEnumerator LoadProcessing()
     {
@@ -104,8 +106,9 @@ public class Loading : MonoBehaviour
         }
     }
 
-    public static void OnLoad(string SceneName)
+    public static void OnLoad(string SceneName, bool checkCreditsComplete = true)
     {
+        checkCredits = checkCreditsComplete;
         sceneName = SceneName;
         SceneManager.LoadScene("Loading");
     }

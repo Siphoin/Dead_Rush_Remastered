@@ -77,7 +77,7 @@ public class ResultLevelWindow : AnimatedWindow
             starsImages[i].sprite = star_yes_result_sprite;
         }
 
-        GameCache.player_cacheContainer.money += moneyCost;
+        GameCache.Player_cacheContainer.money += moneyCost;
         if (LanguageManager.Language == Language.EN)
         {
             text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";

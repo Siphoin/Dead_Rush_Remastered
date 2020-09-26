@@ -21,9 +21,9 @@ public class DialogPublisher : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (isPlayer)
         {
-            WeaponData data_selected_weapon = GameCache.player_cacheContainer.selectedWeapon;
+            WeaponData data_selected_weapon = GameCache.Player_cacheContainer.selectedWeapon;
             Startedstate = (StateCharacterType)Enum.Parse(typeof(StateCharacterType), data_selected_weapon.name_weapon);
-            skin = new SkinCharacter(GameCache.player_cacheContainer.skin);
+            skin = new SkinCharacter(GameCache.Player_cacheContainer.skin);
             spriteRenderer.sprite = skin.GetSkinState(Startedstate);
         }
         SetStatusTalk(false);

@@ -11,6 +11,7 @@ public class Credits : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        BlackTransitionCaller.Create();
         string pathToFile = credits_file_name;
         switch (LanguageManager.Language)
         {

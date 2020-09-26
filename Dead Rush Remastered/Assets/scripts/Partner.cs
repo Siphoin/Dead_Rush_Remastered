@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
@@ -27,6 +28,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
 
     private StateCharacterType Startedstate = StateCharacterType.gun;
     [SerializeField] AudioSource ShootClipWeapon;
+    [SerializeField] Slider HP_Slider;
 
     private string[] skinsArray = new string[]
     {
@@ -64,8 +66,9 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
         var posPartner = transform.position;
         posPartner.y = Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
         transform.position = posPartner;
-        LevelManager.manager.hordeEvent += HordeOn;
+        LevelManager.manager.HordeEvent += HordeOn;
          ShootClipWeapon.clip = Resources.Load<AudioClip>("fx_shoots/gun_shoot");
+        HP_Slider.maxValue = health;
     }
 
     private void HordeOn()
@@ -90,6 +93,8 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
             deadEvent?.Invoke();
             Destroy(gameObject);
         }
+
+        HP_Slider.value = health;
     }
 
     private void MovingLogic(ZombieBase zombie)

@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        LevelManager.manager.hordeEvent += HordeOn;
+        LevelManager.manager.HordeEvent += HordeOn;
         LevelManager.manager.bossEvent += BossOn;
         baricade = GameObject.FindGameObjectWithTag("Baricades").GetComponent<Baricade>();
         HPBaricades.maxValue = baricade.health;

@@ -29,8 +29,8 @@
       "armor": 0,
       "health": 13,
       "type_attack": 0,
-      "description (en-EN)": "Teleports to the player after a while. Deals great damage.",
-      "description (ru-RU)": "Телепортируется к игроку через некоторое время. Наносит большой урон.",
+      "description (en-EN)": "Jumps at a player or your ally after a while. Deals great damage.",
+      "description (ru-RU)": "Прыгает на игрока или на вашего союзника через некоторое время. Наносит большой урон.",
       "prefab": "zoimbie11"
     },
     "zoimbie2": {
@@ -110,16 +110,50 @@
       "description (ru-RU)": "Спокойно идет к баррикаде, после чего останавливается и ждет. При получении урона скорость ее увеличивается в 5 раз. Она приходит в ярость.",
       "prefab": "zoimbie8"
     },
-    "zoimbie9": {
-      "name_en-EN": "Russian Military Zombie",
-      "name_ru-RU": "ОМОН зомби",
-      "damage": 20,
-      "armor": 4,
-      "health": 14,
+    "zoimbie12": {
+      "name_en-EN": "Trainer",
+      "name_ru-RU": "Физрук",
+      "damage": 6,
+      "armor": 0,
+      "health": 10,
       "type_attack": 0,
-      "description (en-EN)": "Has strong armor, large health reserves, but slow movement speed.",
-      "description (ru-RU)": "Имеет прочную броню, большой запас здоровья, но медленная скорость передвижения.",
-      "prefab": "zoimbie9"
-    }
+      "description (en-EN)": "Has an aura of fast run, all zombies that are near this aura accelerate their movement speed by 2 times.",
+      "description (ru-RU)": "Имеет ауру быстрого бега, все зомби, которые находятся рядом с этой аурой ускоряют свою скорость движения в 2 раза.",
+      "prefab": "zoimbie12"
+    },
+    "zoimbie13": {
+      "name_en-EN": "Doctor",
+      "name_ru-RU": "Врач",
+      "damage": 6,
+      "armor": 0,
+      "health": 10,
+      "type_attack": 0,
+      "description (en-EN)": "Has an aura of health restoration, heals the zombies that are nearby, as well as the owner of this aura.",
+      "description (ru-RU)": "Имеет ауру восстановления здоровья, исцеляет зомби, которые находятся поблизости, а также и самого владельца этой ауры.",
+      "prefab": "zoimbie13"
+    },
+    "zoimbie14": {
+      "name_en-EN": "Ghost Zombie",
+      "name_ru-RU": "Зомби-призрак",
+      "damage": 6,
+      "armor": 0,
+      "health": 10,
+      "type_attack": 0,
+      "description (en-EN)": "Has the ability to be invisible. When touched with a barricade, invisibility is disabled. The partner does not see such a zombie.",
+      "description (ru-RU)": "Имеет способность невидимки. При прикосновении с баррикадой, невидимость отключается. Партнер не видит такого зомби.",
+      "prefab": "zoimbie14"
+    },
+
+    "zoimbie15": {
+      "name_en-EN": "Jock",
+      "name_ru-RU": "Качок",
+      "damage": 25,
+      "armor": 0,
+      "health": 30,
+      "type_attack": 0,
+      "description (en-EN)": "Deals very high damage and attack speed is very high. Has a lot of health, but is slow",
+      "description (ru-RU)": "Наносит очень большой урон, а также скорость атаки очень высока. Имеет большой запас здоровья, но медленный",
+      "prefab": "zoimbie15"
+    },
   }
 }

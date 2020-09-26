@@ -40,7 +40,7 @@ public class ShopWindow : Window
 
     private void DisplayValueMoney()
     {
-        text_money_value.text = $"${GameCache.player_cacheContainer.money}";
+        text_money_value.text = $"${GameCache.Player_cacheContainer.money}";
     }
 
     // Update is called once per frame

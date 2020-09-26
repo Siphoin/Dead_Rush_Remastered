@@ -43,6 +43,8 @@ public class LevelManager_Racing : MonoBehaviour
     private DateTime timeEspliaded;
     private DateTime timer;
 
+    public event Action OnEndLevel;
+
     public string timerString
     {
         get
@@ -104,6 +106,7 @@ car.enabled = false;
             result.SetState(ResultLevel.Victory, stars, money, data, levelStats);
             StopAllCoroutines();
                 levelIsFinished = true;
+                OnEndLevel?.Invoke();
             }
             
         }
@@ -153,6 +156,7 @@ car.enabled = false;
             LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
             result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
             levelIsFinished = true;
+            OnEndLevel?.Invoke();
         }
 
         }

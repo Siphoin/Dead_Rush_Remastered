@@ -15,6 +15,12 @@ public class UIController_Racing : MonoBehaviour
         ShowCountKillsZombies();
         LevelManager_Racing.manager.zombieKillEvent += ShowCountKillsZombies;
         slider_hp.maxValue = LevelManager_Racing.manager.Car.Health;
+        LevelManager_Racing.manager.OnEndLevel += Hide;
+    }
+
+    private void Hide()
+    {
+        Destroy(gameObject);
     }
 
     private void ShowCountKillsZombies()

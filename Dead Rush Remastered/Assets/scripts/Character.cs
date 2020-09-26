@@ -40,7 +40,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
     // Start is called before the first frame update
     void Start()
     {
-        WeaponData data_selected_weapon = GameCache.player_cacheContainer.selectedWeapon;
+        WeaponData data_selected_weapon = GameCache.Player_cacheContainer.selectedWeapon;
         weapon = new Weapon(data_selected_weapon.maxAmmunition, data_selected_weapon.reloadTime);
         Startedstate = (StateCharacterType)Enum.Parse(typeof(StateCharacterType), data_selected_weapon.name_weapon);
         spriteRenderer = GetComponent<SpriteRenderer>();

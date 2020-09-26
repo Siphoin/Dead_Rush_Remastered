@@ -18,18 +18,18 @@ public class LevelPage : MonoBehaviour
             buttons.Add(button);
         }
 
-        for (int i = 0; i < GameCache.player_cacheContainer.levelCompleted; i++)
+        for (int i = 0; i < GameCache.Player_cacheContainer.levelCompleted; i++)
         {
-            if (GameCache.player_cacheContainer.levelsData.ContainsKey(i + 1))
+            if (GameCache.Player_cacheContainer.levelsData.ContainsKey(i + 1))
             {
-                buttons[i].SetDataLevel(GameCache.player_cacheContainer.levelsData[i + 1]);
+                buttons[i].SetDataLevel(GameCache.Player_cacheContainer.levelsData[i + 1]);
             }
 
 
         }
-        if (GameCache.player_cacheContainer.levelCompleted > 0)
+        if (GameCache.Player_cacheContainer.levelCompleted > 0)
         {
-            int levelOpened = GameCache.player_cacheContainer.levelCompleted;
+            int levelOpened = GameCache.Player_cacheContainer.levelCompleted;
             int indexBossLevel = 10;
             for (int i = 1; i < buttons.Count; i++)
             {
@@ -55,12 +55,6 @@ public class LevelPage : MonoBehaviour
                 }
             }
         }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 }

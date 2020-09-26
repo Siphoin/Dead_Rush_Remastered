@@ -7,7 +7,7 @@ public class WaveText : MonoBehaviour
     float t = 0;
     Color alpha_color;
     Color original_color;
-    TextMeshProUGUI textMesh;
+    private TextMeshProUGUI textMesh;
     // Use this for initialization
     void Start()
     {

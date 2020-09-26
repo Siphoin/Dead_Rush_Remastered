@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
     public static int MAX_LEVEL_GAME => mAX_LEVEL_GAME;
 
-    public event Action hordeEvent;
+    public event Action HordeEvent;
     public event Action<ZombieBase> bossEvent;
 
     private Character Player;
@@ -158,11 +158,11 @@ yield return new WaitForSeconds(3);
         {
             throw new UnityException("bonus_count < 0!");
         }
-        Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.player_cacheContainer.skin));
-        baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.player_cacheContainer.baricades.name_prefab));
+        Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.Player_cacheContainer.skin));
+        baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.Player_cacheContainer.baricades.name_prefab));
         Player.deadEvent += OnPlayerDead;
         Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
-        if (GameCache.player_cacheContainer.partnerBuyed)
+        if (GameCache.Player_cacheContainer.partnerBuyed)
         {
             Instantiate(Resources.Load<GameObject>("Prefabs/PartnerVisibleComponent"));
             Instantiate(Resources.Load<Partner>("Prefabs/partner"));
@@ -183,11 +183,6 @@ yield return new WaitForSeconds(3);
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     IEnumerator SpawnZombie()
     {
@@ -206,7 +201,7 @@ yield return new WaitForSeconds(3);
                         yield return new WaitForSeconds(1 / 60);
                     }
                     yield return new WaitForSeconds(2);
-                    hordeEvent?.Invoke();
+                    HordeEvent?.Invoke();
                     yield return new WaitForSeconds(3);
                     for (int j = 0; j < countZombiesInLevel / 2; j++)
                     {
@@ -263,8 +258,6 @@ yield return new WaitForSeconds(3);
         {
         currentZombiesSpawned++;
         }
-
-        Debug.Log(currentZombiesSpawned);
 
         zombie.deadEvent += OnDeadZombie;
     }

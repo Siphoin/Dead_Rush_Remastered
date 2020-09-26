@@ -18,8 +18,8 @@ public class PartnersPage_Shop : ShopWindowPage
                 text_info.text = $"Цена: {sale}\nОружие: Пистолет\nБоеприпасы: 40";
                 break;
         }
-        button_buy.interactable = GameCache.player_cacheContainer.money >= sale;
-        if (GameCache.player_cacheContainer.partnerBuyed)
+        button_buy.interactable = GameCache.Player_cacheContainer.money >= sale;
+        if (GameCache.Player_cacheContainer.partnerBuyed)
         {
             Destroy(button_buy.gameObject);
         }
@@ -33,8 +33,8 @@ public class PartnersPage_Shop : ShopWindowPage
 
     public void BuyPartner()
     {
-        GameCache.player_cacheContainer.money -= sale;
-        GameCache.player_cacheContainer.partnerBuyed = true;
+        GameCache.Player_cacheContainer.money -= sale;
+        GameCache.Player_cacheContainer.partnerBuyed = true;
         Destroy(button_buy.gameObject);
         CallBuyEvent();
         GameCache.SaveData();

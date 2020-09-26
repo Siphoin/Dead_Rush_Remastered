@@ -24,9 +24,9 @@ public class WeaponPage_Shop : ShopWindowPage
         for (int i = 0; i < weaponsList.Length; i++)
         {
             WeaponData item = weaponsList[i];
-            if (GameCache.player_cacheContainer.weaponsPlayer.ContainsKey(item.name_weapon))
+            if (GameCache.Player_cacheContainer.weaponsPlayer.ContainsKey(item.name_weapon))
             {
-                weaponsList[i] = GameCache.player_cacheContainer.weaponsPlayer[item.name_weapon];
+                weaponsList[i] = GameCache.Player_cacheContainer.weaponsPlayer[item.name_weapon];
             }
         }
         ShowWeapon();
@@ -73,7 +73,7 @@ public class WeaponPage_Shop : ShopWindowPage
             weapon_info.text = $"Уровень: {target_weapon.level_upgrate}\nЦена: {target_weapon.sale}\nСкорость перезарядки: {target_weapon.reloadTime}  сек\nБоеприпасы: {target_weapon.maxAmmunition}";
         }
         btn_text_action_weapon.SetupText();
-        if (GameCache.player_cacheContainer.weaponsPlayer.ContainsKey(target_weapon.name_weapon))
+        if (GameCache.Player_cacheContainer.weaponsPlayer.ContainsKey(target_weapon.name_weapon))
         {
             actionType = PageActionType.Select;
             if (LanguageManager.Language == Language.EN)
@@ -95,7 +95,7 @@ public class WeaponPage_Shop : ShopWindowPage
         if (actionType == PageActionType.Buy)
         {
             btn_upgrate.SetActive(false);
-            btn_buy.interactable = GameCache.player_cacheContainer.money >= weaponsList[selected_index].sale;
+            btn_buy.interactable = GameCache.Player_cacheContainer.money >= weaponsList[selected_index].sale;
         }
 
         else
@@ -124,11 +124,11 @@ public class WeaponPage_Shop : ShopWindowPage
         switch (actionType)
         {
             case PageActionType.Select:
-                GameCache.player_cacheContainer.selectedWeapon = weaponsList[selected_index];
+                GameCache.Player_cacheContainer.selectedWeapon = weaponsList[selected_index];
                 break;
             case PageActionType.Buy:
-                GameCache.player_cacheContainer.weaponsPlayer.Add(weaponsList[selected_index].name_weapon, weaponsList[selected_index]);
-                GameCache.player_cacheContainer.money -= weaponsList[selected_index].sale;
+                GameCache.Player_cacheContainer.weaponsPlayer.Add(weaponsList[selected_index].name_weapon, weaponsList[selected_index]);
+                GameCache.Player_cacheContainer.money -= weaponsList[selected_index].sale;
                 CallBuyEvent();
                 break;
         }
@@ -144,17 +144,17 @@ public class WeaponPage_Shop : ShopWindowPage
 
     public void OnUpgrateWeapon()
     {
-        GameCache.player_cacheContainer.money -= weaponsList[selected_index].sale;
+        GameCache.Player_cacheContainer.money -= weaponsList[selected_index].sale;
         var selected_item = weaponsList[selected_index];
         selected_item.sale *= 2;
         selected_item.level_upgrate++;
         selected_item.maxAmmunition += 25;
         weaponsList[selected_index] = selected_item;
-        GameCache.player_cacheContainer.weaponsPlayer[selected_item.name_weapon] = weaponsList[selected_index];
+        GameCache.Player_cacheContainer.weaponsPlayer[selected_item.name_weapon] = weaponsList[selected_index];
         NewAction();
         CallBuyEvent();
 
-        if (GameCache.player_cacheContainer.selectedWeapon.name_weapon == selected_item.name_weapon)
+        if (GameCache.Player_cacheContainer.selectedWeapon.name_weapon == selected_item.name_weapon)
         {
             actionType = PageActionType.Select;
             OnActionWeapon();

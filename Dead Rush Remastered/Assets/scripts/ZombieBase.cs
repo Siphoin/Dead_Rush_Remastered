@@ -19,9 +19,12 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
     [SerializeField] protected Slider HP_slider;
     [Header("slider armor")]
     [SerializeField] protected Slider ARMOR_slider;
+    [SerializeField] private bool isGhost = false;
     const float CHECK_DISTANCE_DESTROY = 13f;
-
+    private  int startedHealth = 0;
     protected Baricade baricade;
+
+    private float defaultSpeed;
 
     protected bool move = true;
 
@@ -30,6 +33,10 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
     public bool Move { get => move; set => move = value; }
     public int RewardЬurder { get => rewardmurder; set => rewardmurder = value; }
 
+    public int StartedHealth => startedHealth;
+
+    public float DefaultSpeed { get => defaultSpeed; }
+    public bool IsGhost { get => isGhost; }
 
     public event Action<int, bool, ZombieBase> deadEvent;
 
@@ -114,6 +121,8 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
 
     protected void IniStats()
     {
+        startedHealth = health;
+        defaultSpeed = speed;
         LevelManager.manager.zombiieCount++;
         HP_slider.maxValue = health;
 
@@ -142,5 +151,19 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
     public void PlayAudioDie()
     {
         Instantiate(Resources.Load<AudioSource>("fx_prefabs/zombie_die_audio"));
+    }
+
+    public void ReturnSpeedMovement()
+    {
+        speed = defaultSpeed;
+    }
+
+    public void SetStateVisibleUI (bool state)
+    {
+        HP_slider.gameObject.SetActive(state);
+        if (ARMOR_slider != null)
+        {
+            ARMOR_slider.gameObject.SetActive(state);
+        }
     }
 }

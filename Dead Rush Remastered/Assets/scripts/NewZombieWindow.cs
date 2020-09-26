@@ -28,7 +28,7 @@ public class NewZombieWindow : Window
 
     private void WriteZombieToBook()
     {
-        GameCache.player_cacheContainer.ZombieBook.Add(zombieInfo.prefab_name);
+        GameCache.Player_cacheContainer.ZombieBook.Add(zombieInfo.prefab_name);
         GameCache.SaveData();
     }
 

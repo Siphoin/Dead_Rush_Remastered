@@ -24,7 +24,7 @@ public class PartnerVisibleComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (ZombiesEntered && LevelManager.manager.player != null && zombies.Count > 1)
+        if (zombies.Count > 1)
         {
             zombies.OrderBy(a => Vector2.Distance(a.transform.position, LevelManager.manager.player.transform.position)).First();
         }
@@ -34,9 +34,16 @@ public class PartnerVisibleComponent : MonoBehaviour
     {
         if (collision.tag == "Zombie")
         {
-            ZombieBase zombie = collision.GetComponent<ZombieBase>();
+            
+ZombieBase zombie = collision.GetComponent<ZombieBase>();
+            if (!zombie.IsGhost)
+            {
             zombie.deadEvent += OnDeadZombie;
             zombies.Add(zombie);
+            }
+
+            
+                
 
         }
     }
@@ -50,7 +57,12 @@ public class PartnerVisibleComponent : MonoBehaviour
     {
         if (collision.tag == "Zombie")
         {
+            ZombieBase zombie = collision.GetComponent<ZombieBase>();
+            if (zombies.Contains(zombie))
+            {
             zombies.Remove(collision.GetComponent<ZombieBase>());
+            }
+
         }
     }
 

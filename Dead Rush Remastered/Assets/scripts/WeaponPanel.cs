@@ -12,7 +12,7 @@ public class WeaponPanel : MonoBehaviour
         weapon_ico = GetComponent<Image>();
         weapon = LevelManager.manager.player.Weapon;
         weapon.weaponEvent += EventWeapon;
-        weapon_ico.sprite = Resources.Load<Sprite>($"{PATH_FOLBER_WEAPONS_ICONS}{GameCache.player_cacheContainer.selectedWeapon.name_weapon}");
+        weapon_ico.sprite = Resources.Load<Sprite>($"{PATH_FOLBER_WEAPONS_ICONS}{GameCache.Player_cacheContainer.selectedWeapon.name_weapon}");
         RefreshText();
     }
 
