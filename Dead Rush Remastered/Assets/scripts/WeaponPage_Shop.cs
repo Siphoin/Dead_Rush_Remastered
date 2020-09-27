@@ -65,12 +65,12 @@ public class WeaponPage_Shop : ShopWindowPage
         weapon_name.text = DecoderNameWeapons.GetString(target_weapon.name_weapon);
         if (LanguageManager.Language == Language.EN)
         {
-            weapon_info.text = $"Level: {target_weapon.level_upgrate}\nSale: {target_weapon.sale}\nReload time: {target_weapon.reloadTime}  s\nAmmunition: {target_weapon.maxAmmunition}";
+            weapon_info.text = $"Level: {target_weapon.level_upgrate}\nSale: {CurrencyRounder.Round(target_weapon.sale)}\nReload time: {target_weapon.reloadTime}  s\nAmmunition: {CurrencyRounder.Round(target_weapon.maxAmmunition)}";
         }
 
         if (LanguageManager.Language == Language.RU)
         {
-            weapon_info.text = $"Уровень: {target_weapon.level_upgrate}\nЦена: {target_weapon.sale}\nСкорость перезарядки: {target_weapon.reloadTime}  сек\nБоеприпасы: {target_weapon.maxAmmunition}";
+            weapon_info.text = $"Уровень: {target_weapon.level_upgrate}\nЦена: {CurrencyRounder.Round(target_weapon.sale)}\nСкорость перезарядки: {target_weapon.reloadTime}  сек\nБоеприпасы: {CurrencyRounder.Round(target_weapon.maxAmmunition)}";
         }
         btn_text_action_weapon.SetupText();
         if (GameCache.Player_cacheContainer.weaponsPlayer.ContainsKey(target_weapon.name_weapon))

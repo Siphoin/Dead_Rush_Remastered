@@ -39,36 +39,40 @@ public class OrdinaryZombie : ZombieBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (collision.tag)
+        if (transform.position.x >= collision.transform.position.x)
         {
-            case "Baricades":
-                StartCoroutine(DamageTick());
-                break;
+            switch (collision.tag)
+            {
+                case "Baricades":
+                    StartCoroutine(DamageTick());
+                    break;
 
-            case "Zombie":
-                if (collision.TryGetComponent(out OrdinaryZombie zombie))
-                {
-                    if (zombie.enteredBaricades)
+                case "Zombie":
+                    if (collision.TryGetComponent(out OrdinaryZombie zombie))
                     {
-                        move = false;
+                        if (zombie.enteredBaricades)
+                        {
+                            move = false;
+                        }
+
                     }
 
-                }
+
+                    break;
 
 
-                break;
+                case "Player":
+                    onDamagePlayer = true;
+                    StartCoroutine(DamageTickPlayer());
+                    break;
 
+                case "Partner":
+                    onDamagePartner = true;
+                    partner = collision.GetComponent<Partner>();
+                    StartCoroutine(DamageTickPartner());
+                    break;
+            }
 
-            case "Player":
-                onDamagePlayer = true;
-                StartCoroutine(DamageTickPlayer());
-                break;
-
-            case "Partner":
-                onDamagePartner = true;
-                partner = collision.GetComponent<Partner>();
-                StartCoroutine(DamageTickPartner());
-                break;
         }
 
 
@@ -76,22 +80,26 @@ public class OrdinaryZombie : ZombieBase
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        switch (collision.tag)
+        if (transform.position.x >= collision.transform.position.x)
         {
-            case "Baricades":
-                move = false;
-                enteredBaricades = true;
-                break;
+            switch (collision.tag)
+            {
+                case "Baricades":
+                    move = false;
+                    enteredBaricades = true;
+                    break;
 
-            case "Player":
-                move = false;
-                break;
+                case "Player":
+                    move = false;
+                    break;
 
-            case "Partner":
-                move = false;
-                break;
+                case "Partner":
+                    move = false;
+                    break;
 
+            }
         }
+        
 
 
     }

@@ -155,5 +155,29 @@
       "description (ru-RU)": "Наносит очень большой урон, а также скорость атаки очень высока. Имеет большой запас здоровья, но медленный",
       "prefab": "zoimbie15"
     },
+
+    "zoimbie16": {
+      "name_en-EN": "Vampire Zombie",
+      "name_ru-RU": "Зомби-вампир",
+      "damage": 12,
+      "armor": 0,
+      "health": 25,
+      "type_attack": 0,
+      "description (en-EN)": "Has the ability to regenerate, and also devours other zombies to restore their health.",
+      "description (ru-RU)": "Имеет способность регенерироваться, а также пожирает других зомби, чтобы восстановить свое здоровье.",
+      "prefab": "zoimbie16"
+    },
+
+    "zoimbie17": {
+      "name_en-EN": "Demoman",
+      "name_ru-RU": "Подрывник",
+      "damage": 7,
+      "armor": 0,
+      "health": 2,
+      "type_attack": 0,
+      "description (en-EN)": "Moves quickly. Explodes on collision with a barricade, player, or your ally. Deals great damage upon explosion.",
+      "description (ru-RU)": "Быстро перемещается. Взрывается при столкновении с баррикадой, игроком или с вашим союзником. Наносит большой урон при взрыве.",
+      "prefab": "zoimbie17"
+    },
   }
 }

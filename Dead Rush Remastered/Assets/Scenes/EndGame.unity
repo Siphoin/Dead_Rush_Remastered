@@ -1035,9 +1035,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Although Ukraine was not completely destroyed, its government wanted to
-    take some territories of other countries, but hordes of zombies and citizens
-    broke the offensive, and the country '
+  m_Text: TEXT
 --- !u!222 &1951041812
 CanvasRenderer:
   m_ObjectHideFlags: 0

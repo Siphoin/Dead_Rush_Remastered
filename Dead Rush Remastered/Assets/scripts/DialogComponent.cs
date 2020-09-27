@@ -54,7 +54,26 @@ public class DialogComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            SkipDialog();
+        }
 
+        
+
+#else
+if (Input.touchCount > 0)
+        {
+            SkipDialog();
+        }
+#endif
+    }
+
+    private void SkipDialog()
+    {
+        StopAllCoroutines();
+        GoToLevel();
     }
 
     private IEnumerator DialogMechanim()

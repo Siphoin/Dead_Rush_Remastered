@@ -102,6 +102,11 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
     {
         health += value;
 
+        if (health > startedHealth)
+        {
+            health = startedHealth;
+        }
+
     }
 
     protected void FindBaricade()

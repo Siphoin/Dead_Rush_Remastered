@@ -24,6 +24,10 @@ public class Loading : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            sceneName = "Menu";
+        }
         if (checkCredits)
         {
             if (!GameCache.Player_cacheContainer.backgroundCompleted)

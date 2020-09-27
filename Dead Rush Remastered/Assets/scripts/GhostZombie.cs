@@ -39,20 +39,35 @@ using System;
         {
             switch (collision.tag)
             {
-                case "Baricades":
-                    if (!back_color_started)
-                    {
-                    back_color_started = true;
-                        StartCoroutine(BackWhiteColor());
-                    
-                    }
-                    
-                    break;
-            }
+            case "Baricades":
+                ReturnToMaterialWorld();
+
+                break;
+
+            case "Player":
+                ReturnToMaterialWorld();
+
+                break;
+
+            case "Partner":
+                ReturnToMaterialWorld();
+
+                break;
+        }
 
         }
 
-        public void Dispose()
+    private void ReturnToMaterialWorld()
+    {
+        if (!back_color_started)
+        {
+            back_color_started = true;
+            StartCoroutine(BackWhiteColor());
+
+        }
+    }
+
+    public void Dispose()
         {
             spriteRenderer = null;
             alpha_color = new Color();
@@ -63,7 +78,6 @@ using System;
     private IEnumerator BackWhiteColor ()
     {
         t = 0;
-
         while (t < 1)
         {
             yield return new WaitForSeconds(T_COF);

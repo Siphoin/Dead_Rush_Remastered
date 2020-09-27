@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour
 
     private int zombieKilled = 0;
 
+    private UIController UI;
+
     private DateTime timeEspliaded = new DateTime();
 
     private const float HEIGHT_SCREEN = 2.2f;
@@ -38,7 +40,12 @@ public class LevelManager : MonoBehaviour
     [Header("new zombie info")]
     [SerializeField] private string name_zombie;
 
-    private string PATH_INFO_ZOMBIES = "Assets/Resources/manifests/zombies_info.json";
+    [Header("dialog scene name")]
+
+
+ [SerializeField]   private string dialogNameScene = null;
+
+    private string JSON_INFO_ZOMBIES;
 
     public static LevelManager manager { get => this_manager; }
     public Character player { get => Player; }
@@ -64,7 +71,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         
-        PATH_INFO_ZOMBIES = Resources.Load<TextAsset>("manifests/zombies_info").text;
         if (currentLevel <= 0)
         {
             throw new UnityException("current this Level <= 0!");
@@ -117,9 +123,10 @@ public class LevelManager : MonoBehaviour
         {
             if (!GameCache.ContainsZombieInBook(name_zombie))
             {
-yield return new WaitForSeconds(3);
+                JSON_INFO_ZOMBIES = Resources.Load<TextAsset>("manifests/zombies_info").text;
+                yield return new WaitForSeconds(3);
             NewZombieWindow newZombieWindow = Instantiate(Resources.Load<NewZombieWindow>("Prefabs/NewZombieType"));
-            ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(PATH_INFO_ZOMBIES);
+            ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(JSON_INFO_ZOMBIES);
             newZombieWindow.SetInfo(infoList.zombieList[name_zombie]);
             newZombieWindow.exitEvent += OnWindowNewZombieExit;
                 infoList.Dispose();
@@ -161,7 +168,7 @@ yield return new WaitForSeconds(3);
         Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.Player_cacheContainer.skin));
         baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.Player_cacheContainer.baricades.name_prefab));
         Player.deadEvent += OnPlayerDead;
-        Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
+    UI =    Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
         if (GameCache.Player_cacheContainer.partnerBuyed)
         {
             Instantiate(Resources.Load<GameObject>("Prefabs/PartnerVisibleComponent"));
@@ -179,6 +186,7 @@ yield return new WaitForSeconds(3);
             LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
             result.SetState(ResultLevel.Defeat, 0, moneyCost, data, levelStats);
             levelIsFinished = true;
+            FrezzeMechanimsLevel();
         }
 
     }
@@ -247,6 +255,12 @@ yield return new WaitForSeconds(3);
             timeEspliaded = timeEspliaded.AddSeconds(1);
 
         }
+    }
+
+    private void FrezzeMechanimsLevel ()
+    {
+        Destroy(UI.gameObject);
+        StopAllCoroutines();
     }
 
     private void NewZombie()
@@ -321,6 +335,11 @@ yield return new WaitForSeconds(3);
                     LevelStats levelStats = new LevelStats(zombieKilled, timeEspliaded, moneyCost);
                     result.SetState(ResultLevel.Victory, stars, moneyCost, data, levelStats);
                     levelIsFinished = true;
+                    FrezzeMechanimsLevel();
+                    if (!string.IsNullOrEmpty(dialogNameScene))
+                    {
+                        result.SetSceneDialogName(dialogNameScene);
+                    }
                 }
             }
 

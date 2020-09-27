@@ -43,12 +43,12 @@ public class BaricadesPage_Shop : ShopWindowPage
         baricades_name.text = DecoderBaricadesNames.GetString(target_baricades.name_prefab);
         if (LanguageManager.Language == Language.EN)
         {
-            baricades_info.text = $"Armor: {target_baricades.armor}\nHealth: {target_baricades.health}\nSale: {target_baricades.sale}";
+            baricades_info.text = $"Armor: {target_baricades.armor}\nHealth: {CurrencyRounder.Round(target_baricades.health)}\nSale: {CurrencyRounder.Round(target_baricades.sale)}";
         }
 
         if (LanguageManager.Language == Language.RU)
         {
-            baricades_info.text = $"Прочность: {target_baricades.armor}\nЗдоровье: {target_baricades.health}\nЦена: {target_baricades.sale}";
+            baricades_info.text = $"Прочность: {target_baricades.armor}\nЗдоровье: {CurrencyRounder.Round(target_baricades.health)}\nЦена: {CurrencyRounder.Round(target_baricades.sale)}";
         }
         btn_text_action_baricades.SetupText();
         if (GameCache.Player_cacheContainer.baricadesPlayer.ContainsKey(target_baricades.name_prefab))

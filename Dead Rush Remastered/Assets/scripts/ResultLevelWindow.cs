@@ -16,6 +16,8 @@ public class ResultLevelWindow : AnimatedWindow
     [SerializeField] GameObject window_anim;
     [SerializeField] Button button_back_menu;
 
+    private string dialogName = null;
+
     // Use this for initialization
     void Start()
     {
@@ -80,12 +82,12 @@ public class ResultLevelWindow : AnimatedWindow
         GameCache.Player_cacheContainer.money += moneyCost;
         if (LanguageManager.Language == Language.EN)
         {
-            text_result_level.text = $"Zombies killed: {levelStats.zombiesKilled}\nMoney: {levelStats.moneyCost}\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+            text_result_level.text = $"Zombies killed: {CurrencyRounder.Round(levelStats.zombiesKilled)}\nMoney: {CurrencyRounder.Round(levelStats.moneyCost)} $\nTime: {levelStats.timeLevelCompleting.ToLongTimeString()}";
         }
 
         else
         {
-            text_result_level.text = $"Зомби убито: {levelStats.zombiesKilled}\nДенег заработано: {levelStats.moneyCost}\nВремя: {levelStats.timeLevelCompleting.ToLongTimeString()}";
+            text_result_level.text = $"Зомби убито: {CurrencyRounder.Round(levelStats.zombiesKilled)}\nДенег заработано: {CurrencyRounder.Round(levelStats.moneyCost)} $\nВремя: {levelStats.timeLevelCompleting.ToLongTimeString()}";
         }
 
 
@@ -98,10 +100,31 @@ public class ResultLevelWindow : AnimatedWindow
         Loading.OnLoad("Menu");
     }
 
+    public void SetSceneDialogName (string name)
+    {
+        if (string.IsNullOrEmpty(name)) {
+            throw new NullReferenceException("name scene dialog is null!");
+        }
+
+        dialogName = name;
+
+
+    }
+
     public void NextLevel()
     {
+        
         SetTimeScale(1);
-        Loading.OnLoad(levelNextName);
+        switch (dialogName)
+        {
+            case null:
+                Loading.OnLoad(levelNextName);
+                break;
+            default:
+                Loading.OnLoad(dialogName);
+                break;
+        }
+
     }
 
 

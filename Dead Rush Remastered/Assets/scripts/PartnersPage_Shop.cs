@@ -12,10 +12,10 @@ public class PartnersPage_Shop : ShopWindowPage
         switch (LanguageManager.Language)
         {
             case Language.EN:
-                text_info.text = $"Sale: {sale}\nWeapon: Gun\nAmmunition: 40";
+                text_info.text = $"Sale: {CurrencyRounder.Round(sale)}\nWeapon: Gun\nAmmunition: 40";
                 break;
             case Language.RU:
-                text_info.text = $"Цена: {sale}\nОружие: Пистолет\nБоеприпасы: 40";
+                text_info.text = $"Цена: {CurrencyRounder.Round(sale)}\nОружие: Пистолет\nБоеприпасы: 40";
                 break;
         }
         button_buy.interactable = GameCache.Player_cacheContainer.money >= sale;
