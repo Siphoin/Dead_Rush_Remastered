@@ -90,7 +90,7 @@ public class Background : MonoBehaviour
 #else
 if (Input.touchCount > 0)
         {
-            SkipDialog();
+            SkipCredits();
         }
 #endif
     }
