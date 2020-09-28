@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-    public class DemomanZombie : MonoBehaviour
+    public class DemomanZombie : MonoBehaviour, INotReward
     {
     public ZombieBase Zombiebase { get; private set; }
 
@@ -27,12 +27,14 @@ using System.Collections;
             case "Baricades":
                 Baricade baricade = collision.GetComponent<Baricade>();
                 baricade.Damage(damage);
+                CallNullReward();
                 Zombiebase.Damage(Zombiebase.StartedHealth);
                 break;
 
             case "Player":
                 Character player = collision.GetComponent<Character>();
                 player.Damage(damage);
+                CallNullReward();
                 Zombiebase.Damage(Zombiebase.StartedHealth);
                 break;
 
@@ -42,5 +44,10 @@ using System.Collections;
                 Zombiebase.Damage(Zombiebase.StartedHealth);
                 break;
         }
+    }
+
+    public void CallNullReward()
+    {
+        Zombiebase.OnNullReward();
     }
 }

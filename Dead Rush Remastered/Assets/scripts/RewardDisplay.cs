@@ -13,6 +13,8 @@ public class RewardDisplay : MonoBehaviour
         var c = Color.white;
         c.a = 0;
         alpha_color = c;
+
+
     }
 
     // Update is called once per frame
@@ -30,5 +32,9 @@ public class RewardDisplay : MonoBehaviour
     public void OnDisplayReward(int reward_value)
     {
         text_reward.text = $"+ {reward_value}$";
+        if (reward_value <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

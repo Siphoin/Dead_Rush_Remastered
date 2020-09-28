@@ -107,6 +107,7 @@ car.enabled = false;
             StopAllCoroutines();
                 levelIsFinished = true;
                 OnEndLevel?.Invoke();
+                WriteOnStatictics(ResultLevel.Victory);
             }
             
         }
@@ -157,6 +158,7 @@ car.enabled = false;
             result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
             levelIsFinished = true;
             OnEndLevel?.Invoke();
+            WriteOnStatictics(ResultLevel.Defeat);
         }
 
         }
@@ -195,6 +197,7 @@ car.enabled = false;
                     LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
                     result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
                         levelIsFinished = true;
+                        WriteOnStatictics(ResultLevel.Defeat);
                     }
 
                     
@@ -202,6 +205,23 @@ car.enabled = false;
             }
 
         }
+    }
+
+    private void WriteOnStatictics(ResultLevel result)
+    {
+        switch (result)
+        {
+            case ResultLevel.Victory:
+                StatisticsCache.Statistics.victory_score++;
+                break;
+            case ResultLevel.Defeat:
+                StatisticsCache.Statistics.defeats_score++;
+                break;
+        }
+
+        StatisticsCache.Statistics.zombie_kills_score += zombie_count_kill;
+        StatisticsCache.Statistics.money_earned += money;
+        StatisticsCache.SaveData();
     }
 
 }

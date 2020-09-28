@@ -54,6 +54,14 @@ public class Witch : MonoBehaviour
                 zombieBase.Move = false;
             }
         }
+
+        if (collision.tag == "Baricades")
+        {
+                extraMoved = true;
+            
+        }
+
+
     }
 
 

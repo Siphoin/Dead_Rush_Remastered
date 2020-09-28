@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class VampireZombie : MonoBehaviour
+public class VampireZombie : MonoBehaviour, INotReward
     {
         public ZombieBase Zombiebase { get; private set; }
 
@@ -28,6 +28,7 @@ ZombieBase zombie = collision.GetComponent<ZombieBase>();
                         if (!zombie.IsGhost)
                         {
                     Zombiebase.HillZombie(zombie.StartedHealth / 2);
+                        zombie.OnNullReward();
                     zombie.Damage(zombie.StartedHealth);
                         }
 
@@ -37,4 +38,9 @@ ZombieBase zombie = collision.GetComponent<ZombieBase>();
                 }
             }
         }
+
+    public void CallNullReward()
+    {
+        Zombiebase.OnNullReward();
     }
+}

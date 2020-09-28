@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     private bool windowCreationExited;
     [SerializeField] Button button_shop;
     [SerializeField] Button survival_shop;
+    [SerializeField] TransliteText completed_text;
 
     public static bool OnPageLevels { get => onPageLevels; set => onPageLevels = value; }
 
@@ -30,6 +31,9 @@ public class Menu : MonoBehaviour
         }
 
         survival_shop.interactable = GameCache.GameFinished();
+        float completedValue = (float)GameCache.Player_cacheContainer.levelCompleted / LevelManager.MAX_LEVEL_GAME * 100;
+        string completedText = $"{completedValue}%";
+        completed_text.SetupText(completedText, completedText);
     }
 
     // Update is called once per frame

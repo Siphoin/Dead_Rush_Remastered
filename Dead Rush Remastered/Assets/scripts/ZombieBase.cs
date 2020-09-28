@@ -63,7 +63,7 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
                 blood.transform.localScale *= 2;
                 bigZombie.Dispose();
             }
-            deadEvent(rewardmurder, true, this);
+            deadEvent(rewardmurder, rewardmurder > 0, this);
             RewardDisplay rewardDisplay = Instantiate(Resources.Load<RewardDisplay>("Prefabs/reward_display"));
             rewardDisplay.OnDisplayReward(rewardmurder);
             rewardDisplay.transform.position = transform.position;
@@ -170,5 +170,10 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
         {
             ARMOR_slider.gameObject.SetActive(state);
         }
+    }
+
+    public void OnNullReward ()
+    {
+        rewardmurder = 0;
     }
 }

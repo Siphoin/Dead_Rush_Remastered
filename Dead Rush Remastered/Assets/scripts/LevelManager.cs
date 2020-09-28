@@ -187,6 +187,7 @@ public class LevelManager : MonoBehaviour
             result.SetState(ResultLevel.Defeat, 0, moneyCost, data, levelStats);
             levelIsFinished = true;
             FrezzeMechanimsLevel();
+            WriteOnStatictics(ResultLevel.Defeat);
         }
 
     }
@@ -263,14 +264,28 @@ public class LevelManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void NewZombie()
+    private void NewZombie(bool accounting = true, ZombieBase custom_prefab = null)
     {
         Vector3 position = new Vector3(15, UnityEngine.Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN), -2);
-        ZombieBase zombie = Instantiate(zombiesList[UnityEngine.Random.Range(0, variantsCountZombies)]);
+        ZombieBase zombie = null;
+        if (custom_prefab == null)
+        {
+         zombie = Instantiate(zombiesList[UnityEngine.Random.Range(0, variantsCountZombies)]);
+        }
+
+        else {
+            zombie = Instantiate(custom_prefab);
+
+        }
+
         zombie.transform.position = position;
         if (countZombiesInLevel != int.MaxValue)
         {
-        currentZombiesSpawned++;
+            if (accounting)
+            {
+currentZombiesSpawned++;
+            }
+        
         }
 
         zombie.deadEvent += OnDeadZombie;
@@ -340,10 +355,30 @@ public class LevelManager : MonoBehaviour
                     {
                         result.SetSceneDialogName(dialogNameScene);
                     }
+
+                    WriteOnStatictics(ResultLevel.Victory);
+                    StatisticsCache.SaveData();
                 }
             }
 
         }
+    }
+
+    private void WriteOnStatictics(ResultLevel result)
+    {
+        switch (result)
+        {
+            case ResultLevel.Victory:
+                StatisticsCache.Statistics.victory_score++;
+                break;
+            case ResultLevel.Defeat:
+                StatisticsCache.Statistics.defeats_score++;
+                break;
+        }
+
+        StatisticsCache.Statistics.zombie_kills_score += zombieKilled;
+        StatisticsCache.Statistics.money_earned += moneyCost;
+        StatisticsCache.SaveData();
     }
 
     IEnumerator BonusCountZombies()
@@ -374,5 +409,22 @@ public class LevelManager : MonoBehaviour
     public void SetCustomParams (int count_zombies)
     {
         countZombiesInLevel = count_zombies;
+    }
+
+    public void CallCustomHorde (int countZombies, ZombieBase prefab_zombie = null)
+    {
+        StartCoroutine(CallCustomHorde_IEnumerator(countZombies, prefab_zombie));
+    }
+
+    private IEnumerator CallCustomHorde_IEnumerator (int c, ZombieBase zombie)
+    {
+        
+        while (c > 0)
+        {
+            float r = UnityEngine.Random.Range(0.5f, 2);
+            yield return new WaitForSeconds(r);
+            NewZombie(false, zombie);
+            c--;
+        }
     }
 }

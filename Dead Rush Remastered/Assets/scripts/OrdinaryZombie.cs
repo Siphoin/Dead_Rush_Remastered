@@ -16,6 +16,10 @@ public class OrdinaryZombie : ZombieBase
     // Use this for initialization
     void Start()
     {
+        if (cooldownDamage <= 0)
+        {
+            throw new UnityException("Cooldown damage <= 0 Object: " + gameObject.name);
+        }
         IniStats();
         FindBaricade();
     }
@@ -23,9 +27,9 @@ public class OrdinaryZombie : ZombieBase
     // Update is called once per frame
     void Update()
     {
-        if (cooldownDamage <= 0)
+        if (enteredBaricades)
         {
-            throw new UnityException("Cooldown damage <= 0 Object: " + gameObject.name);
+            move = false;
         }
         CheckParams();
         if (move)
@@ -50,10 +54,7 @@ public class OrdinaryZombie : ZombieBase
                 case "Zombie":
                     if (collision.TryGetComponent(out OrdinaryZombie zombie))
                     {
-                        if (zombie.enteredBaricades)
-                        {
-                            move = false;
-                        }
+                       
 
                     }
 

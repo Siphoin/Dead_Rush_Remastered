@@ -77,5 +77,29 @@ public class Background : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            SkipCredits();
+        }
 
+
+
+#else
+if (Input.touchCount > 0)
+        {
+            SkipDialog();
+        }
+#endif
+    }
+
+    private void SkipCredits()
+    {
+        GameCache.Player_cacheContainer.backgroundCompleted = true;
+        GameCache.SaveData();
+        string sceneTarget = Loading.SceneName;
+        Loading.OnLoad(sceneTarget);
+    }
 }
