@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private DateTime timeEspliaded = new DateTime();
 
-    private const float HEIGHT_SCREEN = 2.2f;
+    private const float HEIGHT_SCREEN = 3f;
 
 
 
@@ -226,7 +226,7 @@ public class LevelManager : MonoBehaviour
                 }
                 if (loop_count_zombies > 1)
                 {
-                    yield return new WaitForSeconds(UnityEngine.Random.Range(1, 3));
+                    yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 3));
                 }
 
 
@@ -261,6 +261,7 @@ public class LevelManager : MonoBehaviour
     private void FrezzeMechanimsLevel ()
     {
         Destroy(UI.gameObject);
+        Player.enabled = false;
         StopAllCoroutines();
     }
 

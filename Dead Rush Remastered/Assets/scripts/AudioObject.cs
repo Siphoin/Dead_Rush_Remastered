@@ -27,6 +27,8 @@ public class AudioObject : MonoBehaviour
         {
             audioSource.pitch = Random.Range(range_pitch, 2f);
         }
+
+        audioSource.Play();
     }
 
     private void Update()

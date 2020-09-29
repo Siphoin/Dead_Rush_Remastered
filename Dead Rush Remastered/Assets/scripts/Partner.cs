@@ -226,4 +226,18 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
     {
         Instantiate(Resources.Load<AudioSource>("fx_prefabs/partner_die_audio"));
     }
+
+    public void ShowFireEffect()
+    {
+        StopCoroutine(((ICharacter)this).FireEffectTick());
+        StartCoroutine(((ICharacter)this).FireEffectTick());
+    }
+
+    public IEnumerator FireEffectTick()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_damage_audio"));
+        spriteRenderer.color = Color.gray;
+        yield return new WaitForSeconds(3.6f);
+        spriteRenderer.color = Color.white;
+    }
 }

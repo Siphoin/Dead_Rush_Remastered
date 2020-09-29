@@ -105,7 +105,7 @@ public class ResultLevelWindow : AnimatedWindow
         if (string.IsNullOrEmpty(name)) {
             throw new NullReferenceException("name scene dialog is null!");
         }
-
+        DialogComponent.LevelName = levelNextName;
         dialogName = name;
 
 

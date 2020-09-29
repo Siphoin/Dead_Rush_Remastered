@@ -50,21 +50,32 @@ public class TransliteText : MonoBehaviour
 
     public void SetupText(string argRU = "", string argEN = "")
     {
-        if (TryGetComponent(out text_tmp))
+        try
         {
-            text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN + argEN : data.string_ru_RU + argRU;
+            if (TryGetComponent(out text_tmp))
+            {
+                text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN + argEN : data.string_ru_RU + argRU;
 
+            }
+
+            if (TryGetComponent(out text_original))
+            {
+                text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN + argEN : data.string_ru_RU + argRU;
+
+            }
         }
 
-        if (TryGetComponent(out text_original))
+        catch
         {
-            text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN + argEN : data.string_ru_RU + argRU;
 
         }
+        
     }
 
     public void SetupText()
     {
+        try
+        {
         if (TryGetComponent(out text_tmp))
         {
             text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
@@ -76,6 +87,13 @@ public class TransliteText : MonoBehaviour
             text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
 
         }
+        }
+
+        catch
+        {
+
+        }
+
     }
 
 

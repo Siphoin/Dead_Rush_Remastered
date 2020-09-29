@@ -147,6 +147,24 @@ EditorBuildSettings:
     path: Assets/Scenes/levels/Level40.unity
     guid: 516cf53619a56364c92135dd2eaa23e9
   - enabled: 1
+    path: Assets/Scenes/levels/Level41.unity
+    guid: 5eeee618b7ad0bd43997f1000fdf42b7
+  - enabled: 1
+    path: Assets/Scenes/levels/Level42.unity
+    guid: 7c973318a2689874d8a8a667f0eb5f7d
+  - enabled: 1
+    path: Assets/Scenes/levels/Level43.unity
+    guid: ac873fca000a0f740976d6628e05a263
+  - enabled: 1
+    path: Assets/Scenes/levels/Level44.unity
+    guid: 02863699c863e2545b7e73a6e23f8d83
+  - enabled: 1
+    path: Assets/Scenes/levels/Level45.unity
+    guid: 5dcc5fb3896c29c4c87d424236b01b9a
+  - enabled: 1
+    path: Assets/Scenes/levels/Level46.unity
+    guid: c625cc73a744eb0428f976c0937cf4f0
+  - enabled: 1
     path: Assets/Scenes/levels/Survival.unity
     guid: a9bd4415e7c06ce4299d95b4aa5c8794
   m_configObjects: {}

@@ -42,7 +42,7 @@ public class FireBall : Ball
         if (collision.tag == "Player")
         {
             LevelManager.manager.player.Damage(damage);
-            LevelManager.manager.player.ShowAcidEffect();
+            LevelManager.manager.player.ShowFireEffect();
             Destroy(gameObject);
         }
 
@@ -50,7 +50,7 @@ public class FireBall : Ball
         {
             Partner partner = collision.GetComponent<Partner>();
             partner.Damage(damage);
-            partner.ShowAcidEffect();
+            partner.ShowFireEffect();
             Destroy(gameObject);
         }
     }

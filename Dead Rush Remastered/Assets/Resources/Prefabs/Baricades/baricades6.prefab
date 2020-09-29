@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 8595537611727086399, guid: 100ced8a0ecec0648943cb4ded0bb417,
         type: 3}
       propertyPath: Sale
-      value: 4500
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 8595537611727086399, guid: 100ced8a0ecec0648943cb4ded0bb417,
         type: 3}

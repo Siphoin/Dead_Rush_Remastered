@@ -17,7 +17,7 @@ public class BloodEffect : MonoBehaviour
         color_a.a = 0;
         alpha_color = color_a;
         var zPos = transform.position;
-        zPos.z = -1;
+        zPos.z = 0;
         transform.position = zPos;
         spriteRenderer = GetComponent<SpriteRenderer>();
         variants = Resources.LoadAll<Sprite>("Bloods");

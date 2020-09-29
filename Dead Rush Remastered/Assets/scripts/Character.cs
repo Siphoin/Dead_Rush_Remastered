@@ -205,6 +205,14 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
         spriteRenderer.color = Color.white;
     }
 
+    IEnumerator ICharacter.FireEffectTick()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_damage_audio"));
+        spriteRenderer.color = Color.gray;
+        yield return new WaitForSeconds(3.6f);
+        spriteRenderer.color = Color.white;
+    }
+
     public void Moving(Vector2 dir)
     {
         transform.Translate(dir * speed * Time.deltaTime);
@@ -221,5 +229,11 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
     public void PlayAudioDie()
     {
         Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_die_audio"));
+    }
+
+    public void ShowFireEffect()
+    {
+        StopCoroutine(((ICharacter)this).FireEffectTick());
+        StartCoroutine(((ICharacter)this).FireEffectTick());
     }
 }

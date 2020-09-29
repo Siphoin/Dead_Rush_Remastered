@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,15 +32,28 @@ public class Menu : MonoBehaviour
         }
 
         survival_shop.interactable = GameCache.GameFinished();
-        float completedValue = (float)GameCache.Player_cacheContainer.levelCompleted / LevelManager.MAX_LEVEL_GAME * 100;
+        float completedValue = 0;
+        int starsCompleted = 0;
+        foreach (var data in GameCache.Player_cacheContainer.levelsData)
+        {
+            starsCompleted += data.Value.starsCount;
+        }
+        if (GameCache.Player_cacheContainer.levelCompleted > 1)
+        {
+            completedValue = 100 * (starsCompleted + GameCache.Player_cacheContainer.levelCompleted) / (3 * LevelManager.MAX_LEVEL_GAME + LevelManager.MAX_LEVEL_GAME);
+        }
+
+        
         string completedText = $"{completedValue}%";
         completed_text.SetupText(completedText, completedText);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         button_shop.interactable = GameCache.FileSaveExits();
+        completed_text.gameObject.SetActive(GameCache.FileSaveExits());
     }
 
     public void OnPlay()
