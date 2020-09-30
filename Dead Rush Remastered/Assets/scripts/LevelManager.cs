@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] int countZombiesInLevel = 1;
     [SerializeField] int bonus_count = 0;
+    [SerializeField] float timeSpawnZombie = 0;
     [SerializeField] ZombieBase boss;
 
     private int loopCountZombies = 1;
@@ -44,6 +45,8 @@ public class LevelManager : MonoBehaviour
 
 
  [SerializeField]   private string dialogNameScene = null;
+
+
 
     private string JSON_INFO_ZOMBIES;
 
@@ -226,6 +229,17 @@ public class LevelManager : MonoBehaviour
                 }
                 if (loop_count_zombies > 1)
                 {
+                    float time = 0;
+
+                    if (timeSpawnZombie <= 0)
+                    {
+                        time = UnityEngine.Random.Range(0.5f, 3);
+                    }
+
+                    else
+                    {
+                        time = timeSpawnZombie;
+                    }
                     yield return new WaitForSeconds(UnityEngine.Random.Range(0.5f, 3));
                 }
 

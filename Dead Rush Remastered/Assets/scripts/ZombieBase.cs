@@ -26,6 +26,7 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
 
     private float defaultSpeed;
 
+
     protected bool move = true;
 
     public int Health { get => health; }

@@ -181,6 +181,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
 
     public void Damage(int value)
     {
+        ShowDamageEffect();
         int value_convert = (value * armor / 100);
         value -= value_convert;
         if (value <= 0)
@@ -237,6 +238,20 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
     {
         Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_damage_audio"));
         spriteRenderer.color = Color.gray;
+        yield return new WaitForSeconds(3.6f);
+        spriteRenderer.color = Color.white;
+    }
+
+    public void ShowDamageEffect()
+    {
+        StopCoroutine(((ICharacter)this).DamageEffectTick());
+        StartCoroutine(((ICharacter)this).DamageEffectTick());
+    }
+
+    public IEnumerator DamageEffectTick()
+    {
+        Instantiate(Resources.Load<AudioSource>("fx_prefabs/player_damage_audio"));
+        spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(3.6f);
         spriteRenderer.color = Color.white;
     }

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Credits.unity
     guid: 6ba6db84279deb44dac8bfefa8b36f6f
   - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: f20bfe6fc1eaa4e41a84c7936a5144f4
+  - enabled: 1
     path: Assets/Scenes/dialogs/Dialog1.unity
     guid: a0c88e3cb2579b94fb5078e0c167c9dc
   - enabled: 1
@@ -164,6 +167,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/levels/Level46.unity
     guid: c625cc73a744eb0428f976c0937cf4f0
+  - enabled: 1
+    path: Assets/Scenes/levels/Level47.unity
+    guid: 3c65f507584b72c41a91ce2ed951917f
+  - enabled: 1
+    path: Assets/Scenes/levels/Level48.unity
+    guid: 12634c52b4ed67a4082739f6193e2b5d
+  - enabled: 1
+    path: Assets/Scenes/levels/Level49.unity
+    guid: f6c4475c524bf5d4b905ee31ec507380
+  - enabled: 1
+    path: Assets/Scenes/levels/Level50.unity
+    guid: 00995f2ed9a3934448bf0ab8b4cc00ce
   - enabled: 1
     path: Assets/Scenes/levels/Survival.unity
     guid: a9bd4415e7c06ce4299d95b4aa5c8794

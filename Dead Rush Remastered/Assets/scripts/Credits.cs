@@ -34,26 +34,26 @@ public class Credits : MonoBehaviour
 
         if (credits_container.transform.position.y >= Y_CHECK_POS_CREDITS)
         {
-            BackToMenu();
+            ToEndGame();
         }
 
 #if UNITY_EDITOR
 if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            BackToMenu();
+            ToEndGame();
         }
 #else
 
 if (Input.touchCount > 0)
         {
-            BackToMenu();
+            ToEndGame();
         }
 #endif
     }
 
-    private  void BackToMenu()
+    private  void ToEndGame()
     {
         Menu.OnPageLevels = false;
-        Loading.OnLoad("Menu");
+        Loading.OnLoad("EndGame");
     }
 }

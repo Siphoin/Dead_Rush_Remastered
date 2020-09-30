@@ -115,6 +115,13 @@ public class ResultLevelWindow : AnimatedWindow
     {
         
         SetTimeScale(1);
+        Debug.Log(GameCache.Player_cacheContainer.levelCompleted);
+        if (GameCache.Player_cacheContainer.levelCompleted >= 50)
+        {
+            Loading.OnLoad("Credits");
+            return;
+        }
+
         switch (dialogName)
         {
             case null:
