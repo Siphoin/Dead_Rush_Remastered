@@ -1,43 +1,43 @@
 ﻿using UnityEngine;
 public class VampireZombie : MonoBehaviour, INotReward
-{
-    public ZombieBase Zombiebase { get; private set; }
-
-    // Use this for initialization
-    void Start()
     {
-        Zombiebase = GetComponent<ZombieBase>();
-    }
+        public ZombieBase Zombiebase { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Zombie")
+        // Use this for initialization
+        void Start()
         {
-            if (Zombiebase.Health < Zombiebase.StartedHealth)
-            {
-                if (transform.position.x >= collision.transform.position.x)
-                {
+            Zombiebase = GetComponent<ZombieBase>();
+        }
 
-                    ZombieBase zombie = collision.GetComponent<ZombieBase>();
-                    if (!zombie.IsGhost)
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Zombie")
+            {
+                if (Zombiebase.Health < Zombiebase.StartedHealth)
+                {
+                    if (transform.position.x >= collision.transform.position.x)
                     {
-                        Zombiebase.HillZombie(zombie.StartedHealth / 2);
+                      
+ZombieBase zombie = collision.GetComponent<ZombieBase>();
+                        if (!zombie.IsGhost)
+                        {
+                    Zombiebase.HillZombie(zombie.StartedHealth / 2);
                         zombie.OnNullReward();
-                        zombie.Damage(zombie.StartedHealth);
+                    zombie.Damage(zombie.StartedHealth);
+                        }
+
                     }
+                    
 
                 }
-
-
             }
         }
-    }
 
     public void CallNullReward()
     {

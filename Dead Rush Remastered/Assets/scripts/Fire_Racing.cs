@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Fire_Racing : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Fire_Racing : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+      if (collision.tag == "Player")
         {
             CarCharacter car = collision.GetComponent<CarCharacter>();
             car.Health -= damage;

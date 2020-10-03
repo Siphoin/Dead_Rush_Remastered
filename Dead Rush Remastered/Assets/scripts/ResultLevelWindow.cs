@@ -47,7 +47,7 @@ public class ResultLevelWindow : AnimatedWindow
         string text_state = result.ToString().ToUpper();
         if (text_state == "DEFEAT")
         {
-            if (LanguageManager.Language == Language.RU)
+           if (LanguageManager.Language == Language.RU)
             {
                 text_state = "ПОРАЖЕНИЕ";
             }
@@ -89,33 +89,20 @@ public class ResultLevelWindow : AnimatedWindow
         {
             text_result_level.text = $"Зомби убито: {CurrencyRounder.Round(levelStats.zombiesKilled)}\nДенег заработано: {CurrencyRounder.Round(levelStats.moneyCost)} $\nВремя: {levelStats.timeLevelCompleting.ToLongTimeString()}";
         }
-        if (LevelManager.manager.level > LevelManager.MAX_LEVEL_GAME)
-        {
-            if (levelStats.timeLevelCompleting > SurvivalCache.Survival.timeRecord)
-            {
-                var new_data = SurvivalCache.Survival;
-                new_data.timeRecord = levelStats.timeLevelCompleting;
-                new_data.kills += levelStats.zombiesKilled;
-                SurvivalCache.Survival = new_data;
-                SurvivalCache.SaveData();
-            }
+
+
         }
 
-
-
-    }
-
-    public void ExitToMenu()
+        public void ExitToMenu()
     {
         SetTimeScale(1);
         Menu.OnPageLevels = true;
         Loading.OnLoad("Menu");
     }
 
-    public void SetSceneDialogName(string name)
+    public void SetSceneDialogName (string name)
     {
-        if (string.IsNullOrEmpty(name))
-        {
+        if (string.IsNullOrEmpty(name)) {
             throw new NullReferenceException("name scene dialog is null!");
         }
         DialogComponent.LevelName = levelNextName;
@@ -126,7 +113,7 @@ public class ResultLevelWindow : AnimatedWindow
 
     public void NextLevel()
     {
-
+        
         SetTimeScale(1);
         Debug.Log(GameCache.Player_cacheContainer.levelCompleted);
         if (GameCache.Player_cacheContainer.levelCompleted >= 50)
@@ -150,4 +137,4 @@ public class ResultLevelWindow : AnimatedWindow
 
 
 
-}
+    }

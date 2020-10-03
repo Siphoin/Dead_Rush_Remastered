@@ -1,7 +1,7 @@
 ﻿using System;
 
-public class PrefabNullException : Exception
-{
+public  class PrefabNullException : Exception
+    {
     public PrefabNullException() : base() { }
     public PrefabNullException(string message) : base(message) { }
     public PrefabNullException(string message, Exception inner) : base(message, inner) { }

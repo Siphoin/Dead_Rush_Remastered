@@ -1,10 +1,10 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
+using System;
 
 public class LevelManager_Racing : MonoBehaviour
 {
-    private CarCharacter car;
+ private   CarCharacter car;
 
     private UIController_Racing uIController;
 
@@ -16,7 +16,7 @@ public class LevelManager_Racing : MonoBehaviour
     private int startedXTitleMap = 0;
     private int startedYTitleMap = 0;
 
-    static LevelManager_Racing Manager;
+  static  LevelManager_Racing Manager;
 
     private float startedXCar;
 
@@ -31,7 +31,7 @@ public class LevelManager_Racing : MonoBehaviour
     private GameObject[] titleMaps;
 
     public event Action zombieKillEvent;
-
+    
     public CarCharacter Car { get => car; }
     public static LevelManager_Racing manager { get => Manager; }
     public int ZombieKillCount { get => zombie_count_kill; }
@@ -99,29 +99,29 @@ public class LevelManager_Racing : MonoBehaviour
             }
             if (!levelIsFinished)
             {
-                car.enabled = false;
-                ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
-                LevelIProgressData data = new LevelIProgressData(currentLevel, stars);
-                LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
-                result.SetState(ResultLevel.Victory, stars, money, data, levelStats);
-                StopAllCoroutines();
+car.enabled = false;
+            ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
+            LevelIProgressData data = new LevelIProgressData(currentLevel, stars);
+            LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
+            result.SetState(ResultLevel.Victory, stars, money, data, levelStats);
+            StopAllCoroutines();
                 levelIsFinished = true;
                 OnEndLevel?.Invoke();
                 WriteOnStatictics(ResultLevel.Victory);
             }
-
+            
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (car.transform.position.x >= startedXCar)
+       if (car.transform.position.x >= startedXCar)
         {
             NextGenerate();
         }
     }
-    private void NextGenerate()
+    private void NextGenerate ()
     {
         Vector3[] vectors = new Vector3[]
         {
@@ -135,12 +135,12 @@ public class LevelManager_Racing : MonoBehaviour
             GameObject titleMap = Instantiate(titleMaps[UnityEngine.Random.Range(0, titleMaps.Length)]);
             titleMap.transform.position = vectors[i];
         }
-
+       
 
         startedXTitleMap += SHAGE_X_NEW_TITLEMAP;
         startedYTitleMap += SHAGE_Y_NEW_TITLEMAP;
-        startedXCar += SHAGE_X_CAR;
-    }
+        startedXCar += SHAGE_X_CAR;          
+        }
 
     private void Awake()
     {
@@ -161,7 +161,7 @@ public class LevelManager_Racing : MonoBehaviour
             WriteOnStatictics(ResultLevel.Defeat);
         }
 
-    }
+        }
 
     IEnumerator TimeTickLevel()
     {
@@ -182,25 +182,25 @@ public class LevelManager_Racing : MonoBehaviour
 
             }
 
-            timeEspliaded = timeEspliaded.AddSeconds(1);
+                    timeEspliaded = timeEspliaded.AddSeconds(1);
             timer = timer.AddSeconds(-1);
 
             if (timer.Minute == 0)
             {
-                if (timer.Second == 0)
+                if(timer.Second == 0)
                 {
-                    if (!levelIsFinished)
+                   if (!levelIsFinished)
                     {
-                        car.enabled = false;
-                        ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
-                        LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
-                        LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
-                        result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
+                    car.enabled = false;
+                    ResultLevelWindow result = Instantiate(Resources.Load<ResultLevelWindow>("Prefabs/ResultWindowLevel"));
+                    LevelIProgressData data = new LevelIProgressData(currentLevel, 0);
+                    LevelStats levelStats = new LevelStats(zombie_count_kill, timeEspliaded, money);
+                    result.SetState(ResultLevel.Defeat, 0, money, data, levelStats);
                         levelIsFinished = true;
                         WriteOnStatictics(ResultLevel.Defeat);
                     }
 
-
+                    
                 }
             }
 

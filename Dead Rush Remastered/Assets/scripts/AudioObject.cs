@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class AudioObject : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class AudioObject : MonoBehaviour
     [SerializeField] bool random_pich = true;
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (!PlayOnAwake)
         {
             return;
@@ -31,22 +33,11 @@ public class AudioObject : MonoBehaviour
 
     private void Update()
     {
-        SetVolumeFX();
-    }
-
-    private void SetVolumeFX()
-    {
         if (type == TypeAudio.FX)
         {
             audioSource.volume = AudioCache.data.fxVolume;
 
         }
-    }
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-        SetVolumeFX();
     }
 
 }

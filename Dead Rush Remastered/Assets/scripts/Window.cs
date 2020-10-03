@@ -3,6 +3,17 @@
 public class Window : AnimatedWindow
 {
     public event Action exitEvent;
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public void Exit()
     {
@@ -10,7 +21,7 @@ public class Window : AnimatedWindow
         Destroy(gameObject);
     }
 
-    protected void SetChildEvent(Action method)
+    protected void SetChildEvent (Action method)
     {
         exitEvent += method;
     }

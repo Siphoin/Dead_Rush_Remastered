@@ -19,9 +19,6 @@ MonoBehaviour:
   rewardmurder: 6
   HP_slider: {fileID: 587429904220778429}
   ARMOR_slider: {fileID: 7640971912548793104}
-  isGhost: 0
-  isBigZombie: 0
-  isAcidZombie: 1
   ATTACK_RANGE: 5
 --- !u!1001 &6330641725462523319
 PrefabInstance:

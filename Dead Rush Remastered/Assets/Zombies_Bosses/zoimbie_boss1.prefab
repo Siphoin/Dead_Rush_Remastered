@@ -121,11 +121,6 @@ PrefabInstance:
       propertyPath: damage
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 4948412750126657950, guid: b13d527d02b05824f887fedf0ab8faae,
-        type: 3}
-      propertyPath: isBigZombie
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4948412750126657951, guid: b13d527d02b05824f887fedf0ab8faae,
         type: 3}
       propertyPath: m_Name

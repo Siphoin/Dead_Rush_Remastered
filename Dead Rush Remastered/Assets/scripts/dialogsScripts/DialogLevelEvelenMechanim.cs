@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+using System;
 
 public class DialogLevelEvelenMechanim : DialogMechanimScript
 {
@@ -11,7 +12,7 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
     // Use this for initialization
     void Start()
     {
-
+        
         player_movedObject = player.GetComponent<MovedObject>();
         actionsContainer = new DialogAction[]
         {
@@ -27,7 +28,7 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
 
     private void PlayerKillDmitril()
     {
-        BulletCinematic bullet = player.OnFire(dmitril.GetComponent<DialogPublisher>());
+      BulletCinematic bullet =  player.OnFire(dmitril.GetComponent<DialogPublisher>());
         bullet.transform.eulerAngles = player.transform.eulerAngles;
         StartCoroutine(PlayerContinueRacing());
     }
@@ -38,18 +39,18 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
 
     }
 
-    void StartMechanimStandPlayer()
+    void StartMechanimStandPlayer ()
     {
         dmitril.gameObject.SetActive(false);
         StartCoroutine(OnStandPlayer());
     }
 
-    void DmitrilTalk()
+    void DmitrilTalk ()
     {
         StartCoroutine(DmitrilTalking());
     }
 
-    private IEnumerator OnStandPlayer()
+    private IEnumerator OnStandPlayer ()
     {
         yield return new WaitForSeconds(1);
         player_movedObject.moving = false;
@@ -59,7 +60,7 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
         yield return new WaitForSeconds(11);
         player_movedObject.moving = false;
         DialogComponent.Active = true;
-        yield return new WaitForSeconds(3);
+         yield return new WaitForSeconds(3);
         Camera.main.transform.SetParent(null);
         player.gameObject.SetActive(false);
         player.transform.SetParent(car_player.transform);
@@ -77,7 +78,7 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
         yield return new WaitForSeconds(1);
         DialogComponent.Active = true;
     }
-    IEnumerator DmitrilTalking()
+    IEnumerator DmitrilTalking ()
     {
         dmitril.gameObject.SetActive(true);
         player.gameObject.SetActive(true);
@@ -86,12 +87,12 @@ public class DialogLevelEvelenMechanim : DialogMechanimScript
         yield return null;
     }
 
-    IEnumerator PlayerContinueRacing()
+    IEnumerator PlayerContinueRacing ()
     {
         yield return new WaitForSeconds(3);
         player.gameObject.SetActive(false);
         player.transform.SetParent(car_player.transform);
         car_player.moving = true;
     }
-
+    
 }

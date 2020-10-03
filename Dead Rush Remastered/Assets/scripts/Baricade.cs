@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Baricade : MonoBehaviour, IHPObject, IDieAudio
+public class Baricade : MonoBehaviour, IHPObject
 {
     [SerializeField] int Health;
     [SerializeField] int armor;
@@ -18,7 +18,6 @@ public class Baricade : MonoBehaviour, IHPObject, IDieAudio
     {
         if (health <= 0)
         {
-            PlayAudioDie();
             Destroy(gameObject);
         }
     }
@@ -42,10 +41,5 @@ public class Baricade : MonoBehaviour, IHPObject, IDieAudio
     public BaricadeData GetData()
     {
         return new BaricadeData() { armor = armor, health = Health, name_prefab = gameObject.name, sale = Sale };
-    }
-
-    public void PlayAudioDie()
-    {
-        Instantiate(Resources.Load<AudioSource>("fx_prefabs/baricade_die"));
     }
 }

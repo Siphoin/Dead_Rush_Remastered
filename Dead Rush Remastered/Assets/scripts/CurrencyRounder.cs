@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public static class CurrencyRounder
-{
-    public static string Round(int v)
+  public static  class CurrencyRounder
+    {
+    public static string Round (int v)
     {
         if (v < 0)
         {
@@ -11,7 +15,7 @@ public static class CurrencyRounder
         float cof = 1000.0f;
         if (v > 999)
         {
-            return string.Format("{0:#.000}", v / cof) + "K";
+return string.Format("{0:#.000}", v / cof) + "K";
         }
 
         if (v > 999999)
@@ -26,10 +30,10 @@ public static class CurrencyRounder
             return string.Format("{0:#.000}", v / cof) + "B";
         }
 
-
+        
 
         return $"{v}";
-
+        
     }
 
     public static string Round(long v)

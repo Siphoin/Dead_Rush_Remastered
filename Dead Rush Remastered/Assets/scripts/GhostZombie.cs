@@ -1,44 +1,44 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
+using System;
 
-public class GhostZombie : MonoBehaviour, IDisposable
-{
-    private SpriteRenderer spriteRenderer;
-    private ZombieBase zombieBase;
-    private Color alpha_color = new Color();
+    public class GhostZombie : MonoBehaviour, IDisposable
+    {
+        private SpriteRenderer spriteRenderer;
+        private ZombieBase zombieBase;
+        private   Color alpha_color = new Color();
 
-    private float t = 0;
+        private float t = 0;
 
-    private const float T_COF = 0.1f;
+        private const float T_COF = 0.1f;
 
     private bool back_color_started = false;
-    // Use this for initialization
-    void Start()
-    {
-        var a_color = Color.white;
-        a_color.a = 0;
-        alpha_color = a_color;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        zombieBase = GetComponent<ZombieBase>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (t < 1 && !back_color_started)
+        // Use this for initialization
+        void Start()
         {
-            t += T_COF;
-            spriteRenderer.color = Color.Lerp(Color.white, alpha_color, t);
+            var a_color = Color.white;
+            a_color.a = 0;
+            alpha_color = a_color;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            zombieBase = GetComponent<ZombieBase>();
         }
 
-        zombieBase.SetStateVisibleUI(spriteRenderer.color.a > 0);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.tag)
+        // Update is called once per frame
+        void Update()
         {
+            if (t < 1 && !back_color_started)
+            {
+                t += T_COF;
+                spriteRenderer.color = Color.Lerp(Color.white, alpha_color, t);
+            }
+
+            zombieBase.SetStateVisibleUI(spriteRenderer.color.a > 0);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            switch (collision.tag)
+            {
             case "Baricades":
                 ReturnToMaterialWorld();
 
@@ -55,7 +55,7 @@ public class GhostZombie : MonoBehaviour, IDisposable
                 break;
         }
 
-    }
+        }
 
     private void ReturnToMaterialWorld()
     {
@@ -68,14 +68,14 @@ public class GhostZombie : MonoBehaviour, IDisposable
     }
 
     public void Dispose()
-    {
-        spriteRenderer = null;
-        alpha_color = new Color();
-        zombieBase = null;
-        t = 0;
-    }
+        {
+            spriteRenderer = null;
+            alpha_color = new Color();
+            zombieBase = null;
+            t = 0;
+        }
 
-    private IEnumerator BackWhiteColor()
+    private IEnumerator BackWhiteColor ()
     {
         t = 0;
         while (t < 1)
@@ -91,4 +91,4 @@ public class GhostZombie : MonoBehaviour, IDisposable
             }
         }
     }
-}
+    }

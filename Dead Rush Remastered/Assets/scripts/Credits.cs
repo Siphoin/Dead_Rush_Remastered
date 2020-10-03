@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Credits : MonoBehaviour
 {
@@ -26,8 +27,8 @@ public class Credits : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {
         credits_container.transform.Translate(credits_container.transform.up * speed_translate * Time.deltaTime);
 
@@ -37,7 +38,7 @@ public class Credits : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
             ToEndGame();
         }
@@ -50,7 +51,7 @@ if (Input.touchCount > 0)
 #endif
     }
 
-    private void ToEndGame()
+    private  void ToEndGame()
     {
         Menu.OnPageLevels = false;
         Loading.OnLoad("EndGame");

@@ -88,11 +88,6 @@ PrefabInstance:
       propertyPath: rewardmurder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 3102584285326041486, guid: fe7b5aa87acedcd41adfb9400ba9607d,
-        type: 3}
-      propertyPath: isAcidZombie
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3102584285326041487, guid: fe7b5aa87acedcd41adfb9400ba9607d,
         type: 3}
       propertyPath: m_Name

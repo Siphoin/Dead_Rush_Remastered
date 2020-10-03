@@ -11,11 +11,8 @@ public class UIController : MonoBehaviour
     [SerializeField] Slider HPBoss;
     private Baricade baricade;
     private ZombieBase boss_target;
-    [Header("survival_statistics_text")]
-    [SerializeField] Text survival_stats_text;
     [Header("level Text")]
     [SerializeField] TransliteText levelNumText;
-
     // Use this for initialization
     void Start()
     {
@@ -40,33 +37,13 @@ public class UIController : MonoBehaviour
             levelNumText.text = str_translite_num_level;
         }
 
+        
+            HPBoss.gameObject.SetActive(false);
 
-        HPBoss.gameObject.SetActive(false);
 
-        if (LevelManager.manager.level > 50)
-        {
-            SurvivalRecord survival_data = SurvivalCache.Survival;
-            switch (LanguageManager.Language)
-            {
-                case Language.EN:
-                    survival_stats_text.text = $"Record Survival\nZombies killed: {CurrencyRounder.Round(survival_data.kills)}\nTime: {survival_data.timeRecord.ToLongTimeString()}";
-                    break;
-                case Language.RU:
-                    survival_stats_text.text = $"Рекорд\nЗомби убито: {CurrencyRounder.Round(survival_data.kills)}\nВремя: {survival_data.timeRecord.ToLongTimeString()}";
-                    break;
-            }
         }
 
-        else
-        {
-            Destroy(survival_stats_text.gameObject);
-        }
-
-
-
-    }
-
-    private void BossOn(ZombieBase obj)
+        private void BossOn(ZombieBase obj)
     {
         boss_target = obj;
         HPBoss.maxValue = boss_target.Health;
@@ -104,4 +81,4 @@ public class UIController : MonoBehaviour
         }
 
     }
-}
+    }

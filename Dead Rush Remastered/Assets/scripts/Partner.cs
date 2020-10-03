@@ -67,7 +67,7 @@ public class Partner : ScreenComponent, ICharacter, IHPObject, IDieAudio
         posPartner.y = Random.Range(HEIGHT_SCREEN * -1, HEIGHT_SCREEN);
         transform.position = posPartner;
         LevelManager.manager.HordeEvent += HordeOn;
-        ShootClipWeapon.clip = Resources.Load<AudioClip>("fx_shoots/gun_shoot");
+         ShootClipWeapon.clip = Resources.Load<AudioClip>("fx_shoots/gun_shoot");
         HP_Slider.maxValue = health;
     }
 

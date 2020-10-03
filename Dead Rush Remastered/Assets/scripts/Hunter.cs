@@ -43,17 +43,17 @@ public class Hunter : MonoBehaviour
         zombieBase = GetComponent<ZombieBase>();
         if (target != null)
         {
-            StartCoroutine(Teleport());
-            StartCoroutine(OnStand());
+        StartCoroutine(Teleport());
+        StartCoroutine(OnStand());
         }
 
     }
 
-    private void FindPlayer()
+    private void FindPlayer ()
     {
         try
         {
-            target = LevelManager.manager.player.transform;
+        target = LevelManager.manager.player.transform;
         }
 
         catch
@@ -63,18 +63,18 @@ public class Hunter : MonoBehaviour
 
     }
 
-    private void FindPartner()
+    private void FindPartner ()
     {
         try
         {
-            target = GameObject.FindGameObjectWithTag("Partner").transform;
+target = GameObject.FindGameObjectWithTag("Partner").transform;
         }
 
         catch
         {
             target = null;
         }
-
+        
     }
 
     // Update is called once per frame
@@ -82,7 +82,7 @@ public class Hunter : MonoBehaviour
     {
         if (target != null)
         {
-            target_point = new Vector3(target.position.x, target.position.y, transform.position.z);
+        target_point = new Vector3(target.position.x, target.position.y, transform.position.z);
         }
 
     }

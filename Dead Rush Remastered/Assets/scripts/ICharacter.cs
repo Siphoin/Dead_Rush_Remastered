@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public interface ICharacter
-{
-    void OnFire();
+public   interface ICharacter
+    {
+         void OnFire();
     void ShowAcidEffect();
     void ShowFireEffect();
     void ShowDamageEffect();

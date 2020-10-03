@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BigZombie : MonoBehaviour
+public class BigZombie : MonoBehaviour, IDisposable
 {
     const int COUNT_ZOMBIES = 5;
     const string NAME_PREFAB_ZOMBIE = "Prefabs/Zombies/zombie1";
@@ -34,4 +35,9 @@ public class BigZombie : MonoBehaviour
 
     }
 
+    public void Dispose()
+    {
+        pos_zombie = Vector3.zero;
+        zombieBase = null;
+    }
 }

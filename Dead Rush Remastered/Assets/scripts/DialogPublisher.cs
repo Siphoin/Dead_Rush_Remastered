@@ -41,8 +41,8 @@ public class DialogPublisher : MonoBehaviour
 
     public BulletCinematic OnFire(DialogPublisher target = null)
     {
-        BulletCinematic bullet = Instantiate(Resources.Load<BulletCinematic>("cinematic/bulletCinematic"));
-        bullet.transform.position = bulletSpawner.position; ;
+      BulletCinematic bullet = Instantiate(Resources.Load<BulletCinematic>("cinematic/bulletCinematic"));
+        bullet.transform.position = bulletSpawner.position;;
         if (target != null)
         {
             bullet.SetTarget(target);
