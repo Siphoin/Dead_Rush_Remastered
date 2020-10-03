@@ -10,26 +10,35 @@ public class BloodEffect : MonoBehaviour
 
     Color alpha_color;
 
+    Color active_color;
+
     // Use this for initialization
     void Start()
     {
-        var color_a = Color.white;
-        color_a.a = 0;
-        alpha_color = color_a;
+        IniSpriteLink();
+        NewAlphaColor();
         var zPos = transform.position;
-        zPos.z = 0;
+        zPos.z = -1;
         transform.position = zPos;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         variants = Resources.LoadAll<Sprite>("Bloods");
         spriteRenderer.sprite = variants[Random.Range(0, variants.Length)];
         StartCoroutine(EffectAlpha());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void NewAlphaColor()
     {
 
+        var color_a = spriteRenderer.color;
+        color_a.a = 0;
+        alpha_color = color_a;
+        active_color = spriteRenderer.color;
     }
+
+    private void IniSpriteLink()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
 
     IEnumerator EffectAlpha()
     {
@@ -38,12 +47,20 @@ public class BloodEffect : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             t += 0.01f;
-            spriteRenderer.color = Color.Lerp(Color.white, alpha_color, t);
+            spriteRenderer.color = Color.Lerp(active_color, alpha_color, t);
             if (spriteRenderer.color.a == 0)
             {
                 Destroy(gameObject);
             }
         }
+
+    }
+
+    public void AcidBlood()
+    {
+        IniSpriteLink();
+        spriteRenderer.color = Color.green;
+        NewAlphaColor();
 
     }
 }

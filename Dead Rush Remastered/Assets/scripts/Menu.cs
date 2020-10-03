@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,10 +42,10 @@ public class Menu : MonoBehaviour
             completedValue = 100 * (starsCompleted + GameCache.Player_cacheContainer.levelCompleted) / (3 * LevelManager.MAX_LEVEL_GAME + LevelManager.MAX_LEVEL_GAME);
         }
 
-        
+
         string completedText = $"{completedValue}%";
         completed_text.SetupText(completedText, completedText);
-        
+
     }
 
     // Update is called once per frame
@@ -72,14 +71,19 @@ public class Menu : MonoBehaviour
         Instantiate(Resources.Load<ShopWindow>("Prefabs/ShopWindow"));
     }
 
-    public void OnSettings ()
+    public void OnSettings()
     {
         Instantiate(Resources.Load<SettingsWindow>("Prefabs/SettingsWindow"));
     }
 
-    public void OnSurvival ()
+    public void OnSurvival()
     {
         Loading.OnLoad("Survival");
+    }
+
+    public void OpenStatistics()
+    {
+        Instantiate(Resources.Load<StatisticsWindow>("Prefabs/StaticticsWindow"));
     }
 
     private IEnumerator CheckPlay()

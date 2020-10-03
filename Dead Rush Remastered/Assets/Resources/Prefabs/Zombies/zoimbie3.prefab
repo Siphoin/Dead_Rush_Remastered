@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef70353f505570a4eb5835e1c58859e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name_prefab_summoned_zombie: zoimbie1
 --- !u!1001 &6821852848712374342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: rewardmurder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102584285326041486, guid: fe7b5aa87acedcd41adfb9400ba9607d,
+        type: 3}
+      propertyPath: isBigZombie
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3102584285326041487, guid: fe7b5aa87acedcd41adfb9400ba9607d,
         type: 3}

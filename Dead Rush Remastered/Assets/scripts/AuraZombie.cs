@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class AuraZombie : MonoBehaviour
@@ -25,11 +25,6 @@ public class AuraZombie : MonoBehaviour
         StartCoroutine(AuraCall());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     protected IEnumerator AuraCall()
     {
@@ -40,58 +35,88 @@ public class AuraZombie : MonoBehaviour
             {
                 foreach (ZombieBase zombie in zombieList)
                 {
-switch (typeAura)
-                {
-                    case AuraZombieType.Speed:
+                    switch (typeAura)
+                    {
+                        case AuraZombieType.Speed:
                             zombie.Speed = (zombie.DefaultSpeed * 2);
-                        break;
-                    case AuraZombieType.Health:
+                            break;
+                        case AuraZombieType.Health:
                             if (zombie.Health < zombie.StartedHealth)
                             {
                                 zombie.HillZombie(1);
                             }
                             break;
+                    }
                 }
-                }
-                
+
             }
 
         }
 
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Zombie")
+
+        if (collision.CompareTag("Zombie"))
         {
+            bool auraActivate = true;
+            Witch witch = null;
+            Hunter hunter = null;
+            AuraZombie auraZombie = null;
+            if (collision.TryGetComponent(out witch))
+            {
+                auraActivate = false;
+            }
+
+            if (collision.TryGetComponent(out hunter))
+            {
+                auraActivate = false;
+            }
+
+            if (collision.TryGetComponent(out witch))
+            {
+                auraActivate = false;
+            }
+
+            if (collision.TryGetComponent(out auraZombie))
+            {
+                auraActivate = false;
+            }
             if (collision.gameObject != parent_go)
             {
-            ZombieBase zombie = collision.GetComponent<ZombieBase>();
-                if (typeAura == AuraZombieType.Speed)
+                if (auraActivate)
                 {
-                    zombie.Speed = (zombie.DefaultSpeed * 2);
+                    ZombieBase zombie = collision.GetComponent<ZombieBase>();
+                    if (typeAura == AuraZombieType.Speed)
+                    {
+                        zombie.Speed = (zombie.DefaultSpeed * 2);
+                    }
+                    zombieList.Add(zombie);
                 }
-            zombieList.Add(zombie);
+
             }
 
         }
+
+
 
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Zombie")
+        if (collision.CompareTag("Zombie"))
         {
             if (collision.gameObject != parent_go)
             {
-            ZombieBase zombie = collision.GetComponent<ZombieBase>();
-            zombie.ReturnSpeedMovement();
-            zombieList.Remove(zombie);
+                ZombieBase zombie = collision.GetComponent<ZombieBase>();
+                zombie.ReturnSpeedMovement();
+                zombieList.Remove(zombie);
             }
 
         }
 
 
     }
-    }
+}

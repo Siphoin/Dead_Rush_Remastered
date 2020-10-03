@@ -2,8 +2,8 @@
 using System.IO;
 using UnityEngine;
 
-public static   class StatisticsCache
-    {
+public static class StatisticsCache
+{
     public static UserStatistics Statistics { get; set; } = new UserStatistics();
     private static string pathSaveData;
     private static string folberName = "/cache/";
@@ -55,7 +55,7 @@ public static   class StatisticsCache
         }
     }
 
-  
+
 
     public static bool FileSaveExits()
     {

@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
     [Header("dialog scene name")]
 
 
- [SerializeField]   private string dialogNameScene = null;
+    [SerializeField] private string dialogNameScene = null;
 
 
 
@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        
+
         if (currentLevel <= 0)
         {
             throw new UnityException("current this Level <= 0!");
@@ -128,17 +128,17 @@ public class LevelManager : MonoBehaviour
             {
                 JSON_INFO_ZOMBIES = Resources.Load<TextAsset>("manifests/zombies_info").text;
                 yield return new WaitForSeconds(3);
-            NewZombieWindow newZombieWindow = Instantiate(Resources.Load<NewZombieWindow>("Prefabs/NewZombieType"));
-            ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(JSON_INFO_ZOMBIES);
-            newZombieWindow.SetInfo(infoList.zombieList[name_zombie]);
-            newZombieWindow.exitEvent += OnWindowNewZombieExit;
+                NewZombieWindow newZombieWindow = Instantiate(Resources.Load<NewZombieWindow>("Prefabs/NewZombieType"));
+                ZombieInfoList infoList = JsonConvert.DeserializeObject<ZombieInfoList>(JSON_INFO_ZOMBIES);
+                newZombieWindow.SetInfo(infoList.zombieList[name_zombie]);
+                newZombieWindow.exitEvent += OnWindowNewZombieExit;
                 infoList.Dispose();
-            while (windowNewZombieExited == false)
-            {
-                yield return new WaitForSeconds(1 / 60);
+                while (windowNewZombieExited == false)
+                {
+                    yield return new WaitForSeconds(1 / 60);
+                }
             }
-            }
-            
+
 
         }
         StartCoroutine(SpawnZombie());
@@ -171,7 +171,7 @@ public class LevelManager : MonoBehaviour
         Player = Instantiate(Resources.Load<Character>("Prefabs/Characters/" + GameCache.Player_cacheContainer.skin));
         baricade = Instantiate(Resources.Load<Baricade>("Prefabs/Baricades/" + GameCache.Player_cacheContainer.baricades.name_prefab));
         Player.deadEvent += OnPlayerDead;
-    UI =    Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
+        UI = Instantiate(Resources.Load<UIController>("Prefabs/UILevel"));
         if (GameCache.Player_cacheContainer.partnerBuyed)
         {
             Instantiate(Resources.Load<GameObject>("Prefabs/PartnerVisibleComponent"));
@@ -272,7 +272,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void FrezzeMechanimsLevel ()
+    private void FrezzeMechanimsLevel()
     {
         Destroy(UI.gameObject);
         Player.enabled = false;
@@ -285,10 +285,11 @@ public class LevelManager : MonoBehaviour
         ZombieBase zombie = null;
         if (custom_prefab == null)
         {
-         zombie = Instantiate(zombiesList[UnityEngine.Random.Range(0, variantsCountZombies)]);
+            zombie = Instantiate(zombiesList[UnityEngine.Random.Range(0, variantsCountZombies)]);
         }
 
-        else {
+        else
+        {
             zombie = Instantiate(custom_prefab);
 
         }
@@ -298,9 +299,9 @@ public class LevelManager : MonoBehaviour
         {
             if (accounting)
             {
-currentZombiesSpawned++;
+                currentZombiesSpawned++;
             }
-        
+
         }
 
         zombie.deadEvent += OnDeadZombie;
@@ -421,19 +422,19 @@ currentZombiesSpawned++;
         target.deadEvent += OnDeadZombie;
     }
 
-    public void SetCustomParams (int count_zombies)
+    public void SetCustomParams(int count_zombies)
     {
         countZombiesInLevel = count_zombies;
     }
 
-    public void CallCustomHorde (int countZombies, ZombieBase prefab_zombie = null)
+    public void CallCustomHorde(int countZombies, ZombieBase prefab_zombie = null)
     {
         StartCoroutine(CallCustomHorde_IEnumerator(countZombies, prefab_zombie));
     }
 
-    private IEnumerator CallCustomHorde_IEnumerator (int c, ZombieBase zombie)
+    private IEnumerator CallCustomHorde_IEnumerator(int c, ZombieBase zombie)
     {
-        
+
         while (c > 0)
         {
             float r = UnityEngine.Random.Range(0.5f, 2);

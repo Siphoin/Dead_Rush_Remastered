@@ -24,6 +24,7 @@ public class DialogComponent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Instantiate(Resources.Load<MusicPlayer>("music_prefabs/dialog_music"));
         for (int i = 0; i < dialogElements.Length; i++)
         {
             if (!targets.ContainsKey(dialogElements[i].targetName))
@@ -60,7 +61,7 @@ public class DialogComponent : MonoBehaviour
             SkipDialog();
         }
 
-        
+
 
 #else
 if (Input.touchCount > 0)
@@ -83,10 +84,26 @@ if (Input.touchCount > 0)
 
             NextDialogElement();
             dialogElements[indexDialog].CallEvent();
+            string replic = null;
             for (int i = 0; i < currentChars.Length; i++)
             {
+                replic += currentChars[i].ToString();
+            }
+            if (replic.Contains("Вы:"))
+            {
+                replic = replic.Replace("Вы:", $"{GameCache.Player_cacheContainer.namePlayer}:");
+            }
+
+            if (replic.Contains("You:"))
+            {
+                replic = replic.Replace("You:", $"{GameCache.Player_cacheContainer.namePlayer}:");
+            }
+
+            for (int i = 0; i < replic.Length; i++)
+            {
                 yield return new WaitForSeconds(0.03f);
-                text_dialog.text += currentChars[i].ToString();
+
+                text_dialog.text += replic[i].ToString();
             }
             while (Active == false)
             {

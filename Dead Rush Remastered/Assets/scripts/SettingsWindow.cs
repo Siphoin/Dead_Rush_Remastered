@@ -16,8 +16,8 @@ public class SettingsWindow : Window
     private void SaveData()
     {
 
-            AudioCache.SaveData();
-        
+        AudioCache.SaveData();
+
     }
 
     // Update is called once per frame
@@ -27,5 +27,5 @@ public class SettingsWindow : Window
         AudioCache.data.musicVolume = slider_music.value;
     }
 
-    
+
 }

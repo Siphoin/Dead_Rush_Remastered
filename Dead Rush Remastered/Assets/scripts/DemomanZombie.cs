@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-    public class DemomanZombie : MonoBehaviour, INotReward
-    {
+public class DemomanZombie : MonoBehaviour, INotReward
+{
     public ZombieBase Zombiebase { get; private set; }
 
     [SerializeField]
@@ -10,15 +9,15 @@ using System.Collections;
 
     // Use this for initialization
     void Start()
-        {
+    {
         Zombiebase = GetComponent<ZombieBase>();
     }
 
-        // Update is called once per frame
-        void Update()
-        {
+    // Update is called once per frame
+    void Update()
+    {
 
-        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

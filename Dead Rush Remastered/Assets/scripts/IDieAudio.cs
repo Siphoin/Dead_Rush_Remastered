@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public interface IDieAudio
+﻿public interface IDieAudio
 {
 
     void PlayAudioDie();

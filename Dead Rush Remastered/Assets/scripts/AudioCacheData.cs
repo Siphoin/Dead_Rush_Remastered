@@ -1,8 +1,8 @@
 ﻿using System;
 
-    [Serializable]
-   public class AudioCacheData
-    {
+[Serializable]
+public class AudioCacheData
+{
     [Newtonsoft.Json.JsonProperty("fx_value")]
 
     public float fxVolume = 1f;

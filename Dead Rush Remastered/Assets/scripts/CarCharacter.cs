@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using System;
+using UnityEngine;
 
 public class CarCharacter : Character, ICharacter
 {
@@ -8,7 +8,7 @@ public class CarCharacter : Character, ICharacter
 
     private int statusBlood = 0;
 
- [SerializeField]   private Sprite[] statusCarSprites;
+    [SerializeField] private Sprite[] statusCarSprites;
 
     private int MAX_STATUS_CAR;
 
@@ -44,7 +44,7 @@ public class CarCharacter : Character, ICharacter
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         MAX_STATUS_CAR = statusCarSprites.Length - 1;
-        
+
     }
 
     // Update is called once per frame

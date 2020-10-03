@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class MusicPlayer : MonoBehaviour
 {
     [SerializeField] private AudioClip[] musicList;
-     AudioSource audioSource;
+    AudioSource audioSource;
 
     private float t_mixer_volume = 0;
     // Use this for initialization

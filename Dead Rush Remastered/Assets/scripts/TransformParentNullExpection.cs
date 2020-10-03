@@ -1,8 +1,8 @@
 ﻿
 using System;
 
-public  class TransformParentNullExpection : Exception
-    {
+public class TransformParentNullExpection : Exception
+{
 
     public TransformParentNullExpection() : base() { }
     public TransformParentNullExpection(string message) : base(message) { }

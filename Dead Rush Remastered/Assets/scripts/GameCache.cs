@@ -54,7 +54,7 @@ public static class GameCache
                 Application.Quit();
 
             }
-            
+
         }
     }
 
@@ -91,18 +91,18 @@ public static class GameCache
         return File.Exists(pathSaveData + fileName);
     }
 
-    public static bool ContainsZombieInBook (string zombieName)
+    public static bool ContainsZombieInBook(string zombieName)
     {
         return Player_cacheContainer.ZombieBook.Contains(zombieName);
     }
 
 
-    public static bool GameFinished ()
+    public static bool GameFinished()
     {
         return Player_cacheContainer.levelCompleted >= LevelManager.MAX_LEVEL_GAME;
     }
 
-    public static void DeleteSave ()
+    public static void DeleteSave()
     {
         if (FileSaveExits())
         {

@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class TitleMap_Racing : MonoBehaviour
 {
     private CarCharacter car;
 
-  private  Zombie_Racing[] zombies;
+    private Zombie_Racing[] zombies;
 
 
     // Use this for initialization
@@ -18,10 +16,10 @@ public class TitleMap_Racing : MonoBehaviour
         {
             for (int i = 0; i < Random.Range(1, 7); i++)
             {
-        float rad = 3f;
-        Vector3 vecUnity = new Vector3(transform.position.x + rad * Mathf.Cos(Random.Range(-180, 180)), transform.position.y + rad * Mathf.Sin(Random.Range(-250, 250)), -2);
-        Zombie_Racing zombie = Instantiate(zombies[Random.Range(0, zombies.Length)]);
-        zombie.transform.position = vecUnity;
+                float rad = 3f;
+                Vector3 vecUnity = new Vector3(transform.position.x + rad * Mathf.Cos(Random.Range(-180, 180)), transform.position.y + rad * Mathf.Sin(Random.Range(-250, 250)), -2);
+                Zombie_Racing zombie = Instantiate(zombies[Random.Range(0, zombies.Length)]);
+                zombie.transform.position = vecUnity;
             }
             return;
         }
@@ -32,7 +30,7 @@ public class TitleMap_Racing : MonoBehaviour
             {
                 float rad = 3f;
                 Vector3 vecUnity = new Vector3(transform.position.x + rad * Mathf.Cos(Random.Range(-180, 180)), transform.position.y + rad * Mathf.Sin(Random.Range(-250, 250)), -2);
-               Fire_Racing fire = Instantiate(Resources.Load<Fire_Racing>($"Prefabs/fire_racing"));
+                Fire_Racing fire = Instantiate(Resources.Load<Fire_Racing>($"Prefabs/fire_racing"));
                 fire.transform.position = vecUnity;
             }
 
@@ -47,7 +45,7 @@ public class TitleMap_Racing : MonoBehaviour
         {
             if (car.transform.position.x > transform.position.x)
             {
-            Destroy(gameObject);
+                Destroy(gameObject);
             }
 
         }

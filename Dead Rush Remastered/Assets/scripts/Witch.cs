@@ -57,8 +57,8 @@ public class Witch : MonoBehaviour
 
         if (collision.tag == "Baricades")
         {
-                extraMoved = true;
-            
+            extraMoved = true;
+
         }
 
 

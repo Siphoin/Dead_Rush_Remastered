@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
+﻿using System.Collections;
+using UnityEngine;
 
 public class DialogLevelEightMechanim : DialogMechanimScript
 {
@@ -29,7 +28,7 @@ public class DialogLevelEightMechanim : DialogMechanimScript
 
     }
 
-    IEnumerator ZombieAttackTime ()
+    IEnumerator ZombieAttackTime()
     {
         yield return new WaitForSeconds(7.2f);
         zombie.moving = true;

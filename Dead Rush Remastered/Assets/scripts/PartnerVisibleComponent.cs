@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class PartnerVisibleComponent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       GameObject.FindGameObjectWithTag("Partner").GetComponent<Partner>().deadEvent += OnPartnerDead;
+        GameObject.FindGameObjectWithTag("Partner").GetComponent<Partner>().deadEvent += OnPartnerDead;
     }
 
     private void OnPartnerDead()
@@ -26,24 +25,28 @@ public class PartnerVisibleComponent : MonoBehaviour
     {
         if (zombies.Count > 1)
         {
-            zombies.OrderBy(a => Vector2.Distance(a.transform.position, LevelManager.manager.player.transform.position)).First();
+            if (LevelManager.manager.player)
+            {
+                zombies.OrderBy(a => Vector2.Distance(a.transform.position, LevelManager.manager.player.transform.position)).First();
+            }
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Zombie")
+        if (collision.CompareTag("Zombie"))
         {
-            
-ZombieBase zombie = collision.GetComponent<ZombieBase>();
+
+            ZombieBase zombie = collision.GetComponent<ZombieBase>();
             if (!zombie.IsGhost)
             {
-            zombie.deadEvent += OnDeadZombie;
-            zombies.Add(zombie);
+                zombie.deadEvent += OnDeadZombie;
+                zombies.Add(zombie);
             }
 
-            
-                
+
+
 
         }
     }
@@ -55,12 +58,12 @@ ZombieBase zombie = collision.GetComponent<ZombieBase>();
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Zombie")
+        if (collision.CompareTag("Zombie"))
         {
             ZombieBase zombie = collision.GetComponent<ZombieBase>();
             if (zombies.Contains(zombie))
             {
-            zombies.Remove(collision.GetComponent<ZombieBase>());
+                zombies.Remove(collision.GetComponent<ZombieBase>());
             }
 
         }

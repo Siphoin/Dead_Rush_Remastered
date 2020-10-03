@@ -69,24 +69,24 @@ public class TransliteText : MonoBehaviour
         {
 
         }
-        
+
     }
 
     public void SetupText()
     {
         try
         {
-        if (TryGetComponent(out text_tmp))
-        {
-            text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
+            if (TryGetComponent(out text_tmp))
+            {
+                text_tmp.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
 
-        }
+            }
 
-        if (TryGetComponent(out text_original))
-        {
-            text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
+            if (TryGetComponent(out text_original))
+            {
+                text_original.text = LanguageManager.Language == Language.EN ? data.string_en_EN : data.string_ru_RU;
 
-        }
+            }
         }
 
         catch

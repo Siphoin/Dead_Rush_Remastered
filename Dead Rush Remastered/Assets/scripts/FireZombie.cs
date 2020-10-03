@@ -15,7 +15,7 @@ public class FireZombie : AcidZombie
     void Update()
     {
         CheckParams();
-       
+
         if (baricade != null)
         {
             float dist = Vector2.Distance(transform.position, baricade.transform.position);

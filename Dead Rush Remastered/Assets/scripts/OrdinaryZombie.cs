@@ -54,7 +54,7 @@ public class OrdinaryZombie : ZombieBase
                 case "Zombie":
                     if (collision.TryGetComponent(out OrdinaryZombie zombie))
                     {
-                       
+
 
                     }
 
@@ -100,7 +100,7 @@ public class OrdinaryZombie : ZombieBase
 
             }
         }
-        
+
 
 
     }

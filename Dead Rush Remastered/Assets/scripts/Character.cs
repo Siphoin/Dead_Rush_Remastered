@@ -35,7 +35,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
 
     public event Action deadEvent;
 
-  [SerializeField]  AudioSource ShootClipWeapon;
+    [SerializeField] AudioSource ShootClipWeapon;
 
     // Start is called before the first frame update
     void Start()
@@ -193,7 +193,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
     {
         fire_effect.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-       ShootClipWeapon.pitch = UnityEngine.Random.Range(0.6f, 2f);
+        ShootClipWeapon.pitch = UnityEngine.Random.Range(0.6f, 2f);
         ShootClipWeapon.PlayOneShot(ShootClipWeapon.clip);
         fire_effect.SetActive(false);
     }
@@ -222,7 +222,7 @@ public class Character : ScreenComponent, ICharacter, IHPObject, IDieAudio
         transform.position = posClamped;
     }
 
-    protected void CallDie ()
+    protected void CallDie()
     {
         deadEvent?.Invoke();
     }

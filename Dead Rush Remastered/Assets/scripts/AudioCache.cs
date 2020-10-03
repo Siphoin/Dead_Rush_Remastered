@@ -2,8 +2,8 @@
 using System.IO;
 using UnityEngine;
 
-public static  class AudioCache
-    {
+public static class AudioCache
+{
     public static AudioCacheData data { get; set; } = new AudioCacheData();
     private static string pathSaveData;
     private static string folberName = "/cache/";

@@ -1,5 +1,5 @@
-﻿public  enum TypeAudio
-    {
+﻿public enum TypeAudio
+{
     FX,
     Music
-    }
+}

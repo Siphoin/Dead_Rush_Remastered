@@ -20,8 +20,10 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
     [Header("slider armor")]
     [SerializeField] protected Slider ARMOR_slider;
     [SerializeField] private bool isGhost = false;
+    [SerializeField] private bool isBigZombie = false;
+    [SerializeField] private bool isAcidZombie = false;
     const float CHECK_DISTANCE_DESTROY = 13f;
-    private  int startedHealth = 0;
+    private int startedHealth = 0;
     protected Baricade baricade;
 
     private float defaultSpeed;
@@ -56,13 +58,17 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
 
         if (health <= 0)
         {
-            GameObject blood = Instantiate(Resources.Load<GameObject>("Prefabs/blood"));
+            BloodEffect blood = Instantiate(Resources.Load<BloodEffect>("Prefabs/blood"));
             blood.transform.position = transform.position;
 
-            if (TryGetComponent(out BigZombie bigZombie))
+            if (isBigZombie)
             {
                 blood.transform.localScale *= 2;
-                bigZombie.Dispose();
+            }
+
+            if (isAcidZombie)
+            {
+                blood.AcidBlood();
             }
             deadEvent(rewardmurder, rewardmurder > 0, this);
             RewardDisplay rewardDisplay = Instantiate(Resources.Load<RewardDisplay>("Prefabs/reward_display"));
@@ -164,7 +170,7 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
         speed = defaultSpeed;
     }
 
-    public void SetStateVisibleUI (bool state)
+    public void SetStateVisibleUI(bool state)
     {
         HP_slider.gameObject.SetActive(state);
         if (ARMOR_slider != null)
@@ -173,7 +179,7 @@ public abstract class ZombieBase : MonoBehaviour, IDieAudio, IHPObject
         }
     }
 
-    public void OnNullReward ()
+    public void OnNullReward()
     {
         rewardmurder = 0;
     }

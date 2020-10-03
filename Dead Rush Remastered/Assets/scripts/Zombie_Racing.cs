@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class Zombie_Racing : MonoBehaviour, IDieAudio
 {
-   [SerializeField] private float speed;
- [SerializeField]   private int rewardmurder;
+    [SerializeField] private float speed;
+    [SerializeField] private int rewardmurder;
     private CarCharacter car;
 
     public int Rewardmurder { get => rewardmurder; }
@@ -25,7 +23,7 @@ public class Zombie_Racing : MonoBehaviour, IDieAudio
         {
             if (car.transform.position.x > transform.position.x)
             {
-            Destroy(gameObject);
+                Destroy(gameObject);
             }
 
         }

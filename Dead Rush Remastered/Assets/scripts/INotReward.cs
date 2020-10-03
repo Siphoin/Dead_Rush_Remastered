@@ -1,4 +1,4 @@
-﻿public   interface INotReward
-    {
+﻿public interface INotReward
+{
     void CallNullReward();
-    }
+}

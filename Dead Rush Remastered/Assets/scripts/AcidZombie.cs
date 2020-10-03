@@ -20,7 +20,7 @@ public class AcidZombie : ZombieBase
             float dist = Vector2.Distance(transform.position, baricade.transform.position);
             move = dist > ATTACK_RANGE;
 
-            
+
         }
 
         else

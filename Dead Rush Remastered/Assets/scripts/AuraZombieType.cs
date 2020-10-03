@@ -1,6 +1,6 @@
 ﻿
-   public enum AuraZombieType
-    {
+public enum AuraZombieType
+{
     Speed,
     Health,
     Invulnerability,

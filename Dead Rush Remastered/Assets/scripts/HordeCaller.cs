@@ -1,18 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.scripts
 {
     public class HordeCaller : MonoBehaviour
     {
-       [SerializeField] private  float time_spawn = 20;
-       [SerializeField] private  int count_zombies = 7;
-     
+        [SerializeField] private float time_spawn = 20;
+        [SerializeField] private int count_zombies = 7;
+
         [SerializeField] ZombieBase prefab;
         // Use this for initialization
         void Start()
         {
-          
+
 
             StartCoroutine(NewHorde());
         }
@@ -23,7 +23,7 @@ namespace Assets.scripts
 
         }
 
-        IEnumerator NewHorde ()
+        IEnumerator NewHorde()
         {
             while (true)
             {
